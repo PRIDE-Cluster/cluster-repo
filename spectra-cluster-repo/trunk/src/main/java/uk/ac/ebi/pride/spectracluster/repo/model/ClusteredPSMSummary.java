@@ -5,13 +5,13 @@ package uk.ac.ebi.pride.spectracluster.repo.model;
  * @version $Id$
  */
 public class ClusteredPSMSummary {
-    private Long clusterId;
-    private Long psmId;
-    private Long spectrumId;
-    private String sequence;
-    private float psmRatio;
-    private int rank;
-    private PSMSummary psmSummary;
+    private Long clusterId; // internal cluster id
+    private Long psmId; // internal psm id
+    private Long spectrumId; // internal spectrum id
+    private String sequence; // peptide sequence
+    private float psmRatio; // ratio is the number of distinct psm / the number of spectra
+    private int rank;              // rank of the psm by ratio
+    private PSMSummary psmSummary; // full psm summary
 
     public Long getClusterId() {
         return clusterId;
