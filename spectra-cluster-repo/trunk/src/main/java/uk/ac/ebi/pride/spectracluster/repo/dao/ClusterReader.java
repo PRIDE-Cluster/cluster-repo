@@ -4,14 +4,13 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementSetter;
 import org.springframework.jdbc.core.RowCallbackHandler;
 import uk.ac.ebi.pride.spectracluster.repo.model.*;
-import uk.ac.ebi.pride.spectracluster.repo.utils.CollectionUtils;
+import uk.ac.ebi.pride.spectracluster.repo.utils.QueryUtils;
 
 import javax.sql.DataSource;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 
@@ -33,7 +32,7 @@ public class ClusterReader implements IClusterReadDao {
     public List<SpectrumSummary> findSpectra(final List<String> spectrumReferences) {
         final List<SpectrumSummary> spectrumSummaries = new ArrayList<SpectrumSummary>();
 
-        final List<String> concatenateIds = concatenateIds(spectrumReferences, 500);
+        final List<String> concatenateIds = QueryUtils.concatenateIds(spectrumReferences, 500);
 
         for (String concatenateId : concatenateIds) {
             final String SELECT_QUERY = "select * from spectrum where spectrum_ref in (" + concatenateId + ")";
@@ -62,7 +61,7 @@ public class ClusterReader implements IClusterReadDao {
     public List<PSMSummary> findPSMBySpectrumId(final List<Long> spectrumIds) {
         final List<PSMSummary> psmSummaries = new ArrayList<PSMSummary>();
 
-        final List<String> concatenateIds = concatenateIds(spectrumIds, 500);
+        final List<String> concatenateIds = QueryUtils.concatenateIds(spectrumIds, 500);
 
         for (String concatenateId : concatenateIds) {
             final String SELECT_QUERY = "select * from psm where spectrum_fk in (" + concatenateId + ")";
@@ -104,7 +103,7 @@ public class ClusterReader implements IClusterReadDao {
 
         final List<AssaySummary> assaySummaries = new ArrayList<AssaySummary>();
 
-        String concatenateIds = concatenateIds(ids);
+        String concatenateIds = QueryUtils.concatenateIds(ids);
 
         final String ASSAY_QUERY = "select * from assay where assay_pk in (" + concatenateIds + ")";
 
@@ -283,28 +282,5 @@ public class ClusterReader implements IClusterReadDao {
         return clusteredPSMSummaries;
     }
 
-    private String concatenateIds(final Collection ids) {
-        String concatIds = "";
 
-        for (Object id : ids) {
-            concatIds += "'" + id.toString() + "',";
-        }
-
-        return concatIds.substring(0, concatIds.length() - 1);
-    }
-
-    private List<String> concatenateIds(final List ids, int limit) {
-        List<String> queries = new ArrayList<String>();
-
-        List<List> chunks = CollectionUtils.chunks(ids, limit);
-        for (List chunk : chunks) {
-            String query = "";
-            for (Object id : chunk) {
-                query += "'" + id.toString() + "',";
-            }
-            queries.add(query.substring(0, query.length() - 1));
-        }
-
-        return queries;
-    }
 }

@@ -17,7 +17,7 @@ import uk.ac.ebi.pride.spectracluster.repo.exception.ClusterImportException;
 import uk.ac.ebi.pride.spectracluster.repo.model.AssaySummary;
 import uk.ac.ebi.pride.spectracluster.repo.model.PSMSummary;
 import uk.ac.ebi.pride.spectracluster.repo.model.SpectrumSummary;
-import uk.ac.ebi.pride.spectracluster.repo.utils.CollectionUtils;
+import uk.ac.ebi.pride.spectracluster.repo.utils.QueryUtils;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -137,7 +137,7 @@ public class ArchiveMetaDataWriter implements IArchiveMetaDataWriteDao {
         if (spectra.size() == 0)
             return;
 
-        List<List<SpectrumSummary>> chunks = CollectionUtils.chunks(spectra, MAX_INCREMENT);
+        List<List<SpectrumSummary>> chunks = QueryUtils.chunks(spectra, MAX_INCREMENT);
 
         for (List<SpectrumSummary> chunk : chunks) {
             saveBatchOfSpectra(chunk);
@@ -237,7 +237,7 @@ public class ArchiveMetaDataWriter implements IArchiveMetaDataWriteDao {
         if (psms.size() == 0)
             return;
 
-        List<List<PSMSummary>> chunks = CollectionUtils.chunks(psms, MAX_INCREMENT);
+        List<List<PSMSummary>> chunks = QueryUtils.chunks(psms, MAX_INCREMENT);
         for (List<PSMSummary> chunk : chunks) {
             saveBatchOfPSMs(chunk);
         }
