@@ -7,18 +7,14 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementSetter;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
-import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.support.incrementer.DataFieldMaxValueIncrementer;
 import org.springframework.jdbc.support.incrementer.OracleSequenceMaxValueIncrementer;
-import org.springframework.transaction.TransactionStatus;
-import org.springframework.transaction.support.TransactionCallbackWithoutResult;
-import org.springframework.transaction.support.TransactionTemplate;
-import uk.ac.ebi.pride.spectracluster.repo.exception.ClusterImportException;
 import uk.ac.ebi.pride.spectracluster.repo.model.AssaySummary;
 import uk.ac.ebi.pride.spectracluster.repo.model.PSMSummary;
 import uk.ac.ebi.pride.spectracluster.repo.model.SpectrumSummary;
 import uk.ac.ebi.pride.spectracluster.repo.utils.QueryUtils;
 
+import javax.sql.DataSource;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -37,13 +33,11 @@ public class ArchiveMetaDataWriter implements IArchiveMetaDataWriteDao {
     public static final int MAX_INCREMENT = 1000;
 
     private final JdbcTemplate template;
-    private final TransactionTemplate transactionTemplate;
     private final DataFieldMaxValueIncrementer spectrumPrimaryKeyIncrementer;
     private final DataFieldMaxValueIncrementer psmPrimaryKeyIncrementer;
 
-    public ArchiveMetaDataWriter(DataSourceTransactionManager transactionManager) {
-        this.transactionTemplate = new TransactionTemplate(transactionManager);
-        this.template = new JdbcTemplate(transactionManager.getDataSource());
+    public ArchiveMetaDataWriter(DataSource dataSource) {
+        this.template = new JdbcTemplate(dataSource);
         this.spectrumPrimaryKeyIncrementer = new OracleSequenceMaxValueIncrementer(template.getDataSource(), "spectrum_pk_sequence");
         this.psmPrimaryKeyIncrementer = new OracleSequenceMaxValueIncrementer(template.getDataSource(), "psm_pk_sequence");
     }
@@ -52,80 +46,56 @@ public class ArchiveMetaDataWriter implements IArchiveMetaDataWriteDao {
     public void saveAssay(final AssaySummary assay) {
         logger.debug("Insert assay summary into database: {}", assay.getAccession());
 
-        transactionTemplate.execute(new TransactionCallbackWithoutResult() {
 
-            @Override
-            protected void doInTransactionWithoutResult(TransactionStatus status) {
-                try {
-                    SimpleJdbcInsert simpleJdbcInsert = new SimpleJdbcInsert(template);
+        SimpleJdbcInsert simpleJdbcInsert = new SimpleJdbcInsert(template);
 
-                    simpleJdbcInsert.withTableName("assay").usingGeneratedKeyColumns("assay_pk");
+        simpleJdbcInsert.withTableName("assay").usingGeneratedKeyColumns("assay_pk");
 
-                    HashMap<String, Object> parameters = new HashMap<String, Object>();
-                    parameters.put("assay_accession", assay.getAccession());
-                    parameters.put("project_accession", assay.getProjectAccession());
+        HashMap<String, Object> parameters = new HashMap<String, Object>();
+        parameters.put("assay_accession", assay.getAccession());
+        parameters.put("project_accession", assay.getProjectAccession());
 
-                    if (assay.getProjectTitle() != null)
-                        parameters.put("project_title", assay.getProjectTitle());
+        if (assay.getProjectTitle() != null)
+            parameters.put("project_title", assay.getProjectTitle());
 
-                    if (assay.getAssayTitle() != null)
-                        parameters.put("assay_title", assay.getAssayTitle());
+        if (assay.getAssayTitle() != null)
+            parameters.put("assay_title", assay.getAssayTitle());
 
-                    parameters.put("species", assay.getSpecies());
-                    parameters.put("multi_species", assay.isMultiSpecies());
+        parameters.put("species", assay.getSpecies());
+        parameters.put("multi_species", assay.isMultiSpecies());
 
-                    if (assay.getTaxonomyId() != null)
-                        parameters.put("taxonomy_id", assay.getTaxonomyId());
+        if (assay.getTaxonomyId() != null)
+            parameters.put("taxonomy_id", assay.getTaxonomyId());
 
-                    if (assay.getDisease() != null)
-                        parameters.put("disease", assay.getDisease());
+        if (assay.getDisease() != null)
+            parameters.put("disease", assay.getDisease());
 
-                    if (assay.getTissue() != null)
-                        parameters.put("tissue", assay.getTissue());
+        if (assay.getTissue() != null)
+            parameters.put("tissue", assay.getTissue());
 
-                    if (assay.getSearchEngine() != null)
-                        parameters.put("search_engine", assay.getSearchEngine());
+        if (assay.getSearchEngine() != null)
+            parameters.put("search_engine", assay.getSearchEngine());
 
-                    if (assay.getInstrument() != null)
-                        parameters.put("instrument", assay.getInstrument());
+        if (assay.getInstrument() != null)
+            parameters.put("instrument", assay.getInstrument());
 
-                    parameters.put("biomedical", assay.isBioMedical());
+        parameters.put("biomedical", assay.isBioMedical());
 
-                    Number key = simpleJdbcInsert.executeAndReturnKey(new MapSqlParameterSource(parameters));
-                    assay.setId(key.longValue());
-                } catch (Exception ex) {
-                    status.setRollbackOnly();
-                    String message = "Error persisting assay: " + assay.getAccession();
-                    throw new ClusterImportException(message, ex);
-                }
-            }
-        });
+        Number key = simpleJdbcInsert.executeAndReturnKey(new MapSqlParameterSource(parameters));
+        assay.setId(key.longValue());
+
     }
 
     @Override
     public void deleteAssayByProjectAccession(final String projectAccession) {
         logger.debug("Delete project from database: {}", projectAccession);
 
-        transactionTemplate.execute(new TransactionCallbackWithoutResult() {
+        String UPDATE_QUERY = "DELETE FROM assay WHERE project_accession = ?";
 
+        template.update(UPDATE_QUERY, new PreparedStatementSetter() {
             @Override
-            protected void doInTransactionWithoutResult(TransactionStatus status) {
-                try {
-
-                    String UPDATE_QUERY = "DELETE FROM assay WHERE project_accession = ?";
-
-                    template.update(UPDATE_QUERY, new PreparedStatementSetter() {
-                        @Override
-                        public void setValues(PreparedStatement ps) throws SQLException {
-                            ps.setString(1, projectAccession);
-                        }
-                    });
-
-                } catch (Exception ex) {
-                    status.setRollbackOnly();
-                    String message = "Error deleting assay using project accession : " + projectAccession;
-                    throw new ClusterImportException(message, ex);
-                }
+            public void setValues(PreparedStatement ps) throws SQLException {
+                ps.setString(1, projectAccession);
             }
         });
     }
@@ -148,29 +118,17 @@ public class ArchiveMetaDataWriter implements IArchiveMetaDataWriteDao {
         if (spectra.size() > MAX_INCREMENT)
             throw new IllegalStateException("The number of spectra cannot excceed: " + MAX_INCREMENT);
 
-        transactionTemplate.execute(new TransactionCallbackWithoutResult() {
 
-            @Override
-            protected void doInTransactionWithoutResult(TransactionStatus status) {
-                try {
-                    final long startingKey = spectrumPrimaryKeyIncrementer.nextLongValue();
+        final long startingKey = spectrumPrimaryKeyIncrementer.nextLongValue();
 
-                    // add primary key
-                    int count = 0;
-                    for (SpectrumSummary spectrum : spectra) {
-                        spectrum.setId(startingKey + count);
-                        count++;
-                    }
+        // add primary key
+        int count = 0;
+        for (SpectrumSummary spectrum : spectra) {
+            spectrum.setId(startingKey + count);
+            count++;
+        }
 
-                    saveSpectraWithPrimaryKey(spectra);
-
-                } catch (Exception ex) {
-                    status.setRollbackOnly();
-                    String message = "Error persisting a number of spectra: " + spectra.size();
-                    throw new ClusterImportException(message, ex);
-                }
-            }
-        });
+        saveSpectraWithPrimaryKey(spectra);
     }
 
     private void saveSpectraWithPrimaryKey(final List<SpectrumSummary> spectra) {
@@ -201,33 +159,19 @@ public class ArchiveMetaDataWriter implements IArchiveMetaDataWriteDao {
     public void saveSpectrum(final SpectrumSummary spectrum) {
         logger.debug("Insert a spectrum into database: {}", spectrum.getReferenceId());
 
-        transactionTemplate.execute(new TransactionCallbackWithoutResult() {
+        SimpleJdbcInsert simpleJdbcInsert = new SimpleJdbcInsert(template);
 
-            @Override
-            protected void doInTransactionWithoutResult(TransactionStatus status) {
-                try {
+        simpleJdbcInsert.withTableName("spectrum").usingGeneratedKeyColumns("spectrum_pk");
 
-                    SimpleJdbcInsert simpleJdbcInsert = new SimpleJdbcInsert(template);
+        HashMap<String, Object> parameters = new HashMap<String, Object>();
+        parameters.put("assay_fk", spectrum.getAssayId());
+        parameters.put("spectrum_ref", spectrum.getReferenceId());
+        parameters.put("precursor_mz", spectrum.getPrecursorMz());
+        parameters.put("precursor_charge", spectrum.getPrecursorCharge());
+        parameters.put("is_identified", spectrum.isIdentified());
 
-                    simpleJdbcInsert.withTableName("spectrum").usingGeneratedKeyColumns("spectrum_pk");
-
-                    HashMap<String, Object> parameters = new HashMap<String, Object>();
-                    parameters.put("assay_fk", spectrum.getAssayId());
-                    parameters.put("spectrum_ref", spectrum.getReferenceId());
-                    parameters.put("precursor_mz", spectrum.getPrecursorMz());
-                    parameters.put("precursor_charge", spectrum.getPrecursorCharge());
-                    parameters.put("is_identified", spectrum.isIdentified());
-
-                    Number key = simpleJdbcInsert.executeAndReturnKey(new MapSqlParameterSource(parameters));
-                    spectrum.setId(key.longValue());
-
-                } catch (Exception ex) {
-                    status.setRollbackOnly();
-                    String message = "Error persisting spectrum: " + spectrum.getReferenceId();
-                    throw new ClusterImportException(message, ex);
-                }
-            }
-        });
+        Number key = simpleJdbcInsert.executeAndReturnKey(new MapSqlParameterSource(parameters));
+        spectrum.setId(key.longValue());
     }
 
     @Override
@@ -247,30 +191,17 @@ public class ArchiveMetaDataWriter implements IArchiveMetaDataWriteDao {
         if (psms.size() > MAX_INCREMENT)
             throw new IllegalStateException("The number of spectra cannot exceed: " + MAX_INCREMENT);
 
-        transactionTemplate.execute(new TransactionCallbackWithoutResult() {
 
-            @Override
-            protected void doInTransactionWithoutResult(TransactionStatus status) {
-                try {
+        final long startingKey = psmPrimaryKeyIncrementer.nextLongValue();
 
-                    final long startingKey = psmPrimaryKeyIncrementer.nextLongValue();
+        // add primary key
+        int count = 0;
+        for (PSMSummary psm : psms) {
+            psm.setId(startingKey + count);
+            count++;
+        }
 
-                    // add primary key
-                    int count = 0;
-                    for (PSMSummary psm : psms) {
-                        psm.setId(startingKey + count);
-                        count++;
-                    }
-
-                    savePSMsWithPrimaryKey(psms);
-
-                } catch (Exception ex) {
-                    status.setRollbackOnly();
-                    String message = "Error persisting a number of PSMs: " + psms.size();
-                    throw new ClusterImportException(message, ex);
-                }
-            }
-        });
+        savePSMsWithPrimaryKey(psms);
     }
 
     private void savePSMsWithPrimaryKey(final List<PSMSummary> psms) {
@@ -315,66 +246,55 @@ public class ArchiveMetaDataWriter implements IArchiveMetaDataWriteDao {
     public void savePSM(final PSMSummary psm) {
         logger.debug("Insert a PSM into database: {}", psm.getArchivePSMId());
 
-        transactionTemplate.execute(new TransactionCallbackWithoutResult() {
 
-            @Override
-            protected void doInTransactionWithoutResult(TransactionStatus status) {
-                try {
-                    SimpleJdbcInsert simpleJdbcInsert = new SimpleJdbcInsert(template);
+        SimpleJdbcInsert simpleJdbcInsert = new SimpleJdbcInsert(template);
 
-                    simpleJdbcInsert.withTableName("psm").usingGeneratedKeyColumns("psm_pk");
+        simpleJdbcInsert.withTableName("psm").usingGeneratedKeyColumns("psm_pk");
 
-                    HashMap<String, Object> parameters = new HashMap<String, Object>();
-                    parameters.put("spectrum_fk", psm.getSpectrumId());
-                    parameters.put("assay_fk", psm.getAssayId());
-                    parameters.put("archive_psm_id", psm.getArchivePSMId());
-                    parameters.put("sequence", psm.getSequence());
+        HashMap<String, Object> parameters = new HashMap<String, Object>();
+        parameters.put("spectrum_fk", psm.getSpectrumId());
+        parameters.put("assay_fk", psm.getAssayId());
+        parameters.put("archive_psm_id", psm.getArchivePSMId());
+        parameters.put("sequence", psm.getSequence());
 
-                    if (psm.getModifications() != null)
-                        parameters.put("modifications", psm.getModifications());
+        if (psm.getModifications() != null)
+            parameters.put("modifications", psm.getModifications());
 
-                    if (psm.getSearchEngine() != null)
-                        parameters.put("search_engine", psm.getSearchEngine());
+        if (psm.getSearchEngine() != null)
+            parameters.put("search_engine", psm.getSearchEngine());
 
-                    if (psm.getSearchEngineScores() != null)
-                        parameters.put("search_engine_scores", psm.getSearchEngineScores());
+        if (psm.getSearchEngineScores() != null)
+            parameters.put("search_engine_scores", psm.getSearchEngineScores());
 
-                    if (psm.getSearchDatabase() != null)
-                        parameters.put("search_database", psm.getSearchDatabase());
+        if (psm.getSearchDatabase() != null)
+            parameters.put("search_database", psm.getSearchDatabase());
 
-                    if (psm.getProteinAccession() != null)
-                        parameters.put("protein_accession", psm.getProteinAccession());
+        if (psm.getProteinAccession() != null)
+            parameters.put("protein_accession", psm.getProteinAccession());
 
-                    if (psm.getProteinGroup() != null)
-                        parameters.put("protein_group", psm.getProteinGroup());
+        if (psm.getProteinGroup() != null)
+            parameters.put("protein_group", psm.getProteinGroup());
 
-                    if (psm.getProteinName() != null)
-                        parameters.put("protein_name", psm.getProteinName());
+        if (psm.getProteinName() != null)
+            parameters.put("protein_name", psm.getProteinName());
 
-                    parameters.put("start_position", psm.getStartPosition());
-                    parameters.put("stop_position", psm.getStopPosition());
+        parameters.put("start_position", psm.getStartPosition());
+        parameters.put("stop_position", psm.getStopPosition());
 
-                    if (psm.getPreAminoAcid() != null)
-                        parameters.put("pre_amino_acid", psm.getPreAminoAcid());
+        if (psm.getPreAminoAcid() != null)
+            parameters.put("pre_amino_acid", psm.getPreAminoAcid());
 
-                    if (psm.getPostAminoAcid() != null)
-                        parameters.put("post_amino_acid", psm.getPostAminoAcid());
+        if (psm.getPostAminoAcid() != null)
+            parameters.put("post_amino_acid", psm.getPostAminoAcid());
 
-                    parameters.put("delta_mz", psm.getDeltaMZ());
+        parameters.put("delta_mz", psm.getDeltaMZ());
 
-                    if (psm.getQuantificationLabel() != null)
-                        parameters.put("quantification_label", psm.getQuantificationLabel());
+        if (psm.getQuantificationLabel() != null)
+            parameters.put("quantification_label", psm.getQuantificationLabel());
 
-                    Number key = simpleJdbcInsert.executeAndReturnKey(new MapSqlParameterSource(parameters));
-                    psm.setId(key.longValue());
+        Number key = simpleJdbcInsert.executeAndReturnKey(new MapSqlParameterSource(parameters));
+        psm.setId(key.longValue());
 
-                } catch (Exception ex) {
-                    status.setRollbackOnly();
-                    String message = "Error persisting PSM: " + psm.getArchivePSMId();
-                    throw new ClusterImportException(message, ex);
-                }
-            }
-        });
     }
 
 
