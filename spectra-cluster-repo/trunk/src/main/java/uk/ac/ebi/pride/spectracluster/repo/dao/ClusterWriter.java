@@ -9,17 +9,13 @@ import org.springframework.jdbc.core.PreparedStatementSetter;
 import org.springframework.jdbc.core.RowCallbackHandler;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
-import org.springframework.jdbc.datasource.DataSourceTransactionManager;
-import org.springframework.transaction.TransactionStatus;
-import org.springframework.transaction.support.TransactionCallbackWithoutResult;
-import org.springframework.transaction.support.TransactionTemplate;
-import uk.ac.ebi.pride.spectracluster.repo.exception.ClusterImportException;
 import uk.ac.ebi.pride.spectracluster.repo.model.ClusterSummary;
 import uk.ac.ebi.pride.spectracluster.repo.model.ClusteredPSMSummary;
 import uk.ac.ebi.pride.spectracluster.repo.model.ClusteredSpectrumSummary;
 import uk.ac.ebi.pride.spectracluster.repo.utils.ClusterUtils;
 import uk.ac.ebi.pride.spectracluster.repo.utils.QueryUtils;
 
+import javax.sql.DataSource;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -39,11 +35,9 @@ public class ClusterWriter implements IClusterWriteDao {
     private static final Logger logger = LoggerFactory.getLogger(ClusterWriter.class);
 
     private final JdbcTemplate template;
-    private final TransactionTemplate transactionTemplate;
 
-    public ClusterWriter(DataSourceTransactionManager transactionManager) {
-        this.transactionTemplate = new TransactionTemplate(transactionManager);
-        this.template = new JdbcTemplate(transactionManager.getDataSource());
+    public ClusterWriter(DataSource dataSource) {
+        this.template = new JdbcTemplate(dataSource);
     }
 
     @Override
@@ -57,36 +51,22 @@ public class ClusterWriter implements IClusterWriteDao {
     public void saveCluster(final ClusterSummary cluster) {
         logger.debug("Insert a cluster into database: {}", cluster.toString());
 
-        transactionTemplate.execute(new TransactionCallbackWithoutResult() {
+        saveClusterSummary(cluster);
 
-            @Override
-            protected void doInTransactionWithoutResult(TransactionStatus status) {
-                try {
-                    saveClusterSummary(cluster);
+        updateSpectrumIdForClusteredSpectra(cluster);
 
-                    updateSpectrumIdForClusteredSpectra(cluster);
+        validateClusterMappings(cluster);
 
-                    validateClusterMappings(cluster);
+        ClusterUtils.updateClusteredPSMStatistics(cluster);
 
-                    ClusterUtils.updateClusteredPSMStatistics(cluster);
+        saveClusteredSpectra(cluster.getClusteredSpectrumSummaries());
 
-                    saveClusteredSpectra(cluster.getClusteredSpectrumSummaries());
+        saveClusteredPSMs(cluster.getClusteredPSMSummaries());
 
-                    saveClusteredPSMs(cluster.getClusteredPSMSummaries());
+        float maxRatio = getMaxRatio(cluster.getClusteredPSMSummaries());
 
-                    float maxRatio = getMaxRatio(cluster.getClusteredPSMSummaries());
+        updateMaxRatio(cluster, maxRatio);
 
-                    updateMaxRatio(cluster, maxRatio);
-
-                } catch (Exception ex) {
-                    status.setRollbackOnly();
-                    String message = "Error persisting cluster: " + cluster.toString();
-                    throw new ClusterImportException(message, ex);
-                }
-            }
-
-
-        });
     }
 
     private void updateMaxRatio(final ClusterSummary cluster, final float maxRatio) {
