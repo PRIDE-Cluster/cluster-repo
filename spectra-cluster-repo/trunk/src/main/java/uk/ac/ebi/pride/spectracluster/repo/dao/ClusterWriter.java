@@ -18,7 +18,7 @@ import uk.ac.ebi.pride.spectracluster.repo.model.ClusterSummary;
 import uk.ac.ebi.pride.spectracluster.repo.model.ClusteredPSMSummary;
 import uk.ac.ebi.pride.spectracluster.repo.model.ClusteredSpectrumSummary;
 import uk.ac.ebi.pride.spectracluster.repo.utils.ClusterUtils;
-import uk.ac.ebi.pride.spectracluster.repo.utils.CollectionUtils;
+import uk.ac.ebi.pride.spectracluster.repo.utils.QueryUtils;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -198,7 +198,7 @@ public class ClusterWriter implements IClusterWriteDao {
     private List<String> concatenateSpectrumReferencesForQuery(final List<ClusteredSpectrumSummary> clusteredSpectra, int limit) {
         List<String> queries = new ArrayList<String>();
 
-        List<List<ClusteredSpectrumSummary>> chunks = CollectionUtils.chunks(clusteredSpectra, limit);
+        List<List<ClusteredSpectrumSummary>> chunks = QueryUtils.chunks(clusteredSpectra, limit);
         for (List<ClusteredSpectrumSummary> chunk : chunks) {
             String query = "";
             for (ClusteredSpectrumSummary clusteredSpectrumSummary : chunk) {
