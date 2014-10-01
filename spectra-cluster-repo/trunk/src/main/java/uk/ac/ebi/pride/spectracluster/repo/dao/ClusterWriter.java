@@ -25,7 +25,9 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- * Writer class for inserting clusters
+ * Writer class for inserting clusters and their related metadata
+ *
+ * NOTE: This implementation is Oracle dependent
  *
  * @author Rui Wang
  * @version $Id$
@@ -37,8 +39,8 @@ public class ClusterWriter implements IClusterWriteDao {
     public static final int MAX_INCREMENT = 1000;
 
     private final JdbcTemplate template;
-    private final DataFieldMaxValueIncrementer spectrumPrimaryKeyIncrementer;
-    private final DataFieldMaxValueIncrementer psmPrimaryKeyIncrementer;
+    private final DataFieldMaxValueIncrementer spectrumPrimaryKeyIncrementer; // Oracle primary key incrementer
+    private final DataFieldMaxValueIncrementer psmPrimaryKeyIncrementer; // Oracle primary key incrementer
 
     public ClusterWriter(DataSource dataSource) {
         this.template = new JdbcTemplate(dataSource);
