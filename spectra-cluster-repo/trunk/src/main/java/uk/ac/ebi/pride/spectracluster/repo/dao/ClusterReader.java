@@ -103,33 +103,35 @@ public class ClusterReader implements IClusterReadDao {
 
         final List<AssaySummary> assaySummaries = new ArrayList<AssaySummary>();
 
-        String concatenateIds = QueryUtils.concatenateIds(ids);
+        List<String> concatenateIds = QueryUtils.concatenateIds(assayIds, 500);
 
-        final String ASSAY_QUERY = "select * from assay where assay_pk in (" + concatenateIds + ")";
+        for (String concatenateId : concatenateIds) {
+            final String ASSAY_QUERY = "select * from assay where assay_pk in (" + concatenateId + ")";
 
-        template.query(ASSAY_QUERY, new RowCallbackHandler() {
-            @Override
-            public void processRow(ResultSet rs) throws SQLException {
-                AssaySummary assaySummary = new AssaySummary();
+            template.query(ASSAY_QUERY, new RowCallbackHandler() {
+                @Override
+                public void processRow(ResultSet rs) throws SQLException {
+                    AssaySummary assaySummary = new AssaySummary();
 
-                assaySummary.setId(rs.getLong("assay_pk"));
-                assaySummary.setAccession(rs.getString("assay_accession"));
-                assaySummary.setProjectAccession(rs.getString("project_accession"));
-                assaySummary.setProjectTitle(rs.getString("project_title"));
-                assaySummary.setAssayTitle(rs.getString("assay_title"));
-                assaySummary.setSpecies(rs.getString("species"));
-                assaySummary.setMultiSpecies(rs.getBoolean("multi_species"));
-                assaySummary.setTaxonomyId(rs.getString("taxonomy_id"));
-                assaySummary.setDisease(rs.getString("disease"));
-                assaySummary.setTissue(rs.getString("tissue"));
-                assaySummary.setSearchEngine(rs.getString("search_engine"));
-                assaySummary.setInstrument(rs.getString("instrument"));
-                assaySummary.setInstrumentType(rs.getString("instrument_type"));
-                assaySummary.setBioMedical(rs.getBoolean("biomedical"));
+                    assaySummary.setId(rs.getLong("assay_pk"));
+                    assaySummary.setAccession(rs.getString("assay_accession"));
+                    assaySummary.setProjectAccession(rs.getString("project_accession"));
+                    assaySummary.setProjectTitle(rs.getString("project_title"));
+                    assaySummary.setAssayTitle(rs.getString("assay_title"));
+                    assaySummary.setSpecies(rs.getString("species"));
+                    assaySummary.setMultiSpecies(rs.getBoolean("multi_species"));
+                    assaySummary.setTaxonomyId(rs.getString("taxonomy_id"));
+                    assaySummary.setDisease(rs.getString("disease"));
+                    assaySummary.setTissue(rs.getString("tissue"));
+                    assaySummary.setSearchEngine(rs.getString("search_engine"));
+                    assaySummary.setInstrument(rs.getString("instrument"));
+                    assaySummary.setInstrumentType(rs.getString("instrument_type"));
+                    assaySummary.setBioMedical(rs.getBoolean("biomedical"));
 
-                assaySummaries.add(assaySummary);
-            }
-        });
+                    assaySummaries.add(assaySummary);
+                }
+            });
+        }
 
         return assaySummaries;
     }
