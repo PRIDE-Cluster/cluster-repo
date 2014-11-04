@@ -153,8 +153,8 @@ public class ClusterReader implements IClusterReadDao {
 
         PaginationHelper<ClusterSummary> ph = new PaginationHelper<ClusterSummary>();
 
-        final String CLUSTER_QUERY_COUNT = "select count(*) from spectrum_cluster";
-        final String CLUSTER_QUERY = "select * from spectrum_cluster";
+        final String CLUSTER_QUERY_COUNT = "select count(*) from spectrum_cluster order by cluster_pk";
+        final String CLUSTER_QUERY = "select * from spectrum_cluster order by cluster_pk";
 
         return ph.fetchPage(
                 template,
