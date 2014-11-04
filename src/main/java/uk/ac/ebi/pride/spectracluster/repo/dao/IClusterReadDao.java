@@ -5,13 +5,16 @@ import uk.ac.ebi.pride.spectracluster.repo.model.AssaySummary;
 import uk.ac.ebi.pride.spectracluster.repo.model.ClusterSummary;
 import uk.ac.ebi.pride.spectracluster.repo.model.PSMSummary;
 import uk.ac.ebi.pride.spectracluster.repo.model.SpectrumSummary;
+import uk.ac.ebi.pride.spectracluster.repo.utils.paging.Page;
 
+import java.util.Collection;
 import java.util.List;
 
 /**
  * Dao interface for reading clusters from data source
  *
  * @author Rui Wang
+ * @author Jose A Dianes
  * @version $Id$
  */
 public interface IClusterReadDao {
@@ -22,6 +25,13 @@ public interface IClusterReadDao {
      * @return total number of clusters
      */
     long getNumberOfClusters();
+
+    /**
+     * Get a Page of clusters
+     *
+     * @return A Page of ClusterSummary objects
+     */
+    Page<ClusterSummary> getAllClusters(final int pageNo, final int pageSize);
 
     /**
      * Find a cluster using a given cluster id

@@ -3,14 +3,18 @@ package uk.ac.ebi.pride.spectracluster.repo.dao;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementSetter;
 import org.springframework.jdbc.core.RowCallbackHandler;
+import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
 import uk.ac.ebi.pride.spectracluster.repo.model.*;
 import uk.ac.ebi.pride.spectracluster.repo.utils.QueryUtils;
+import uk.ac.ebi.pride.spectracluster.repo.utils.paging.Page;
+import uk.ac.ebi.pride.spectracluster.repo.utils.paging.PaginationHelper;
 
 import javax.sql.DataSource;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 
@@ -18,6 +22,7 @@ import java.util.List;
  * Reader class for reading clusters
  *
  * @author Rui Wang
+ * @author Jose A Dianes
  * @version $Id$
  */
 public class ClusterReader implements IClusterReadDao {
@@ -141,6 +146,40 @@ public class ClusterReader implements IClusterReadDao {
         final String QUERY = "select count(*) from spectrum_cluster";
 
         return template.queryForObject(QUERY, Long.class);
+    }
+
+    @Override
+    public Page<ClusterSummary> getAllClusters(int pageNo, int pageSize) {
+
+        PaginationHelper<ClusterSummary> ph = new PaginationHelper<ClusterSummary>();
+
+        final String CLUSTER_QUERY_COUNT = "select count(*) from spectrum_cluster";
+        final String CLUSTER_QUERY = "select * from spectrum_cluster";
+
+        return ph.fetchPage(
+                template,
+                CLUSTER_QUERY_COUNT,
+                CLUSTER_QUERY,
+                new Object[]{},
+                pageNo,
+                pageSize,
+                new ParameterizedRowMapper<ClusterSummary>() {
+                    public ClusterSummary mapRow(ResultSet rs, int i) throws SQLException {
+                        ClusterSummary cluster = new ClusterSummary();
+
+                        cluster.setId(rs.getLong("cluster_pk"));
+                        cluster.setAveragePrecursorMz(rs.getFloat("avg_precursor_mz"));
+                        cluster.setAveragePrecursorCharge(rs.getFloat("avg_precursor_charge"));
+                        cluster.setConsensusSpectrumMz(rs.getString("consensus_spectrum_mz"));
+                        cluster.setConsensusSpectrumIntensity(rs.getString("consensus_spectrum_intensity"));
+                        cluster.setNumberOfSpectra(rs.getInt("number_of_spectra"));
+                        cluster.setMaxPeptideRatio(rs.getFloat("max_ratio"));
+
+                        return cluster;
+                    }
+                }
+        );
+
     }
 
     @Override
