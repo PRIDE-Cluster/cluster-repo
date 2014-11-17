@@ -12,6 +12,8 @@ import java.util.List;
  */
 public final class QueryUtils {
 
+    private QueryUtils() {}
+
     /**
      * Split a big list into fix sized chunks
      *

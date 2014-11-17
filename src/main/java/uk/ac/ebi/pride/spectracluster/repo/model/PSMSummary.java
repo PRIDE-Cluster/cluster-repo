@@ -1,5 +1,9 @@
 package uk.ac.ebi.pride.spectracluster.repo.model;
 
+import uk.ac.ebi.pride.spectracluster.repo.utils.StringUtils;
+
+import java.util.Set;
+
 /**
  * @author Rui Wang
  * @version $Id$
@@ -66,6 +70,10 @@ public class PSMSummary {
 
     public String getModifications() {
         return modifications;
+    }
+
+    public Set<String> getModificationEntries() {
+        return StringUtils.split(modifications, ",");
     }
 
     public void setModifications(String modifications) {

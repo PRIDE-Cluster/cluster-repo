@@ -1,5 +1,10 @@
 package uk.ac.ebi.pride.spectracluster.repo.model;
 
+
+import uk.ac.ebi.pride.spectracluster.repo.utils.StringUtils;
+
+import java.util.Set;
+
 /**
  * @author Rui Wang
  * @version $Id$
@@ -65,6 +70,10 @@ public class AssaySummary {
         return species;
     }
 
+    public Set<String> getSpeciesEntries() {
+        return StringUtils.split(species, ",");
+    }
+
     public void setSpecies(String species) {
         this.species = species;
     }
@@ -81,12 +90,20 @@ public class AssaySummary {
         return taxonomyId;
     }
 
+    public Set<String> getTaxonomyIdEntries() {
+        return StringUtils.split(taxonomyId, ",");
+    }
+
     public void setTaxonomyId(String taxonomyId) {
         this.taxonomyId = taxonomyId;
     }
 
     public String getDisease() {
         return disease;
+    }
+
+    public Set<String> getDiseaseEntries() {
+        return StringUtils.split(disease, ",");
     }
 
     public void setDisease(String disease) {
@@ -97,12 +114,20 @@ public class AssaySummary {
         return tissue;
     }
 
+    public Set<String> getTissueEntries() {
+        return StringUtils.split(tissue, ",");
+    }
+
     public void setTissue(String tissue) {
         this.tissue = tissue;
     }
 
     public String getSearchEngine() {
         return searchEngine;
+    }
+
+    public Set<String> getSearchEngineEntries() {
+        return StringUtils.split(searchEngine, ",");
     }
 
     public void setSearchEngine(String searchEngine) {
@@ -113,12 +138,20 @@ public class AssaySummary {
         return instrument;
     }
 
+    public Set<String> getInstrumentEntries() {
+        return StringUtils.split(instrument, ",");
+    }
+
     public void setInstrument(String instrument) {
         this.instrument = instrument;
     }
 
     public String getInstrumentType() {
         return instrumentType;
+    }
+
+    public Set<String> getInstrumentTypeEntries() {
+        return StringUtils.split(instrumentType, ",");
     }
 
     public void setInstrumentType(String instrumentType) {

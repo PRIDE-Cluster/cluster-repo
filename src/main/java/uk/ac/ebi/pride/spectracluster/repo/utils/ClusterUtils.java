@@ -14,6 +14,8 @@ import java.util.*;
 public final class ClusterUtils {
     private static final ClusteredPSMRatioComparator comparator = new ClusteredPSMRatioComparator();
 
+    private ClusterUtils() {}
+
     /**
      * Update statistics on the clustered PSMs
      *
