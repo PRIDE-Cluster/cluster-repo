@@ -23,11 +23,20 @@ public interface IClusterReadDao {
     long getNumberOfClusters();
 
     /**
+     * Get a page of cluster ids
+     *
+     * @param pageNo   page number
+     * @param pageSize the size of page
+     * @return a page of cluster ids
+     */
+    Page<Long> getAllClusterIds(final int pageNo, final int pageSize);
+
+    /**
      * Get a Page of clusters
      *
      * @return A Page of ClusterSummary objects
      */
-    Page<ClusterSummary> getAllClusters(final int pageNo, final int pageSize);
+    Page<ClusterSummary> getAllClusterSummaries(final int pageNo, final int pageSize);
 
     /**
      * Find a cluster using a given cluster id

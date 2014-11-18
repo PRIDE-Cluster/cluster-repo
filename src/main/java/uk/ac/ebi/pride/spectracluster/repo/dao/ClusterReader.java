@@ -146,7 +146,29 @@ public class ClusterReader implements IClusterReadDao {
     }
 
     @Override
-    public Page<ClusterSummary> getAllClusters(int pageNo, int pageSize) {
+    public Page<Long> getAllClusterIds(int pageNo, int pageSize) {
+        PaginationHelper<Long> ph = new PaginationHelper<Long>();
+
+        final String CLUSTER_QUERY_COUNT = "select count(*) from spectrum_cluster";
+        final String CLUSTER_QUERY = "select cluster_pk from spectrum_cluster";
+
+        return ph.fetchPage(
+                template,
+                CLUSTER_QUERY_COUNT,
+                CLUSTER_QUERY,
+                new Object[]{},
+                pageNo,
+                pageSize,
+                new ParameterizedRowMapper<Long>() {
+                    public Long mapRow(ResultSet rs, int i) throws SQLException {
+                        return rs.getLong("cluster_pk");
+                    }
+                }
+        );
+    }
+
+    @Override
+    public Page<ClusterSummary> getAllClusterSummaries(int pageNo, int pageSize) {
 
         PaginationHelper<ClusterSummary> ph = new PaginationHelper<ClusterSummary>();
 

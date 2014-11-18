@@ -26,10 +26,10 @@ public class PaginationHelper<E> {
             final ParameterizedRowMapper<E> rowMapper) {
 
         // determine how many rows are available
-        final int rowCount = jt.queryForInt(sqlCountRows, args);
+        final long rowCount = jt.queryForObject(sqlCountRows, Long.class, args);
 
         // calculate the number of pages
-        int pageCount = rowCount / pageSize;
+        int pageCount = (int) (rowCount / pageSize);
         if (rowCount > pageSize * pageCount) {
             pageCount++;
         }
