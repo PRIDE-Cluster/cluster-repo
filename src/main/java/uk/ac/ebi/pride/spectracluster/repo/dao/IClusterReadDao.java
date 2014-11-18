@@ -1,13 +1,9 @@
 package uk.ac.ebi.pride.spectracluster.repo.dao;
 
 
-import uk.ac.ebi.pride.spectracluster.repo.model.AssaySummary;
-import uk.ac.ebi.pride.spectracluster.repo.model.ClusterSummary;
-import uk.ac.ebi.pride.spectracluster.repo.model.PSMSummary;
-import uk.ac.ebi.pride.spectracluster.repo.model.SpectrumSummary;
+import uk.ac.ebi.pride.spectracluster.repo.model.*;
 import uk.ac.ebi.pride.spectracluster.repo.utils.paging.Page;
 
-import java.util.Collection;
 import java.util.List;
 
 /**
@@ -39,7 +35,7 @@ public interface IClusterReadDao {
      * @param clusterId cluster id
      * @return cluster
      */
-    ClusterSummary findCluster(Long clusterId);
+    ClusterDetail findCluster(Long clusterId);
 
     /**
      * Find spectra using a list of spectrum references
@@ -48,7 +44,7 @@ public interface IClusterReadDao {
      * @param spectrumReferences a list of spectrum references
      * @return
      */
-    List<SpectrumSummary> findSpectra(final List<String> spectrumReferences);
+    List<SpectrumDetail> findSpectra(final List<String> spectrumReferences);
 
 
     /**
@@ -57,7 +53,7 @@ public interface IClusterReadDao {
      * @param spectrumIds a list of internal spectrum ids
      * @return a list of PSMs
      */
-    List<PSMSummary> findPSMBySpectrumId(final List<Long> spectrumIds);
+    List<PSMDetail> findPSMBySpectrumId(final List<Long> spectrumIds);
 
     /**
      * Find assays using assay ids
@@ -65,6 +61,6 @@ public interface IClusterReadDao {
      * @param assayIds a list of internal assay ids
      * @return a list of assays
      */
-    List<AssaySummary> findAssays(final List<Long> assayIds);
+    List<AssayDetail> findAssays(final List<Long> assayIds);
 
 }

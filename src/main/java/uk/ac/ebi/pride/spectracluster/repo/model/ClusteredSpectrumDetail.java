@@ -1,15 +1,19 @@
 package uk.ac.ebi.pride.spectracluster.repo.model;
 
 /**
+ * Details of a cluster spectrum, including its relationship to its cluster and spectrum precursor information
+ *
+ * NOTE: we don't store the peak list of the spectrum
+ *
  * @author Rui Wang
  * @version $Id$
  */
-public class ClusteredSpectrumSummary {
+public class ClusteredSpectrumDetail {
     private Long clusterId;
     private Long spectrumId;
     private String referenceId;
     private float similarityScore;
-    private SpectrumSummary spectrumSummary;
+    private SpectrumDetail spectrumDetail;
 
     public Long getClusterId() {
         return clusterId;
@@ -43,11 +47,11 @@ public class ClusteredSpectrumSummary {
         this.similarityScore = similarityScore;
     }
 
-    public SpectrumSummary getSpectrumSummary() {
-        return spectrumSummary;
+    public SpectrumDetail getSpectrumDetail() {
+        return spectrumDetail;
     }
 
-    public void setSpectrumSummary(SpectrumSummary spectrumSummary) {
-        this.spectrumSummary = spectrumSummary;
+    public void setSpectrumDetail(SpectrumDetail spectrumDetail) {
+        this.spectrumDetail = spectrumDetail;
     }
 }

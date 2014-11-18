@@ -1,10 +1,7 @@
 package uk.ac.ebi.pride.spectracluster.repo.dao;
 
 
-import uk.ac.ebi.pride.spectracluster.repo.model.AssaySummary;
-import uk.ac.ebi.pride.spectracluster.repo.model.ClusterSummary;
-import uk.ac.ebi.pride.spectracluster.repo.model.PSMSummary;
-import uk.ac.ebi.pride.spectracluster.repo.model.SpectrumSummary;
+import uk.ac.ebi.pride.spectracluster.repo.model.*;
 
 import java.util.List;
 
@@ -21,21 +18,21 @@ public interface IClusterWriteDao {
      *
      * @param clusters a list of clusters
      */
-    void saveClusters(List<ClusterSummary> clusters);
+    void saveClusters(List<ClusterDetail> clusters);
 
     /**
      * Save a single cluster
      *
      * @param cluster given cluster
      */
-    void saveCluster(ClusterSummary cluster);
+    void saveCluster(ClusterDetail cluster);
 
     /**
      * Save an assay
      *
      * @param assay given assay
      */
-    void saveAssay(AssaySummary assay);
+    void saveAssay(AssayDetail assay);
 
     /**
      * Delete all the assay and their related data that belong to a given project accession
@@ -49,26 +46,26 @@ public interface IClusterWriteDao {
      *
      * @param spectra a list of spectra
      */
-    void saveSpectra(List<SpectrumSummary> spectra);
+    void saveSpectra(List<SpectrumDetail> spectra);
 
     /**
      * Save spectrum
      *
      * @param spectrum a given spectrum
      */
-    void saveSpectrum(SpectrumSummary spectrum);
+    void saveSpectrum(SpectrumDetail spectrum);
 
     /**
      * Save a list of PSMs
      *
      * @param psms a list of PSMs
      */
-    void savePSMs(List<PSMSummary> psms);
+    void savePSMs(List<PSMDetail> psms);
 
     /**
      * Save a single PSM
      *
      * @param psm given PSM
      */
-    void savePSM(PSMSummary psm);
+    void savePSM(PSMDetail psm);
 }

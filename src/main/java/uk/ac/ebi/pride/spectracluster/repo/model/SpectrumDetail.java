@@ -1,10 +1,12 @@
 package uk.ac.ebi.pride.spectracluster.repo.model;
 
 /**
+ * Details of a spectrum
+ *
  * @author Rui Wang
  * @version $Id$
  */
-public class SpectrumSummary {
+public class SpectrumDetail {
     private Long id;
     private Long assayId;
     private String referenceId;

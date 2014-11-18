@@ -6,10 +6,12 @@ import uk.ac.ebi.pride.spectracluster.repo.utils.StringUtils;
 import java.util.Set;
 
 /**
+ * Details of an assay
+ *
  * @author Rui Wang
  * @version $Id$
  */
-public class AssaySummary {
+public class AssayDetail {
     private Long id;
     private String accession;
     private String projectAccession;

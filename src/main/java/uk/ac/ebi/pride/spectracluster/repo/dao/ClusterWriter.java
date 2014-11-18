@@ -49,14 +49,14 @@ public class ClusterWriter implements IClusterWriteDao {
     }
 
     @Override
-    public void saveClusters(final List<ClusterSummary> clusters) {
-        for (ClusterSummary cluster : clusters) {
+    public void saveClusters(final List<ClusterDetail> clusters) {
+        for (ClusterDetail cluster : clusters) {
             saveCluster(cluster);
         }
     }
 
     @Override
-    public void saveCluster(final ClusterSummary cluster) {
+    public void saveCluster(final ClusterDetail cluster) {
         logger.debug("Insert a cluster into database: {}", cluster.toString());
 
         saveClusterSummary(cluster);
@@ -89,11 +89,11 @@ public class ClusterWriter implements IClusterWriteDao {
         });
     }
 
-    private float getMaxRatio(List<ClusteredPSMSummary> clusteredPSMSummaries) {
+    private float getMaxRatio(List<ClusteredPSMDetail> clusteredPSMSummaries) {
         float maxRatio = 0;
 
-        for (ClusteredPSMSummary clusteredPSMSummary : clusteredPSMSummaries) {
-            float ratio = clusteredPSMSummary.getPsmRatio();
+        for (ClusteredPSMDetail clusteredPSMDetail : clusteredPSMSummaries) {
+            float ratio = clusteredPSMDetail.getPsmRatio();
             if (ratio > maxRatio)
                 maxRatio = ratio;
         }
@@ -101,7 +101,7 @@ public class ClusterWriter implements IClusterWriteDao {
         return maxRatio;
     }
 
-    private void saveClusterSummary(final ClusterSummary cluster) {
+    private void saveClusterSummary(final ClusterDetail cluster) {
         SimpleJdbcInsert simpleJdbcInsert = new SimpleJdbcInsert(template);
 
         simpleJdbcInsert.withTableName("spectrum_cluster").usingGeneratedKeyColumns("cluster_pk");
@@ -123,13 +123,13 @@ public class ClusterWriter implements IClusterWriteDao {
         cluster.setId(clusterId);
 
         // update cluster id for all the clustered spectra
-        List<ClusteredSpectrumSummary> clusteredSpectrumSummaries = cluster.getClusteredSpectrumSummaries();
-        for (ClusteredSpectrumSummary clusteredSpectrumSummary : clusteredSpectrumSummaries) {
-            clusteredSpectrumSummary.setClusterId(clusterId);
+        List<ClusteredSpectrumDetail> clusteredSpectrumSummaries = cluster.getClusteredSpectrumSummaries();
+        for (ClusteredSpectrumDetail clusteredSpectrumDetail : clusteredSpectrumSummaries) {
+            clusteredSpectrumDetail.setClusterId(clusterId);
         }
     }
 
-    private void updateSpectrumIdForClusteredSpectra(final ClusterSummary cluster) {
+    private void updateSpectrumIdForClusteredSpectra(final ClusterDetail cluster) {
         String SELECT_QUERY = "select spectrum.spectrum_pk, spectrum.spectrum_ref, psm.psm_pk, psm.sequence from spectrum " +
                 "join psm on (spectrum.spectrum_pk = psm.spectrum_fk) where spectrum.spectrum_ref in ";
 
@@ -144,27 +144,27 @@ public class ClusterWriter implements IClusterWriteDao {
                     long psmPk = rs.getLong(3);
                     String sequence = rs.getString(4);
 
-                    ClusteredSpectrumSummary clusteredSpectrumSummary = cluster.getClusteredSpectrumSummary(spectrumRef);
-                    clusteredSpectrumSummary.setSpectrumId(spectrumPk);
+                    ClusteredSpectrumDetail clusteredSpectrumDetail = cluster.getClusteredSpectrumSummary(spectrumRef);
+                    clusteredSpectrumDetail.setSpectrumId(spectrumPk);
 
-                    ClusteredPSMSummary clusteredPSMSummary = new ClusteredPSMSummary();
-                    clusteredPSMSummary.setClusterId(cluster.getId());
-                    clusteredPSMSummary.setPsmId(psmPk);
-                    clusteredPSMSummary.setSpectrumId(spectrumPk);
-                    clusteredPSMSummary.setSequence(sequence);
-                    cluster.addClusteredPSMSummary(clusteredPSMSummary);
+                    ClusteredPSMDetail clusteredPSMDetail = new ClusteredPSMDetail();
+                    clusteredPSMDetail.setClusterId(cluster.getId());
+                    clusteredPSMDetail.setPsmId(psmPk);
+                    clusteredPSMDetail.setSpectrumId(spectrumPk);
+                    clusteredPSMDetail.setSequence(sequence);
+                    cluster.addClusteredPSMSummary(clusteredPSMDetail);
                 }
             });
         }
     }
 
-    private void validateClusterMappings(final ClusterSummary cluster) {
+    private void validateClusterMappings(final ClusterDetail cluster) {
         List<String> invalidSpectrumReference = new ArrayList<String>();
-        List<ClusteredSpectrumSummary> clusteredSpectrumSummaries = cluster.getClusteredSpectrumSummaries();
+        List<ClusteredSpectrumDetail> clusteredSpectrumSummaries = cluster.getClusteredSpectrumSummaries();
 
-        for (ClusteredSpectrumSummary clusteredSpectrumSummary : clusteredSpectrumSummaries) {
-            if (clusteredSpectrumSummary.getSpectrumId() == null) {
-                invalidSpectrumReference.add(clusteredSpectrumSummary.getReferenceId());
+        for (ClusteredSpectrumDetail clusteredSpectrumDetail : clusteredSpectrumSummaries) {
+            if (clusteredSpectrumDetail.getSpectrumId() == null) {
+                invalidSpectrumReference.add(clusteredSpectrumDetail.getReferenceId());
             }
         }
 
@@ -183,14 +183,14 @@ public class ClusterWriter implements IClusterWriteDao {
     }
 
 
-    private List<String> concatenateSpectrumReferencesForQuery(final List<ClusteredSpectrumSummary> clusteredSpectra, int limit) {
+    private List<String> concatenateSpectrumReferencesForQuery(final List<ClusteredSpectrumDetail> clusteredSpectra, int limit) {
         List<String> queries = new ArrayList<String>();
 
-        List<List<ClusteredSpectrumSummary>> chunks = QueryUtils.chunks(clusteredSpectra, limit);
-        for (List<ClusteredSpectrumSummary> chunk : chunks) {
+        List<List<ClusteredSpectrumDetail>> chunks = QueryUtils.chunks(clusteredSpectra, limit);
+        for (List<ClusteredSpectrumDetail> chunk : chunks) {
             String query = "";
-            for (ClusteredSpectrumSummary clusteredSpectrumSummary : chunk) {
-                query += "'" + clusteredSpectrumSummary.getReferenceId() + "',";
+            for (ClusteredSpectrumDetail clusteredSpectrumDetail : chunk) {
+                query += "'" + clusteredSpectrumDetail.getReferenceId() + "',";
             }
             queries.add(query.substring(0, query.length() - 1));
         }
@@ -198,14 +198,14 @@ public class ClusterWriter implements IClusterWriteDao {
         return queries;
     }
 
-    private void saveClusteredSpectra(final List<ClusteredSpectrumSummary> clusteredSpectra) {
+    private void saveClusteredSpectra(final List<ClusteredSpectrumDetail> clusteredSpectra) {
         String INSERT_QUERY = "INSERT INTO cluster_has_spectrum (cluster_fk, spectrum_fk, similarity) " +
                 "VALUES (?, ?, ?)";
 
         template.batchUpdate(INSERT_QUERY, new BatchPreparedStatementSetter() {
             @Override
             public void setValues(PreparedStatement ps, int i) throws SQLException {
-                ClusteredSpectrumSummary spectrumSummary = clusteredSpectra.get(i);
+                ClusteredSpectrumDetail spectrumSummary = clusteredSpectra.get(i);
                 ps.setLong(1, spectrumSummary.getClusterId());
                 ps.setLong(2, spectrumSummary.getSpectrumId());
                 ps.setFloat(3, spectrumSummary.getSimilarityScore());
@@ -218,18 +218,18 @@ public class ClusterWriter implements IClusterWriteDao {
         });
     }
 
-    private void saveClusteredPSMs(final List<ClusteredPSMSummary> clusteredPSMSummaries) {
+    private void saveClusteredPSMs(final List<ClusteredPSMDetail> clusteredPSMSummaries) {
         String INSERT_QUERY = "INSERT INTO cluster_has_psm (cluster_fk, psm_fk, ratio, rank) " +
                 "VALUES (?, ?, ?, ?)";
 
         template.batchUpdate(INSERT_QUERY, new BatchPreparedStatementSetter() {
             @Override
             public void setValues(PreparedStatement ps, int i) throws SQLException {
-                ClusteredPSMSummary clusteredPSMSummary = clusteredPSMSummaries.get(i);
-                ps.setLong(1, clusteredPSMSummary.getClusterId());
-                ps.setLong(2, clusteredPSMSummary.getPsmId());
-                ps.setFloat(3, clusteredPSMSummary.getPsmRatio());
-                ps.setInt(4, clusteredPSMSummary.getRank());
+                ClusteredPSMDetail clusteredPSMDetail = clusteredPSMSummaries.get(i);
+                ps.setLong(1, clusteredPSMDetail.getClusterId());
+                ps.setLong(2, clusteredPSMDetail.getPsmId());
+                ps.setFloat(3, clusteredPSMDetail.getPsmRatio());
+                ps.setInt(4, clusteredPSMDetail.getRank());
             }
 
             @Override
@@ -241,7 +241,7 @@ public class ClusterWriter implements IClusterWriteDao {
 
 
     @Override
-    public void saveAssay(final AssaySummary assay) {
+    public void saveAssay(final AssayDetail assay) {
         logger.debug("Insert assay summary into database: {}", assay.getAccession());
 
 
@@ -299,20 +299,20 @@ public class ClusterWriter implements IClusterWriteDao {
     }
 
     @Override
-    public void saveSpectra(final List<SpectrumSummary> spectra) {
+    public void saveSpectra(final List<SpectrumDetail> spectra) {
         logger.debug("Insert a list of spectra into database: {}", spectra.size());
 
         if (spectra.size() == 0)
             return;
 
-        List<List<SpectrumSummary>> chunks = QueryUtils.chunks(spectra, MAX_INCREMENT);
+        List<List<SpectrumDetail>> chunks = QueryUtils.chunks(spectra, MAX_INCREMENT);
 
-        for (List<SpectrumSummary> chunk : chunks) {
+        for (List<SpectrumDetail> chunk : chunks) {
             saveBatchOfSpectra(chunk);
         }
     }
 
-    private void saveBatchOfSpectra(final List<SpectrumSummary> spectra) {
+    private void saveBatchOfSpectra(final List<SpectrumDetail> spectra) {
         if (spectra.size() > MAX_INCREMENT)
             throw new IllegalStateException("The number of spectra cannot excceed: " + MAX_INCREMENT);
 
@@ -321,7 +321,7 @@ public class ClusterWriter implements IClusterWriteDao {
 
         // add primary key
         int count = 0;
-        for (SpectrumSummary spectrum : spectra) {
+        for (SpectrumDetail spectrum : spectra) {
             spectrum.setId(startingKey + count);
             count++;
         }
@@ -329,7 +329,7 @@ public class ClusterWriter implements IClusterWriteDao {
         saveSpectraWithPrimaryKey(spectra);
     }
 
-    private void saveSpectraWithPrimaryKey(final List<SpectrumSummary> spectra) {
+    private void saveSpectraWithPrimaryKey(final List<SpectrumDetail> spectra) {
         String INSERT_QUERY = "INSERT INTO spectrum (spectrum_pk, spectrum_ref, assay_fk, " +
                 "precursor_mz, precursor_charge, is_identified) " +
                 "VALUES (?, ?, ?, ?, ?, ?)";
@@ -337,7 +337,7 @@ public class ClusterWriter implements IClusterWriteDao {
         template.batchUpdate(INSERT_QUERY, new BatchPreparedStatementSetter() {
             @Override
             public void setValues(PreparedStatement ps, int i) throws SQLException {
-                SpectrumSummary spectrum = spectra.get(i);
+                SpectrumDetail spectrum = spectra.get(i);
                 ps.setLong(1, spectrum.getId());
                 ps.setString(2, spectrum.getReferenceId());
                 ps.setLong(3, spectrum.getAssayId());
@@ -354,7 +354,7 @@ public class ClusterWriter implements IClusterWriteDao {
     }
 
     @Override
-    public void saveSpectrum(final SpectrumSummary spectrum) {
+    public void saveSpectrum(final SpectrumDetail spectrum) {
         logger.debug("Insert a spectrum into database: {}", spectrum.getReferenceId());
 
         SimpleJdbcInsert simpleJdbcInsert = new SimpleJdbcInsert(template);
@@ -373,19 +373,19 @@ public class ClusterWriter implements IClusterWriteDao {
     }
 
     @Override
-    public void savePSMs(final List<PSMSummary> psms) {
+    public void savePSMs(final List<PSMDetail> psms) {
         logger.debug("Insert a list of PSMs into database: {}", psms.size());
 
         if (psms.size() == 0)
             return;
 
-        List<List<PSMSummary>> chunks = QueryUtils.chunks(psms, MAX_INCREMENT);
-        for (List<PSMSummary> chunk : chunks) {
+        List<List<PSMDetail>> chunks = QueryUtils.chunks(psms, MAX_INCREMENT);
+        for (List<PSMDetail> chunk : chunks) {
             saveBatchOfPSMs(chunk);
         }
     }
 
-    private void saveBatchOfPSMs(final List<PSMSummary> psms) {
+    private void saveBatchOfPSMs(final List<PSMDetail> psms) {
         if (psms.size() > MAX_INCREMENT)
             throw new IllegalStateException("The number of spectra cannot exceed: " + MAX_INCREMENT);
 
@@ -394,7 +394,7 @@ public class ClusterWriter implements IClusterWriteDao {
 
         // add primary key
         int count = 0;
-        for (PSMSummary psm : psms) {
+        for (PSMDetail psm : psms) {
             psm.setId(startingKey + count);
             count++;
         }
@@ -402,7 +402,7 @@ public class ClusterWriter implements IClusterWriteDao {
         savePSMsWithPrimaryKey(psms);
     }
 
-    private void savePSMsWithPrimaryKey(final List<PSMSummary> psms) {
+    private void savePSMsWithPrimaryKey(final List<PSMDetail> psms) {
         String INSERT_QUERY = "INSERT INTO psm (psm_pk, spectrum_fk, assay_fk, archive_psm_id, sequence, modifications, search_engine, " +
                 "search_engine_scores, search_database, protein_accession, protein_group, protein_name, start_position, " +
                 "stop_position, pre_amino_acid, post_amino_acid, delta_mz, quantification_label) VALUES " +
@@ -411,7 +411,7 @@ public class ClusterWriter implements IClusterWriteDao {
         template.batchUpdate(INSERT_QUERY, new BatchPreparedStatementSetter() {
             @Override
             public void setValues(PreparedStatement ps, int i) throws SQLException {
-                PSMSummary psm = psms.get(i);
+                PSMDetail psm = psms.get(i);
                 ps.setLong(1, psm.getId());
                 ps.setLong(2, psm.getSpectrumId());
                 ps.setLong(3, psm.getAssayId());
@@ -441,7 +441,7 @@ public class ClusterWriter implements IClusterWriteDao {
 
 
     @Override
-    public void savePSM(final PSMSummary psm) {
+    public void savePSM(final PSMDetail psm) {
         logger.debug("Insert a PSM into database: {}", psm.getArchivePSMId());
 
 

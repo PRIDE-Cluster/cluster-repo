@@ -1,17 +1,19 @@
 package uk.ac.ebi.pride.spectracluster.repo.model;
 
 /**
+ * Details of a cluster PSM, including its relationship to its cluster and PSM details, such as: sequence
+ *
  * @author Rui Wang
  * @version $Id$
  */
-public class ClusteredPSMSummary {
+public class ClusteredPSMDetail {
     private Long clusterId; // internal cluster id
     private Long psmId; // internal psm id
     private Long spectrumId; // internal spectrum id
     private String sequence; // peptide sequence
     private float psmRatio; // ratio is the number of distinct psm / the number of spectra
     private int rank;              // rank of the psm by ratio
-    private PSMSummary psmSummary; // full psm summary
+    private PSMDetail psmDetail; // full psm summary
 
     public Long getClusterId() {
         return clusterId;
@@ -61,11 +63,11 @@ public class ClusteredPSMSummary {
         this.rank = rank;
     }
 
-    public PSMSummary getPsmSummary() {
-        return psmSummary;
+    public PSMDetail getPsmDetail() {
+        return psmDetail;
     }
 
-    public void setPsmSummary(PSMSummary psmSummary) {
-        this.psmSummary = psmSummary;
+    public void setPsmDetail(PSMDetail psmDetail) {
+        this.psmDetail = psmDetail;
     }
 }

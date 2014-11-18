@@ -5,10 +5,12 @@ import uk.ac.ebi.pride.spectracluster.repo.utils.StringUtils;
 import java.util.Set;
 
 /**
+ * Details of a spectrum
+ *
  * @author Rui Wang
  * @version $Id$
  */
-public class PSMSummary {
+public class PSMDetail {
     private Long id;
     private Long spectrumId;
     private Long assayId;
@@ -179,9 +181,9 @@ public class PSMSummary {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof PSMSummary)) return false;
+        if (!(o instanceof PSMDetail)) return false;
 
-        PSMSummary that = (PSMSummary) o;
+        PSMDetail that = (PSMDetail) o;
 
         if (!archivePSMId.equals(that.archivePSMId)) return false;
         if (assayId != null ? !assayId.equals(that.assayId) : that.assayId != null) return false;
