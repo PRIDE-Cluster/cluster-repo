@@ -55,7 +55,6 @@ public interface IClusterReadDao {
      */
     List<SpectrumDetail> findSpectra(final List<String> spectrumReferences);
 
-
     /**
      * Find PSMs using a list of spectrum id
      *
@@ -63,6 +62,20 @@ public interface IClusterReadDao {
      * @return a list of PSMs
      */
     List<PSMDetail> findPSMBySpectrumId(final List<Long> spectrumIds);
+
+    /**
+     * Find clustered PSMs using a given cluster id
+     * @param clusterId given cluster id
+     * @return  a list of clustered psms
+     */
+    List<ClusteredPSMDetail> findClusteredPSMSummaryByClusterId(final Long clusterId);
+
+    /**
+     * Find clustered spectrum details using a given cluster id
+     * @param clusterId given cluster id
+     * @return  a list of clustered spectrum details
+     */
+    List<ClusteredSpectrumDetail> findClusteredSpectrumSummaryByClusterId(final Long clusterId);
 
     /**
      * Find assays using assay ids

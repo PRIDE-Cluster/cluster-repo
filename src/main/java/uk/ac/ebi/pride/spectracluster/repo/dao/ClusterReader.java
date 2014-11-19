@@ -210,11 +210,11 @@ public class ClusterReader implements IClusterReadDao {
         if (cluster.getId() != null) {
 
             // read spectra details
-            List<ClusteredSpectrumDetail> spectrumSummaries = findClusteredSpectrumSummaries(clusterId);
+            List<ClusteredSpectrumDetail> spectrumSummaries = findClusteredSpectrumSummaryByClusterId(clusterId);
             clusterDetail.addClusteredSpectrumSummaries(spectrumSummaries);
 
             // read psm details
-            List<ClusteredPSMDetail> psmSummaries = findClusteredPSMSummaries(clusterId);
+            List<ClusteredPSMDetail> psmSummaries = findClusteredPSMSummaryByClusterId(clusterId);
             clusterDetail.addClusteredPSMSummaries(psmSummaries);
 
             // collection all the unique assay ids
@@ -257,7 +257,8 @@ public class ClusterReader implements IClusterReadDao {
         return cluster;
     }
 
-    private List<ClusteredSpectrumDetail> findClusteredSpectrumSummaries(final Long clusterId) {
+    @Override
+    public List<ClusteredSpectrumDetail> findClusteredSpectrumSummaryByClusterId(final Long clusterId) {
         final ArrayList<ClusteredSpectrumDetail> clusteredSpectrumSummaries = new ArrayList<ClusteredSpectrumDetail>();
 
         final String SPECTRUM_QUERY = "select * from cluster_has_spectrum join spectrum on (spectrum_fk = spectrum_pk) " +
@@ -294,7 +295,8 @@ public class ClusterReader implements IClusterReadDao {
         return clusteredSpectrumSummaries;
     }
 
-    private List<ClusteredPSMDetail> findClusteredPSMSummaries(final Long clusterId) {
+    @Override
+    public List<ClusteredPSMDetail> findClusteredPSMSummaryByClusterId(final Long clusterId) {
         final ArrayList<ClusteredPSMDetail> clusteredPSMSummaries = new ArrayList<ClusteredPSMDetail>();
 
         final String PSM_QUERY = "select * from cluster_has_psm join psm on (psm_fk = psm_pk) where cluster_fk=?";
