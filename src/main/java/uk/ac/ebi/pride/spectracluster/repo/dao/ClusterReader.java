@@ -316,10 +316,12 @@ public class ClusterReader implements IClusterReadDao {
                 clusteredPSMDetail.setRank(rs.getInt("rank"));
                 String sequence = rs.getString("sequence");
                 clusteredPSMDetail.setSequence(sequence);
+                long spectrumId = rs.getLong("spectrum_fk");
+                clusteredPSMDetail.setSpectrumId(spectrumId);
 
                 PSMDetail psmDetail = new PSMDetail();
                 psmDetail.setId(rs.getLong("psm_pk"));
-                psmDetail.setSpectrumId(rs.getLong("spectrum_fk"));
+                psmDetail.setSpectrumId(spectrumId);
                 psmDetail.setAssayId(rs.getLong("assay_fk"));
                 psmDetail.setArchivePSMId(rs.getString("archive_psm_id"));
                 psmDetail.setSequence(rs.getString("sequence"));
