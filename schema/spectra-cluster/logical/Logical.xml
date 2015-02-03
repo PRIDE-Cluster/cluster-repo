@@ -1,0 +1,7 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<LogicalDesign class="oracle.dbtools.crest.model.design.logical.LogicalDesign" name="Logical" id="2EA53383-9AA2-E5CD-02FD-BCD3903C7E79" mainViewID="2E5699CF-BC31-2FFE-723C-DA40F837A66C">
+<createdBy>rwang</createdBy>
+<createdTime>2014-07-28 14:47:18 UTC</createdTime>
+<ownerDesignName>spectra-cluster</ownerDesignName>
+<shouldBeOpen>false</shouldBeOpen>
+</LogicalDesign>

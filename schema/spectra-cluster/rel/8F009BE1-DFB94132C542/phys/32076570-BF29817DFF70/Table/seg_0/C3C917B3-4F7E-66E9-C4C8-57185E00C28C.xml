@@ -1,0 +1,36 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev11g class="oracle.dbtools.crest.model.design.storage.oracle.v11g.TableProxyOraclev11g" name="cluster" directorySegmentName="seg_0" id="C3C917B3-4F7E-66E9-C4C8-57185E00C28C">
+<createdBy>rwang</createdBy>
+<createdTime>2014-07-28 15:03:53 UTC</createdTime>
+<ownerDesignName>spectra-cluster</ownerDesignName>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<columnProxies>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v11g.ColumnProxyOraclev11g" name="cluster_uid" id="BF93A9A1-8BBA-9B08-DF32-5AECDB785157">
+<createdBy>rwang</createdBy>
+<createdTime>2014-07-28 15:05:43 UTC</createdTime>
+<ownerDesignName>spectra-cluster</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v11g.ColumnProxyOraclev11g" name="cluster_pk" id="D9A5BB92-2FD1-69E2-8427-D8617FE60D16">
+<createdBy>rwang</createdBy>
+<createdTime>2014-07-28 15:04:52 UTC</createdTime>
+<ownerDesignName>spectra-cluster</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="cluster_PK" id="449D825A-9B67-2C03-B29A-6BCC2B38F215">
+<createdBy>rwang</createdBy>
+<createdTime>2014-07-28 15:04:52 UTC</createdTime>
+<ownerDesignName>spectra-cluster</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</PrimaryKey>
+</primaryKeys>
+<uniqueKeys>
+<UniqueKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.UniqueOraclev10g" name="cluster__UN" id="F9F9BB92-0C8A-58F9-67A6-0C4134B3157C">
+<createdBy>rwang</createdBy>
+<createdTime>2014-07-28 15:08:10 UTC</createdTime>
+<ownerDesignName>spectra-cluster</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</UniqueKey>
+</uniqueKeys>
+</TableProxyOraclev11g>

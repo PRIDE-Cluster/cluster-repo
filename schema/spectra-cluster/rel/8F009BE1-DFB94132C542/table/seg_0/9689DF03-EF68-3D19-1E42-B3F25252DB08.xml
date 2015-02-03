@@ -1,0 +1,42 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="9689DF03-EF68-3D19-1E42-B3F25252DB08" name="cluster_run">
+<createdBy>rwang</createdBy>
+<createdTime>2014-08-05 08:51:40 UTC</createdTime>
+<ownerDesignName>spectra-cluster</ownerDesignName>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="name" id="B37CD6DD-202E-9C08-861B-2418E66A18CE">
+<createdBy>rwang</createdBy>
+<createdTime>2014-08-05 08:52:19 UTC</createdTime>
+<ownerDesignName>spectra-cluster</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100 CHAR</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="value" id="1016E6F8-54A5-8875-1ED3-F0C0B75F1516">
+<createdBy>rwang</createdBy>
+<createdTime>2014-08-05 08:52:49 UTC</createdTime>
+<ownerDesignName>spectra-cluster</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>200 CHAR</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="62F8AD5B-5B21-6933-6A2E-12DA9EF53DF2" name="cluster_run_PK">
+<createdBy>rwang</createdBy>
+<createdTime>2014-08-05 08:53:07 UTC</createdTime>
+<ownerDesignName>spectra-cluster</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="B37CD6DD-202E-9C08-861B-2418E66A18CE"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

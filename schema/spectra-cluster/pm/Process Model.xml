@@ -1,0 +1,7 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<ProcessModel class="oracle.dbtools.crest.model.design.process.ProcessModel" name="Process Model" id="6E216F75-20C4-C3AF-476E-25ABEA970A2F">
+<createdBy>rwang</createdBy>
+<createdTime>2014-07-28 14:47:18 UTC</createdTime>
+<ownerDesignName>spectra-cluster</ownerDesignName>
+<shouldBeOpen>false</shouldBeOpen>
+</ProcessModel>

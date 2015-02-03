@@ -1,0 +1,4 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<oracle.dbtools.crest.model.design.relational.RelationalDesign>
+   <object objectType="main_view" objectID="EF43A134-A6AD-D0D9-A336-3945C3768AFC" name="spectra-cluster" visible="true"/>
+</oracle.dbtools.crest.model.design.relational.RelationalDesign>

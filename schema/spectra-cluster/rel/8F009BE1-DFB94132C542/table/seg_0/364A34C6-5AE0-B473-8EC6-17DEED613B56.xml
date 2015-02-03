@@ -1,0 +1,119 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="364A34C6-5AE0-B473-8EC6-17DEED613B56" name="cluster_has_psm">
+<createdBy>rwang</createdBy>
+<createdTime>2014-07-29 14:34:06 UTC</createdTime>
+<ownerDesignName>spectra-cluster</ownerDesignName>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="cluster_fk" id="70B977FB-2BF1-FB43-31F2-A3B714519934">
+<createdBy>rwang</createdBy>
+<createdTime>2014-07-29 14:34:35 UTC</createdTime>
+<ownerDesignName>spectra-cluster</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT027</logicalDatatype>
+<delegate>D9A5BB92-2FD1-69E2-8427-D8617FE60D16</delegate>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="8E5D90DF-905A-22E7-2E2D-DADE0C12F1B0" referredColumn="D9A5BB92-2FD1-69E2-8427-D8617FE60D16"/>
+</associations>
+</Column>
+<Column name="psm_fk" id="CABC34FC-096C-F3E2-1402-E60CEFA2BCDD">
+<createdBy>rwang</createdBy>
+<createdTime>2014-07-29 14:34:45 UTC</createdTime>
+<ownerDesignName>spectra-cluster</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT027</logicalDatatype>
+<delegate>17E8AC49-BF2A-2A6B-AB53-61F6C906EC34</delegate>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="64C15C0E-9C85-DC6C-945B-82B4F96B4696" referredColumn="17E8AC49-BF2A-2A6B-AB53-61F6C906EC34"/>
+</associations>
+</Column>
+<Column name="ratio" id="707D86F2-DE5E-F644-918F-5A1D49FB90FB">
+<createdBy>rwang</createdBy>
+<createdTime>2014-07-29 14:35:17 UTC</createdTime>
+<ownerDesignName>spectra-cluster</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT026</logicalDatatype>
+<dataTypePrecision>4</dataTypePrecision>
+<dataTypeScale>3</dataTypeScale>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="rank" id="16E6204E-4CDC-D4F2-DE8C-6729DFB9911D">
+<createdBy>rwang</createdBy>
+<createdTime>2014-07-29 14:35:40 UTC</createdTime>
+<ownerDesignName>spectra-cluster</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT018</logicalDatatype>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="38411EE6-32D3-9968-A864-59F74E91D9B0" name="cluster_has_psm_PK">
+<createdBy>rwang</createdBy>
+<createdTime>2014-07-29 14:35:50 UTC</createdTime>
+<ownerDesignName>spectra-cluster</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="70B977FB-2BF1-FB43-31F2-A3B714519934"/>
+<colUsage columnID="CABC34FC-096C-F3E2-1402-E60CEFA2BCDD"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="1D6775EE-C441-C276-24A2-3E79D0182BB6" name="psm_has_cluster_IDX">
+<createdBy>rwang</createdBy>
+<createdTime>2014-07-30 12:19:47 UTC</createdTime>
+<ownerDesignName>spectra-cluster</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="CABC34FC-096C-F3E2-1402-E60CEFA2BCDD"/>
+<colUsage columnID="70B977FB-2BF1-FB43-31F2-A3B714519934"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="BB63BF6F-F827-3048-6158-46A50D9BC118" name="cluster_ratio_rank_IDX">
+<createdBy>rwang</createdBy>
+<createdTime>2014-08-29 10:37:23 UTC</createdTime>
+<ownerDesignName>spectra-cluster</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="707D86F2-DE5E-F644-918F-5A1D49FB90FB"/>
+<colUsage columnID="16E6204E-4CDC-D4F2-DE8C-6729DFB9911D"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="F0082D71-17C6-E658-BFB0-A538AA4FD132" name="cluster_has_psm_IDX">
+<createdBy>rwang</createdBy>
+<createdTime>2014-10-01 09:08:04 UTC</createdTime>
+<ownerDesignName>spectra-cluster</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="70B977FB-2BF1-FB43-31F2-A3B714519934"/>
+<colUsage columnID="CABC34FC-096C-F3E2-1402-E60CEFA2BCDD"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="929AAEDC-E2A3-C4C6-4040-F4921A8FABFE" name="cluster_has_psm_cluster_FK">
+<createdBy>rwang</createdBy>
+<createdTime>2014-07-29 14:36:13 UTC</createdTime>
+<ownerDesignName>spectra-cluster</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="70B977FB-2BF1-FB43-31F2-A3B714519934"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="22349560-49FB-B9E7-8E8F-CA49B9EA2390" name="cluster_has_psm_psm_FK">
+<createdBy>rwang</createdBy>
+<createdTime>2014-07-29 14:36:21 UTC</createdTime>
+<ownerDesignName>spectra-cluster</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="CABC34FC-096C-F3E2-1402-E60CEFA2BCDD"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

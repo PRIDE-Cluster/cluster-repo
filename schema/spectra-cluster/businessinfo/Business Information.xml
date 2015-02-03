@@ -1,0 +1,7 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<BusinessInfoDesign class="oracle.dbtools.crest.model.businessinfo.BusinessInfoDesign" name="Business Information" id="A897851E-48B8-59F5-8554-DF5AB593D86D">
+<createdBy>rwang</createdBy>
+<createdTime>2014-07-28 14:47:18 UTC</createdTime>
+<ownerDesignName>spectra-cluster</ownerDesignName>
+<shouldBeOpen>false</shouldBeOpen>
+</BusinessInfoDesign>

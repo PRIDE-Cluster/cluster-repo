@@ -1,0 +1,13 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="8E389FBE-53B9-43CA-B94C-61BD6D46AAE2" name="cluster_to_spec_spec_FK">
+<createdBy>rwang</createdBy>
+<createdTime>2014-07-28 15:26:57 UTC</createdTime>
+<ownerDesignName>spectra-cluster</ownerDesignName>
+<containerWithKeyObject>5DFCFD5B-7644-35CB-67C6-6FA22C8BD0A4</containerWithKeyObject>
+<deleteRule>CASCADE</deleteRule>
+<localFKIndex>59C0E776-A87F-F552-07B3-F72A43015F3A</localFKIndex>
+<keyObject>B93BE5A8-B7CF-1EB7-778C-BD97C075A943</keyObject>
+<mandatory>true</mandatory>
+<transferable>true</transferable>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>
