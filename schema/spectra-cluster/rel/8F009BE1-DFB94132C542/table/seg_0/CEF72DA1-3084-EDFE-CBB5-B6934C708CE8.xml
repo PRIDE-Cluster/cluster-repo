@@ -75,6 +75,17 @@
 <dataTypeSize>2000 CHAR</dataTypeSize>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
+<Column name="modifications_standardised" id="A83D9A37-3A35-CFA1-3326-87D90030B617">
+<createdBy>rwang</createdBy>
+<createdTime>2015-02-09 13:32:01 UTC</createdTime>
+<ownerDesignName>spectra-cluster</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>2000 CHAR</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
 <Column name="search_engine" id="A5FE552F-0D4A-3575-32E2-DA98D589B613">
 <createdBy>rwang</createdBy>
 <createdTime>2014-09-22 10:30:45 UTC</createdTime>

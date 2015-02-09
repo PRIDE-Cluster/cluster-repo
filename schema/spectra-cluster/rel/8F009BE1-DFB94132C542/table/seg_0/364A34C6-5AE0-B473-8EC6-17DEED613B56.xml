@@ -48,7 +48,9 @@
 <ownerDesignName>spectra-cluster</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT018</logicalDatatype>
+<logicalDatatype>LOGDT026</logicalDatatype>
+<dataTypePrecision>4</dataTypePrecision>
+<dataTypeScale>3</dataTypeScale>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 </columns>

@@ -17,6 +17,16 @@
 <autoIncrementCycle>false</autoIncrementCycle>
 <autoIncrementSequenceName>cluster_pk_sequence</autoIncrementSequenceName>
 </Column>
+<Column name="uuid" id="392A2940-FBDF-FC3F-4E33-6E0D35A6E334">
+<createdBy>rwang</createdBy>
+<createdTime>2015-02-09 13:25:19 UTC</createdTime>
+<ownerDesignName>spectra-cluster</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50 CHAR</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
 <Column name="avg_precursor_mz" id="0C59B5BF-9C8F-D6B5-3152-B796EFB4CF83">
 <createdBy>rwang</createdBy>
 <createdTime>2014-07-28 15:19:31 UTC</createdTime>
@@ -34,9 +44,7 @@
 <ownerDesignName>spectra-cluster</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT026</logicalDatatype>
-<dataTypePrecision>4</dataTypePrecision>
-<dataTypeScale>2</dataTypeScale>
+<logicalDatatype>LOGDT011</logicalDatatype>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 <Column name="consensus_spectrum_mz" id="087D709D-CC1C-33FB-4AC4-87EA0661FD9F">
@@ -77,6 +85,26 @@
 <dataTypeScale>3</dataTypeScale>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
+<Column name="number_of_projects" id="7D3A6148-E44D-E2DD-35A0-8B947FE5592E">
+<createdBy>rwang</createdBy>
+<createdTime>2015-02-09 13:27:04 UTC</createdTime>
+<ownerDesignName>spectra-cluster</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="annotation" id="BB871811-4DB7-4BB7-FA00-C7CA27E04345">
+<createdBy>rwang</createdBy>
+<createdTime>2015-02-09 13:43:27 UTC</createdTime>
+<ownerDesignName>spectra-cluster</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>2000</dataTypeSize>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
 <ind_PK_UK id="449D825A-9B67-2C03-B29A-6BCC2B38F215" name="cluster_PK">
@@ -88,6 +116,16 @@
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="D9A5BB92-2FD1-69E2-8427-D8617FE60D16"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="5B1A7C22-D744-4531-9994-E167457593B9" name="spectrum_cluster_uuid_UN">
+<createdBy>rwang</createdBy>
+<createdTime>2015-02-09 13:25:48 UTC</createdTime>
+<ownerDesignName>spectra-cluster</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="392A2940-FBDF-FC3F-4E33-6E0D35A6E334"/>
 </indexColumnUsage>
 </ind_PK_UK>
 <ind_PK_UK id="B833002A-A78B-8282-1686-1C92965BB0B3" name="cluster_precursor_mz_IDX">
@@ -107,6 +145,7 @@
 <indexColumnUsage>
 <colUsage columnID="EE69FCE0-4D4E-DE78-418C-46672E32473A"/>
 <colUsage columnID="D55CE45F-77EE-747D-0DE9-CFDC0C94134C"/>
+<colUsage columnID="7D3A6148-E44D-E2DD-35A0-8B947FE5592E"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>
