@@ -17,6 +17,7 @@ public class PSMDetail {
     private String archivePSMId;
     private String sequence;
     private String modifications;
+    private String standardisedModifications;
     private String searchEngine;
     private String searchEngineScores;
     private String searchDatabase;
@@ -80,6 +81,18 @@ public class PSMDetail {
 
     public void setModifications(String modifications) {
         this.modifications = modifications;
+    }
+
+    public String getStandardisedModifications() {
+        return standardisedModifications;
+    }
+
+    public Set<String> getStandardisedModificationEntries() {
+        return StringUtils.split(standardisedModifications, ",");
+    }
+
+    public void setStandardisedModifications(String standardisedModifications) {
+        this.standardisedModifications = standardisedModifications;
     }
 
     public String getSearchEngine() {
