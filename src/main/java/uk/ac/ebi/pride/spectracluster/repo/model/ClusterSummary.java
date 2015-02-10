@@ -8,12 +8,15 @@ package uk.ac.ebi.pride.spectracluster.repo.model;
  */
 public class ClusterSummary {
     private Long id;
+    private String uuid;
     private float averagePrecursorMz;
     private float averagePrecursorCharge;
     private String consensusSpectrumMz;
     private String consensusSpectrumIntensity;
     private int numberOfSpectra;
     private float maxPeptideRatio;
+    private int numberOfProjects;
+    private String annotation;
 
     public Long getId() {
         return id;
@@ -21,6 +24,14 @@ public class ClusterSummary {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getUUID() {
+        return uuid;
+    }
+
+    public void setUUID(String uuid) {
+        this.uuid = uuid;
     }
 
     public float getAveragePrecursorMz() {
@@ -71,13 +82,32 @@ public class ClusterSummary {
         this.maxPeptideRatio = maxPeptideRatio;
     }
 
+    public int getNumberOfProjects() {
+        return numberOfProjects;
+    }
+
+    public void setNumberOfProjects(int numberOfProjects) {
+        this.numberOfProjects = numberOfProjects;
+    }
+
+    public String getAnnotation() {
+        return annotation;
+    }
+
+    public void setAnnotation(String annotation) {
+        this.annotation = annotation;
+    }
+
     @Override
     public String toString() {
         return "ClusterSummary{" +
-                "averagePrecursorMz=" + averagePrecursorMz +
+                "uuid='" + uuid + '\'' +
+                ", averagePrecursorMz=" + averagePrecursorMz +
                 ", averagePrecursorCharge=" + averagePrecursorCharge +
                 ", numberOfSpectra=" + numberOfSpectra +
                 ", maxPeptideRatio=" + maxPeptideRatio +
+                ", numberOfProjects=" + numberOfProjects +
+                ", annotation=" + annotation +
                 '}';
     }
 }

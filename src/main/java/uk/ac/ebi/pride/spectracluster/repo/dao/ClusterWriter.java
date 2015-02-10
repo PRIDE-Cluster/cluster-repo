@@ -107,10 +107,13 @@ public class ClusterWriter implements IClusterWriteDao {
         simpleJdbcInsert.withTableName("spectrum_cluster").usingGeneratedKeyColumns("cluster_pk");
 
         HashMap<String, Object> parameters = new HashMap<String, Object>();
+        parameters.put("uuid", cluster.getUUID());
         parameters.put("avg_precursor_mz", cluster.getAveragePrecursorMz());
         parameters.put("avg_precursor_charge", cluster.getAveragePrecursorCharge());
         parameters.put("number_of_spectra", cluster.getNumberOfSpectra());
         parameters.put("max_ratio", 0);
+        parameters.put("number_of_projects", cluster.getNumberOfProjects());
+        parameters.put("annotation", cluster.getAnnotation());
         parameters.put("consensus_spectrum_mz", cluster.getConsensusSpectrumMz());
         parameters.put("consensus_spectrum_intensity", cluster.getConsensusSpectrumIntensity());
 
