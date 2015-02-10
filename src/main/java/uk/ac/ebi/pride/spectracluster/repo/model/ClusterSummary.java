@@ -10,7 +10,7 @@ public class ClusterSummary {
     private Long id;
     private String uuid;
     private float averagePrecursorMz;
-    private float averagePrecursorCharge;
+    private int averagePrecursorCharge;
     private String consensusSpectrumMz;
     private String consensusSpectrumIntensity;
     private int numberOfSpectra;
@@ -42,11 +42,11 @@ public class ClusterSummary {
         this.averagePrecursorMz = averagePrecursorMz;
     }
 
-    public float getAveragePrecursorCharge() {
+    public int getAveragePrecursorCharge() {
         return averagePrecursorCharge;
     }
 
-    public void setAveragePrecursorCharge(float averagePrecursorCharge) {
+    public void setAveragePrecursorCharge(int averagePrecursorCharge) {
         this.averagePrecursorCharge = averagePrecursorCharge;
     }
 

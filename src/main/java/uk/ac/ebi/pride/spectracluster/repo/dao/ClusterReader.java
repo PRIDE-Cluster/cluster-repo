@@ -189,7 +189,7 @@ public class ClusterReader implements IClusterReadDao {
                         cluster.setId(rs.getLong("cluster_pk"));
                         cluster.setUUID(rs.getString("uuid"));
                         cluster.setAveragePrecursorMz(rs.getFloat("avg_precursor_mz"));
-                        cluster.setAveragePrecursorCharge(rs.getFloat("avg_precursor_charge"));
+                        cluster.setAveragePrecursorCharge(rs.getInt("avg_precursor_charge"));
                         cluster.setConsensusSpectrumMz(rs.getString("consensus_spectrum_mz"));
                         cluster.setConsensusSpectrumIntensity(rs.getString("consensus_spectrum_intensity"));
                         cluster.setNumberOfSpectra(rs.getInt("number_of_spectra"));
@@ -250,7 +250,7 @@ public class ClusterReader implements IClusterReadDao {
                 cluster.setId(clusterId);
                 cluster.setUUID(rs.getString("uuid"));
                 cluster.setAveragePrecursorMz(rs.getFloat("avg_precursor_mz"));
-                cluster.setAveragePrecursorCharge(rs.getFloat("avg_precursor_charge"));
+                cluster.setAveragePrecursorCharge(rs.getInt("avg_precursor_charge"));
                 cluster.setConsensusSpectrumMz(rs.getString("consensus_spectrum_mz"));
                 cluster.setConsensusSpectrumIntensity(rs.getString("consensus_spectrum_intensity"));
                 cluster.setNumberOfSpectra(rs.getInt("number_of_spectra"));
