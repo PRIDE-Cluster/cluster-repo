@@ -319,7 +319,7 @@ public class ClusterReader implements IClusterReadDao {
                 clusteredPSMDetail.setClusterId(clusterId);
                 clusteredPSMDetail.setPsmId(rs.getLong("psm_fk"));
                 clusteredPSMDetail.setPsmRatio(rs.getFloat("ratio"));
-                clusteredPSMDetail.setRank(rs.getInt("rank"));
+                clusteredPSMDetail.setRank(rs.getFloat("rank"));
                 String sequence = rs.getString("sequence");
                 clusteredPSMDetail.setSequence(sequence);
                 long spectrumId = rs.getLong("spectrum_fk");

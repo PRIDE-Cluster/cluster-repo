@@ -232,7 +232,7 @@ public class ClusterWriter implements IClusterWriteDao {
                 ps.setLong(1, clusteredPSMDetail.getClusterId());
                 ps.setLong(2, clusteredPSMDetail.getPsmId());
                 ps.setFloat(3, clusteredPSMDetail.getPsmRatio());
-                ps.setInt(4, clusteredPSMDetail.getRank());
+                ps.setFloat(4, clusteredPSMDetail.getRank());
             }
 
             @Override
