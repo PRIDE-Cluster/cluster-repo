@@ -12,11 +12,11 @@ import java.util.Map;
  * @version $Id$
  */
 public class ClusterDetail extends ClusterSummary{
-    private final List<ClusteredSpectrumDetail> clusteredSpectrumSummaries = new ArrayList<ClusteredSpectrumDetail>();
-    private final List<ClusteredPSMDetail> clusteredPSMSummaries = new ArrayList<ClusteredPSMDetail>();
+    private final List<ClusteredSpectrumDetail> clusteredSpectrumDetails = new ArrayList<ClusteredSpectrumDetail>();
+    private final List<ClusteredPSMDetail> clusteredPSMDetails = new ArrayList<ClusteredPSMDetail>();
     private final List<AssayDetail> assaySummaries = new ArrayList<AssayDetail>();
-    private final Map<String, ClusteredSpectrumDetail> spectrumRefToClusteredSpectrumSummary = new HashMap<String, ClusteredSpectrumDetail>();
-    private final Map<String, List<ClusteredPSMDetail>> peptideToClusteredPSMSummary = new HashMap<String, List<ClusteredPSMDetail>>();
+    private final Map<String, ClusteredSpectrumDetail> spectrumRefToClusteredSpectrumDetail = new HashMap<String, ClusteredSpectrumDetail>();
+    private final Map<String, List<ClusteredPSMDetail>> peptideToClusteredPSMDetail = new HashMap<String, List<ClusteredPSMDetail>>();
 
     public ClusterDetail() {
     }
@@ -31,50 +31,50 @@ public class ClusterDetail extends ClusterSummary{
         setNumberOfSpectra(clusterSummary.getNumberOfSpectra());
     }
 
-    public List<ClusteredSpectrumDetail> getClusteredSpectrumSummaries() {
-        return clusteredSpectrumSummaries;
+    public List<ClusteredSpectrumDetail> getClusteredSpectrumDetails() {
+        return clusteredSpectrumDetails;
     }
 
     public ClusteredSpectrumDetail getClusteredSpectrumSummary(String spectrumRef) {
-        return spectrumRefToClusteredSpectrumSummary.get(spectrumRef);
+        return spectrumRefToClusteredSpectrumDetail.get(spectrumRef);
     }
 
-    public void addClusteredSpectrumSummary(ClusteredSpectrumDetail clusteredSpectrumDetail) {
-        clusteredSpectrumSummaries.add(clusteredSpectrumDetail);
-        spectrumRefToClusteredSpectrumSummary.put(clusteredSpectrumDetail.getReferenceId(), clusteredSpectrumDetail);
+    public void addClusteredSpectrumDetail(ClusteredSpectrumDetail clusteredSpectrumDetail) {
+        clusteredSpectrumDetails.add(clusteredSpectrumDetail);
+        spectrumRefToClusteredSpectrumDetail.put(clusteredSpectrumDetail.getReferenceId(), clusteredSpectrumDetail);
     }
 
-    public void addClusteredSpectrumSummaries(List<ClusteredSpectrumDetail> clusteredSpectrumSummaries) {
+    public void addClusteredSpectrumDetails(List<ClusteredSpectrumDetail> clusteredSpectrumSummaries) {
         for (ClusteredSpectrumDetail clusteredSpectrumDetail : clusteredSpectrumSummaries) {
-            addClusteredSpectrumSummary(clusteredSpectrumDetail);
+            addClusteredSpectrumDetail(clusteredSpectrumDetail);
         }
     }
 
-    public List<ClusteredPSMDetail> getClusteredPSMSummaries() {
-        return clusteredPSMSummaries;
+    public List<ClusteredPSMDetail> getClusteredPSMDetails() {
+        return clusteredPSMDetails;
     }
 
-    public List<ClusteredPSMDetail> getClusteredPSMSummaries(String sequence) {
+    public List<ClusteredPSMDetail> getClusteredPSMDetails(String sequence) {
         String cleanPeptideSequence = cleanPeptideSequence(sequence);
-        return peptideToClusteredPSMSummary.get(cleanPeptideSequence);
+        return peptideToClusteredPSMDetail.get(cleanPeptideSequence);
     }
 
-    public void addClusteredPSMSummary(ClusteredPSMDetail clusteredPSMDetail) {
-        clusteredPSMSummaries.add(clusteredPSMDetail);
+    public void addClusteredPSMDetail(ClusteredPSMDetail clusteredPSMDetail) {
+        clusteredPSMDetails.add(clusteredPSMDetail);
         String cleanedSequence = cleanPeptideSequence(clusteredPSMDetail.getSequence());
 
-        List<ClusteredPSMDetail> psmSummaries = peptideToClusteredPSMSummary.get(cleanedSequence);
+        List<ClusteredPSMDetail> psmSummaries = peptideToClusteredPSMDetail.get(cleanedSequence);
         if (psmSummaries == null) {
             psmSummaries = new ArrayList<ClusteredPSMDetail>();
-            peptideToClusteredPSMSummary.put(cleanedSequence, psmSummaries);
+            peptideToClusteredPSMDetail.put(cleanedSequence, psmSummaries);
         }
 
         psmSummaries.add(clusteredPSMDetail);
     }
 
-    public void addClusteredPSMSummaries(List<ClusteredPSMDetail> clusteredPSMSummaries) {
+    public void addClusteredPSMDetails(List<ClusteredPSMDetail> clusteredPSMSummaries) {
         for (ClusteredPSMDetail clusteredPSMDetail : clusteredPSMSummaries) {
-            addClusteredPSMSummary(clusteredPSMDetail);
+            addClusteredPSMDetail(clusteredPSMDetail);
         }
     }
 

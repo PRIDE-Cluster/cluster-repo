@@ -267,6 +267,16 @@
 <colUsage columnID="A894673B-9BB8-18C6-6EFE-51B0C4AEA381"/>
 </indexColumnUsage>
 </ind_PK_UK>
+<ind_PK_UK id="B1AB090E-FA0E-DA19-E76B-244D7B6B8D04" name="psm_sequence_mod_IDX">
+<createdBy>rwang</createdBy>
+<createdTime>2015-02-12 10:00:36 UTC</createdTime>
+<ownerDesignName>spectra-cluster</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="FD10A661-F9DA-2E79-0050-71B97B3B3635"/>
+<colUsage columnID="A83D9A37-3A35-CFA1-3326-87D90030B617"/>
+</indexColumnUsage>
+</ind_PK_UK>
 <ind_PK_UK id="F77DA20C-5DDC-DE92-C287-AB94BA4548ED" name="psm_spectrum_FK">
 <createdBy>rwang</createdBy>
 <createdTime>2014-07-28 15:33:08 UTC</createdTime>

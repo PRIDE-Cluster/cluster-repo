@@ -67,11 +67,11 @@ public class ClusterWriter implements IClusterWriteDao {
 
         ClusterUtils.updateClusteredPSMStatistics(cluster);
 
-        saveClusteredSpectra(cluster.getClusteredSpectrumSummaries());
+        saveClusteredSpectra(cluster.getClusteredSpectrumDetails());
 
-        saveClusteredPSMs(cluster.getClusteredPSMSummaries());
+        saveClusteredPSMs(cluster.getClusteredPSMDetails());
 
-        float maxRatio = getMaxRatio(cluster.getClusteredPSMSummaries());
+        float maxRatio = getMaxRatio(cluster.getClusteredPSMDetails());
 
         updateMaxRatio(cluster, maxRatio);
 
@@ -126,17 +126,18 @@ public class ClusterWriter implements IClusterWriteDao {
         cluster.setId(clusterId);
 
         // update cluster id for all the clustered spectra
-        List<ClusteredSpectrumDetail> clusteredSpectrumSummaries = cluster.getClusteredSpectrumSummaries();
+        List<ClusteredSpectrumDetail> clusteredSpectrumSummaries = cluster.getClusteredSpectrumDetails();
         for (ClusteredSpectrumDetail clusteredSpectrumDetail : clusteredSpectrumSummaries) {
             clusteredSpectrumDetail.setClusterId(clusterId);
         }
     }
 
     private void updateSpectrumIdForClusteredSpectra(final ClusterDetail cluster) {
-        String SELECT_QUERY = "select spectrum.spectrum_pk, spectrum.spectrum_ref, psm.psm_pk, psm.sequence from spectrum " +
+        //todo: this needs to be change to use the standardised modifications, so instead of psm.modifications, it should be psm.modifications_standardised
+        String SELECT_QUERY = "select spectrum.spectrum_pk, spectrum.spectrum_ref, psm.psm_pk, psm.sequence, psm.modifications from spectrum " +
                 "join psm on (spectrum.spectrum_pk = psm.spectrum_fk) where spectrum.spectrum_ref in ";
 
-        List<String> queries = concatenateSpectrumReferencesForQuery(cluster.getClusteredSpectrumSummaries(), 500);
+        List<String> queries = concatenateSpectrumReferencesForQuery(cluster.getClusteredSpectrumDetails(), 500);
         for (final String query : queries) {
             String sql = SELECT_QUERY + "(" + query + ")";
             template.query(sql, new RowCallbackHandler() {
@@ -146,6 +147,7 @@ public class ClusterWriter implements IClusterWriteDao {
                     String spectrumRef = rs.getString(2);
                     long psmPk = rs.getLong(3);
                     String sequence = rs.getString(4);
+                    String modification = rs.getString(5);
 
                     ClusteredSpectrumDetail clusteredSpectrumDetail = cluster.getClusteredSpectrumSummary(spectrumRef);
                     clusteredSpectrumDetail.setSpectrumId(spectrumPk);
@@ -155,7 +157,8 @@ public class ClusterWriter implements IClusterWriteDao {
                     clusteredPSMDetail.setPsmId(psmPk);
                     clusteredPSMDetail.setSpectrumId(spectrumPk);
                     clusteredPSMDetail.setSequence(sequence);
-                    cluster.addClusteredPSMSummary(clusteredPSMDetail);
+                    clusteredPSMDetail.setModifications(modification);
+                    cluster.addClusteredPSMDetail(clusteredPSMDetail);
                 }
             });
         }
@@ -163,7 +166,7 @@ public class ClusterWriter implements IClusterWriteDao {
 
     private void validateClusterMappings(final ClusterDetail cluster) {
         List<String> invalidSpectrumReference = new ArrayList<String>();
-        List<ClusteredSpectrumDetail> clusteredSpectrumSummaries = cluster.getClusteredSpectrumSummaries();
+        List<ClusteredSpectrumDetail> clusteredSpectrumSummaries = cluster.getClusteredSpectrumDetails();
 
         for (ClusteredSpectrumDetail clusteredSpectrumDetail : clusteredSpectrumSummaries) {
             if (clusteredSpectrumDetail.getSpectrumId() == null) {
@@ -177,7 +180,7 @@ public class ClusterWriter implements IClusterWriteDao {
             throw new IllegalStateException(message);
         }
 
-        if (clusteredSpectrumSummaries.size() > cluster.getClusteredPSMSummaries().size()) {
+        if (clusteredSpectrumSummaries.size() > cluster.getClusteredPSMDetails().size()) {
             String message = "PSM not found in database for cluster that contains spectrum reference: "
                     + clusteredSpectrumSummaries.get(0).getReferenceId();
             logger.error(message);

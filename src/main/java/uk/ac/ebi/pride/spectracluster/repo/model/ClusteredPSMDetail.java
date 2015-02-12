@@ -11,6 +11,7 @@ public class ClusteredPSMDetail {
     private Long psmId; // internal psm id
     private Long spectrumId; // internal spectrum id
     private String sequence; // peptide sequence
+    private String modifications; // standardised modifications
     private float psmRatio; // ratio is the number of distinct psm / the number of spectra
     private float rank;              // rank of the psm by ratio
     private PSMDetail psmDetail; // full psm summary
@@ -45,6 +46,14 @@ public class ClusteredPSMDetail {
 
     public void setSequence(String sequence) {
         this.sequence = sequence;
+    }
+
+    public String getModifications() {
+        return modifications;
+    }
+
+    public void setModifications(String modifications) {
+        this.modifications = modifications;
     }
 
     public float getPsmRatio() {

@@ -85,21 +85,10 @@
 <colUsage columnID="36EDC43C-8E46-CAFE-9E8E-22C8492840A7"/>
 </indexColumnUsage>
 </ind_PK_UK>
-<ind_PK_UK id="D7632459-A5CE-A07B-FE32-A2E70A560FED" name="spectrum_UN">
-<createdBy>rwang</createdBy>
-<createdTime>2014-07-28 15:23:36 UTC</createdTime>
-<ownerDesignName>spectra-cluster</ownerDesignName>
-<indexState>Unique Constraint</indexState>
-<isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="320F0ABF-BDE8-D1C0-B393-B7757B256D33"/>
-</indexColumnUsage>
-</ind_PK_UK>
 <ind_PK_UK id="225B15E6-955F-B6BD-AE3A-43003219232E" name="spectrum_ref_IDX">
 <createdBy>rwang</createdBy>
 <createdTime>2014-07-30 10:46:05 UTC</createdTime>
 <ownerDesignName>spectra-cluster</ownerDesignName>
-<indexState>Unique Plain Index</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="320F0ABF-BDE8-D1C0-B393-B7757B256D33"/>

@@ -37,6 +37,7 @@
         <spring-jdbc.version>3.2.9.RELEASE</spring-jdbc.version>
         <oracle-thin.version>11.2.0.1.0</oracle-thin.version>
         <commons-lang3.version>3.3.2</commons-lang3.version>
+        <junit.version>4.11</junit.version>
     </properties>
 
     <build>
@@ -130,6 +131,13 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>${commons-lang3.version}</version>
+        </dependency>
+
+        <!-- unit test -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
         </dependency>
 
         <!-- database -->

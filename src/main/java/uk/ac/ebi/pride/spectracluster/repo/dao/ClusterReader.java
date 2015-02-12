@@ -214,11 +214,11 @@ public class ClusterReader implements IClusterReadDao {
 
             // read spectra details
             List<ClusteredSpectrumDetail> spectrumSummaries = findClusteredSpectrumSummaryByClusterId(clusterId);
-            clusterDetail.addClusteredSpectrumSummaries(spectrumSummaries);
+            clusterDetail.addClusteredSpectrumDetails(spectrumSummaries);
 
             // read psm details
             List<ClusteredPSMDetail> psmSummaries = findClusteredPSMSummaryByClusterId(clusterId);
-            clusterDetail.addClusteredPSMSummaries(psmSummaries);
+            clusterDetail.addClusteredPSMDetails(psmSummaries);
 
             // collection all the unique assay ids
             List<Long> assayIds = new ArrayList<Long>();
