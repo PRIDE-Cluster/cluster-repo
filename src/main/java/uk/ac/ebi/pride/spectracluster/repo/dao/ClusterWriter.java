@@ -133,36 +133,49 @@ public class ClusterWriter implements IClusterWriteDao {
     }
 
     private void updateSpectrumIdForClusteredSpectra(final ClusterDetail cluster) {
-        //todo: this needs to be change to use the standardised modifications, so instead of psm.modifications, it should be psm.modifications_standardised
-        String SELECT_QUERY = "select spectrum.spectrum_pk, spectrum.spectrum_ref, psm.psm_pk, psm.sequence, psm.modifications from spectrum " +
-                "join psm on (spectrum.spectrum_pk = psm.spectrum_fk) where spectrum.spectrum_ref in ";
 
-        List<String> queries = concatenateSpectrumReferencesForQuery(cluster.getClusteredSpectrumDetails(), 500);
-        for (final String query : queries) {
-            String sql = SELECT_QUERY + "(" + query + ")";
+        String SPECTRUM_SELECT_QUERY = "select spectrum_pk, spectrum_ref from spectrum where spectrum_ref in ";
+        List<String> spectrumSubQueries = concatenateSpectrumReferencesForQuery(cluster.getClusteredSpectrumDetails(), 500);
+        for (final String query : spectrumSubQueries) {
+            String sql = SPECTRUM_SELECT_QUERY + "(" + query + ")";
             template.query(sql, new RowCallbackHandler() {
                 @Override
                 public void processRow(ResultSet rs) throws SQLException {
                     long spectrumPk = rs.getLong(1);
                     String spectrumRef = rs.getString(2);
-                    long psmPk = rs.getLong(3);
-                    String sequence = rs.getString(4);
-                    String modification = rs.getString(5);
 
                     ClusteredSpectrumDetail clusteredSpectrumDetail = cluster.getClusteredSpectrumSummary(spectrumRef);
                     clusteredSpectrumDetail.setSpectrumId(spectrumPk);
-
-                    ClusteredPSMDetail clusteredPSMDetail = new ClusteredPSMDetail();
-                    clusteredPSMDetail.setClusterId(cluster.getId());
-                    clusteredPSMDetail.setPsmId(psmPk);
-                    clusteredPSMDetail.setSpectrumId(spectrumPk);
-                    clusteredPSMDetail.setSequence(sequence);
-                    clusteredPSMDetail.setModifications(modification);
-                    cluster.addClusteredPSMDetail(clusteredPSMDetail);
                 }
             });
         }
+
+        //todo: this needs to be change to use the standardised modifications, so instead of psm.modifications, it should be psm.modifications_standardised
+        String PSM_SELECT_QUERY = "select spectrum_fk, psm_pk, sequence, modifications from psm where spectrum_fk in ";
+        List<String> psmSubQueries = concatenateSpectrumIdForQuery(cluster.getClusteredSpectrumDetails(), 500);
+        for (final String query : psmSubQueries) {
+            String sql = PSM_SELECT_QUERY + "(" + query + ")";
+            template.query(sql, new RowCallbackHandler() {
+                @Override
+                public void processRow(ResultSet rs) throws SQLException {
+                    long spectrumFk = rs.getLong(1);
+                    long psmPk = rs.getLong(2);
+                    String sequence = rs.getString(3);
+                    String mods = rs.getString(4);
+
+                    ClusteredPSMDetail clusteredPSMSummary = new ClusteredPSMDetail();
+                    clusteredPSMSummary.setClusterId(cluster.getId());
+                    clusteredPSMSummary.setPsmId(psmPk);
+                    clusteredPSMSummary.setSpectrumId(spectrumFk);
+                    clusteredPSMSummary.setSequence(sequence);
+                    clusteredPSMSummary.setModifications(mods);
+                    cluster.addClusteredPSMDetail(clusteredPSMSummary);
+                }
+            });
+        }
+
     }
+
 
     private void validateClusterMappings(final ClusterDetail cluster) {
         List<String> invalidSpectrumReference = new ArrayList<String>();
@@ -197,6 +210,21 @@ public class ClusterWriter implements IClusterWriteDao {
             String query = "";
             for (ClusteredSpectrumDetail clusteredSpectrumDetail : chunk) {
                 query += "'" + clusteredSpectrumDetail.getReferenceId() + "',";
+            }
+            queries.add(query.substring(0, query.length() - 1));
+        }
+
+        return queries;
+    }
+
+    private List<String> concatenateSpectrumIdForQuery(final List<ClusteredSpectrumDetail> clusteredSpectra, int limit) {
+        List<String> queries = new ArrayList<String>();
+
+        List<List<ClusteredSpectrumDetail>> chunks = QueryUtils.chunks(clusteredSpectra, limit);
+        for (List<ClusteredSpectrumDetail> chunk : chunks) {
+            String query = "";
+            for (ClusteredSpectrumDetail clusteredSpectrumSummary : chunk) {
+                query += "'" + clusteredSpectrumSummary.getSpectrumId() + "',";
             }
             queries.add(query.substring(0, query.length() - 1));
         }
