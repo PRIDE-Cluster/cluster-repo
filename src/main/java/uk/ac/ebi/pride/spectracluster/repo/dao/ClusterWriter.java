@@ -134,20 +134,24 @@ public class ClusterWriter implements IClusterWriteDao {
 
     private void updateSpectrumIdForClusteredSpectra(final ClusterDetail cluster) {
 
-        String SPECTRUM_SELECT_QUERY = "select spectrum_pk, spectrum_ref from spectrum where spectrum_ref in ";
-        List<String> spectrumSubQueries = concatenateSpectrumReferencesForQuery(cluster.getClusteredSpectrumDetails(), 500);
-        for (final String query : spectrumSubQueries) {
-            String sql = SPECTRUM_SELECT_QUERY + "(" + query + ")";
-            template.query(sql, new RowCallbackHandler() {
+        String SPECTRUM_SELECT_QUERY = "select spectrum_pk from spectrum where spectrum_ref = ? ";
+        for (final ClusteredSpectrumDetail clusteredSpectrumDetail : cluster.getClusteredSpectrumDetails()) {
+            template.query(SPECTRUM_SELECT_QUERY, new PreparedStatementSetter() {
+                @Override
+                public void setValues(PreparedStatement ps) throws SQLException {
+                    ps.setString(1, clusteredSpectrumDetail.getReferenceId());
+                }
+            }, new RowCallbackHandler() {
                 @Override
                 public void processRow(ResultSet rs) throws SQLException {
                     long spectrumPk = rs.getLong(1);
-                    String spectrumRef = rs.getString(2);
-
-                    ClusteredSpectrumDetail clusteredSpectrumDetail = cluster.getClusteredSpectrumSummary(spectrumRef);
                     clusteredSpectrumDetail.setSpectrumId(spectrumPk);
                 }
             });
+
+            if (clusteredSpectrumDetail.getSpectrumId() == null) {
+                throw new IllegalStateException("Failed to find spectrum: " + clusteredSpectrumDetail.getReferenceId());
+            }
         }
 
         //todo: this needs to be change to use the standardised modifications, so instead of psm.modifications, it should be psm.modifications_standardised
