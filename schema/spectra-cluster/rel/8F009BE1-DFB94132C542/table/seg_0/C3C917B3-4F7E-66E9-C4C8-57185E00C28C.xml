@@ -100,7 +100,7 @@
 <ownerDesignName>spectra-cluster</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT018</logicalDatatype>
+<logicalDatatype>LOGDT042</logicalDatatype>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 <Column name="annotation" id="BB871811-4DB7-4BB7-FA00-C7CA27E04345">
