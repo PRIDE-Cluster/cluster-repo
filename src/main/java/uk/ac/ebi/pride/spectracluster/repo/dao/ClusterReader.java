@@ -195,6 +195,8 @@ public class ClusterReader implements IClusterReadDao {
                         cluster.setNumberOfSpectra(rs.getInt("number_of_spectra"));
                         cluster.setMaxPeptideRatio(rs.getFloat("max_ratio"));
                         cluster.setNumberOfProjects(rs.getInt("number_of_projects"));
+                        ClusterQuality quality = ClusterQuality.getClusterQuality(rs.getInt("quality"));
+                        cluster.setQuality(quality);
                         cluster.setAnnotation(rs.getString("annotation"));
 
                         return cluster;
