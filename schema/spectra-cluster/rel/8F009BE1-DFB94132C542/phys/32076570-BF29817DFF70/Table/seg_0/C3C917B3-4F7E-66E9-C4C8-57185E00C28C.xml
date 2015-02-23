@@ -1,14 +1,50 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<TableProxyOraclev11g class="oracle.dbtools.crest.model.design.storage.oracle.v11g.TableProxyOraclev11g" name="cluster" directorySegmentName="seg_0" id="C3C917B3-4F7E-66E9-C4C8-57185E00C28C">
+<TableProxyOraclev11g class="oracle.dbtools.crest.model.design.storage.oracle.v11g.TableProxyOraclev11g" name="spectrum_cluster" directorySegmentName="seg_0" id="C3C917B3-4F7E-66E9-C4C8-57185E00C28C">
 <createdBy>rwang</createdBy>
 <createdTime>2014-07-28 15:03:53 UTC</createdTime>
 <ownerDesignName>spectra-cluster</ownerDesignName>
 <logging>YES</logging>
 <partitionedRowMovement>DISABLE</partitionedRowMovement>
+<tableSpace>CAC0F871-B420-4A76-2DCF-5DE118D43A23</tableSpace>
 <columnProxies>
-<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v11g.ColumnProxyOraclev11g" name="cluster_uid" id="BF93A9A1-8BBA-9B08-DF32-5AECDB785157">
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v11g.ColumnProxyOraclev11g" name="consensus_spectrum_mz" id="087D709D-CC1C-33FB-4AC4-87EA0661FD9F">
 <createdBy>rwang</createdBy>
-<createdTime>2014-07-28 15:05:43 UTC</createdTime>
+<createdTime>2015-02-23 15:38:15 UTC</createdTime>
+<ownerDesignName>spectra-cluster</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v11g.ColumnProxyOraclev11g" name="avg_precursor_mz" id="0C59B5BF-9C8F-D6B5-3152-B796EFB4CF83">
+<createdBy>rwang</createdBy>
+<createdTime>2015-02-23 15:38:15 UTC</createdTime>
+<ownerDesignName>spectra-cluster</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v11g.ColumnProxyOraclev11g" name="uuid" id="392A2940-FBDF-FC3F-4E33-6E0D35A6E334">
+<createdBy>rwang</createdBy>
+<createdTime>2015-02-23 15:38:15 UTC</createdTime>
+<ownerDesignName>spectra-cluster</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v11g.ColumnProxyOraclev11g" name="consensus_spectrum_intensity" id="5429AB5A-5806-4E26-5392-F9457B20FA99">
+<createdBy>rwang</createdBy>
+<createdTime>2015-02-23 15:38:15 UTC</createdTime>
+<ownerDesignName>spectra-cluster</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v11g.ColumnProxyOraclev11g" name="quality" id="63432E8C-ED3F-81B5-77B6-0B45CDE12F90">
+<createdBy>rwang</createdBy>
+<createdTime>2015-02-23 15:38:15 UTC</createdTime>
+<ownerDesignName>spectra-cluster</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v11g.ColumnProxyOraclev11g" name="number_of_projects" id="7D3A6148-E44D-E2DD-35A0-8B947FE5592E">
+<createdBy>rwang</createdBy>
+<createdTime>2015-02-23 15:38:15 UTC</createdTime>
+<ownerDesignName>spectra-cluster</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v11g.ColumnProxyOraclev11g" name="annotation" id="BB871811-4DB7-4BB7-FA00-C7CA27E04345">
+<createdBy>rwang</createdBy>
+<createdTime>2015-02-23 15:38:15 UTC</createdTime>
+<ownerDesignName>spectra-cluster</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v11g.ColumnProxyOraclev11g" name="max_ratio" id="D55CE45F-77EE-747D-0DE9-CFDC0C94134C">
+<createdBy>rwang</createdBy>
+<createdTime>2015-02-23 15:38:15 UTC</createdTime>
 <ownerDesignName>spectra-cluster</ownerDesignName>
 </ColumnProxy>
 <ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v11g.ColumnProxyOraclev11g" name="cluster_pk" id="D9A5BB92-2FD1-69E2-8427-D8617FE60D16">
@@ -16,7 +52,37 @@
 <createdTime>2014-07-28 15:04:52 UTC</createdTime>
 <ownerDesignName>spectra-cluster</ownerDesignName>
 </ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v11g.ColumnProxyOraclev11g" name="avg_precursor_charge" id="E7C0CCD2-2059-2B73-BE26-58549ED102AB">
+<createdBy>rwang</createdBy>
+<createdTime>2015-02-23 15:38:15 UTC</createdTime>
+<ownerDesignName>spectra-cluster</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v11g.ColumnProxyOraclev11g" name="number_of_spectra" id="EE69FCE0-4D4E-DE78-418C-46672E32473A">
+<createdBy>rwang</createdBy>
+<createdTime>2015-02-23 15:38:15 UTC</createdTime>
+<ownerDesignName>spectra-cluster</ownerDesignName>
+</ColumnProxy>
 </columnProxies>
+<indexProxies>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="spectrum_cluster_quality_IDX" id="7BF59806-8CA6-2844-6AEF-1956C673D31E">
+<createdBy>rwang</createdBy>
+<createdTime>2015-02-23 15:38:15 UTC</createdTime>
+<ownerDesignName>spectra-cluster</ownerDesignName>
+<tableSpace>168E818E-A3C5-54B0-AA20-FE54C47AA105</tableSpace>
+</IndexProxy>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="cluster_precursor_mz_IDX" id="B833002A-A78B-8282-1686-1C92965BB0B3">
+<createdBy>rwang</createdBy>
+<createdTime>2015-02-23 15:38:15 UTC</createdTime>
+<ownerDesignName>spectra-cluster</ownerDesignName>
+<tableSpace>168E818E-A3C5-54B0-AA20-FE54C47AA105</tableSpace>
+</IndexProxy>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="cluster_num_spectra_ratio_IDX" id="B99A699D-6B80-94F7-96FB-B4F0A1178290">
+<createdBy>rwang</createdBy>
+<createdTime>2015-02-23 15:38:15 UTC</createdTime>
+<ownerDesignName>spectra-cluster</ownerDesignName>
+<tableSpace>168E818E-A3C5-54B0-AA20-FE54C47AA105</tableSpace>
+</IndexProxy>
+</indexProxies>
 <primaryKeys>
 <PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="cluster_PK" id="449D825A-9B67-2C03-B29A-6BCC2B38F215">
 <createdBy>rwang</createdBy>
@@ -26,9 +92,9 @@
 </PrimaryKey>
 </primaryKeys>
 <uniqueKeys>
-<UniqueKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.UniqueOraclev10g" name="cluster__UN" id="F9F9BB92-0C8A-58F9-67A6-0C4134B3157C">
+<UniqueKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.UniqueOraclev10g" name="spectrum_cluster_uuid_UN" id="5B1A7C22-D744-4531-9994-E167457593B9">
 <createdBy>rwang</createdBy>
-<createdTime>2014-07-28 15:08:10 UTC</createdTime>
+<createdTime>2015-02-23 15:38:15 UTC</createdTime>
 <ownerDesignName>spectra-cluster</ownerDesignName>
 <indexSort>SORTED</indexSort>
 </UniqueKey>
