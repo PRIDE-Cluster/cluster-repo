@@ -1,0 +1,8 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableSpaceOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TableSpaceOraclev10g" name="PRIDECLUS_TAB" directorySegmentName="seg_0" id="CAC0F871-B420-4A76-2DCF-5DE118D43A23">
+<createdBy>rwang</createdBy>
+<createdTime>2015-02-23 15:58:44 UTC</createdTime>
+<ownerDesignName>spectra-cluster</ownerDesignName>
+<emUniformSize>0</emUniformSize>
+<extentManagement>LOCAL</extentManagement>
+</TableSpaceOraclev10g>

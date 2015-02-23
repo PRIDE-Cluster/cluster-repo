@@ -1,0 +1,166 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev11g class="oracle.dbtools.crest.model.design.storage.oracle.v11g.TableProxyOraclev11g" name="psm" directorySegmentName="seg_0" id="CEF72DA1-3084-EDFE-CBB5-B6934C708CE8">
+<createdBy>rwang</createdBy>
+<createdTime>2015-02-23 15:38:15 UTC</createdTime>
+<ownerDesignName>spectra-cluster</ownerDesignName>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<tableSpace>CAC0F871-B420-4A76-2DCF-5DE118D43A23</tableSpace>
+<columnProxies>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v11g.ColumnProxyOraclev11g" name="pre_amino_acid" id="11CA3DAD-A1D7-307E-3DED-24B9695C618C">
+<createdBy>rwang</createdBy>
+<createdTime>2015-02-23 15:38:15 UTC</createdTime>
+<ownerDesignName>spectra-cluster</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v11g.ColumnProxyOraclev11g" name="psm_pk" id="17E8AC49-BF2A-2A6B-AB53-61F6C906EC34">
+<createdBy>rwang</createdBy>
+<createdTime>2015-02-23 15:38:15 UTC</createdTime>
+<ownerDesignName>spectra-cluster</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v11g.ColumnProxyOraclev11g" name="protein_group" id="1AFDB2F6-BAD8-56F3-E941-8077668E0273">
+<createdBy>rwang</createdBy>
+<createdTime>2015-02-23 15:38:15 UTC</createdTime>
+<ownerDesignName>spectra-cluster</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v11g.ColumnProxyOraclev11g" name="stop_position" id="3990E1D2-C795-CAC2-A7FD-4FE31CF8079B">
+<createdBy>rwang</createdBy>
+<createdTime>2015-02-23 15:38:15 UTC</createdTime>
+<ownerDesignName>spectra-cluster</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v11g.ColumnProxyOraclev11g" name="spectrum_fk" id="3DE787EC-24B0-361C-A440-D5EA25314A36">
+<createdBy>rwang</createdBy>
+<createdTime>2015-02-23 15:38:15 UTC</createdTime>
+<ownerDesignName>spectra-cluster</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v11g.ColumnProxyOraclev11g" name="search_engine_scores" id="3E7E4980-A17B-5076-8946-55B65C77F7BC">
+<createdBy>rwang</createdBy>
+<createdTime>2015-02-23 15:38:15 UTC</createdTime>
+<ownerDesignName>spectra-cluster</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v11g.ColumnProxyOraclev11g" name="protein_accession" id="738DA3B8-9B83-2D1B-38E2-5E32BC3B2829">
+<createdBy>rwang</createdBy>
+<createdTime>2015-02-23 15:38:15 UTC</createdTime>
+<ownerDesignName>spectra-cluster</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v11g.ColumnProxyOraclev11g" name="post_amino_acid" id="A0BF19E3-6EAE-3A7B-56B4-55C61F1E089B">
+<createdBy>rwang</createdBy>
+<createdTime>2015-02-23 15:38:15 UTC</createdTime>
+<ownerDesignName>spectra-cluster</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v11g.ColumnProxyOraclev11g" name="modifications" id="A2A72E9B-7829-B333-D51D-B9C4B1089DD0">
+<createdBy>rwang</createdBy>
+<createdTime>2015-02-23 15:38:15 UTC</createdTime>
+<ownerDesignName>spectra-cluster</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v11g.ColumnProxyOraclev11g" name="archive_psm_id" id="A3D6549E-9E7F-9F8A-847E-FCAB7F436C9B">
+<createdBy>rwang</createdBy>
+<createdTime>2015-02-23 15:38:15 UTC</createdTime>
+<ownerDesignName>spectra-cluster</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v11g.ColumnProxyOraclev11g" name="search_engine" id="A5FE552F-0D4A-3575-32E2-DA98D589B613">
+<createdBy>rwang</createdBy>
+<createdTime>2015-02-23 15:38:15 UTC</createdTime>
+<ownerDesignName>spectra-cluster</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v11g.ColumnProxyOraclev11g" name="modifications_standardised" id="A83D9A37-3A35-CFA1-3326-87D90030B617">
+<createdBy>rwang</createdBy>
+<createdTime>2015-02-23 15:38:15 UTC</createdTime>
+<ownerDesignName>spectra-cluster</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v11g.ColumnProxyOraclev11g" name="assay_fk" id="A894673B-9BB8-18C6-6EFE-51B0C4AEA381">
+<createdBy>rwang</createdBy>
+<createdTime>2015-02-23 15:38:15 UTC</createdTime>
+<ownerDesignName>spectra-cluster</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v11g.ColumnProxyOraclev11g" name="protein_name" id="B12F6251-FDB4-68BD-8EB4-089AF2A0ECA3">
+<createdBy>rwang</createdBy>
+<createdTime>2015-02-23 15:38:15 UTC</createdTime>
+<ownerDesignName>spectra-cluster</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v11g.ColumnProxyOraclev11g" name="start_position" id="BA5A3561-B289-E311-9A2F-23024A4FF964">
+<createdBy>rwang</createdBy>
+<createdTime>2015-02-23 15:38:15 UTC</createdTime>
+<ownerDesignName>spectra-cluster</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v11g.ColumnProxyOraclev11g" name="quantification_label" id="BB2AD0CD-96CD-ECD5-9F2B-9F050A189FD0">
+<createdBy>rwang</createdBy>
+<createdTime>2015-02-23 15:38:15 UTC</createdTime>
+<ownerDesignName>spectra-cluster</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v11g.ColumnProxyOraclev11g" name="delta_mz" id="BB3F2776-2866-06F6-1538-383BD60E3BD0">
+<createdBy>rwang</createdBy>
+<createdTime>2015-02-23 15:38:15 UTC</createdTime>
+<ownerDesignName>spectra-cluster</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v11g.ColumnProxyOraclev11g" name="search_database" id="F963DF39-3A27-EBAF-EDA7-006E0A18C2B5">
+<createdBy>rwang</createdBy>
+<createdTime>2015-02-23 15:38:15 UTC</createdTime>
+<ownerDesignName>spectra-cluster</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy class="oracle.dbtools.crest.model.design.storage.oracle.v11g.ColumnProxyOraclev11g" name="sequence" id="FD10A661-F9DA-2E79-0050-71B97B3B3635">
+<createdBy>rwang</createdBy>
+<createdTime>2015-02-23 15:38:15 UTC</createdTime>
+<ownerDesignName>spectra-cluster</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<indexProxies>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="psm_assay_IDX" id="4687FB4A-92EE-8738-DBCA-8E48CDA537B1">
+<createdBy>rwang</createdBy>
+<createdTime>2015-02-23 15:38:15 UTC</createdTime>
+<ownerDesignName>spectra-cluster</ownerDesignName>
+<tableSpace>168E818E-A3C5-54B0-AA20-FE54C47AA105</tableSpace>
+</IndexProxy>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="psm_sequence_mod_IDX" id="B1AB090E-FA0E-DA19-E76B-244D7B6B8D04">
+<createdBy>rwang</createdBy>
+<createdTime>2015-02-23 15:38:15 UTC</createdTime>
+<ownerDesignName>spectra-cluster</ownerDesignName>
+<tableSpace>168E818E-A3C5-54B0-AA20-FE54C47AA105</tableSpace>
+</IndexProxy>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="psm_sequence_IDX" id="BAB3C040-8EDB-1DF9-FC6B-B024623B9731">
+<createdBy>rwang</createdBy>
+<createdTime>2015-02-23 15:38:15 UTC</createdTime>
+<ownerDesignName>spectra-cluster</ownerDesignName>
+<tableSpace>168E818E-A3C5-54B0-AA20-FE54C47AA105</tableSpace>
+</IndexProxy>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="psm_spectrum_IDX" id="C6A41BDC-0D9C-C4B7-289E-CE8248C8CCB0">
+<createdBy>rwang</createdBy>
+<createdTime>2015-02-23 15:38:15 UTC</createdTime>
+<ownerDesignName>spectra-cluster</ownerDesignName>
+<tableSpace>168E818E-A3C5-54B0-AA20-FE54C47AA105</tableSpace>
+</IndexProxy>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="psm_spectrum_fk_pk_seq_IDX" id="E8A73EF2-01B5-B88A-52C7-DD69BA88E045">
+<createdBy>rwang</createdBy>
+<createdTime>2015-02-23 15:38:15 UTC</createdTime>
+<ownerDesignName>spectra-cluster</ownerDesignName>
+<tableSpace>168E818E-A3C5-54B0-AA20-FE54C47AA105</tableSpace>
+</IndexProxy>
+</indexProxies>
+<foreignKeys>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="psm_assay_FK" id="E18EE159-7CEB-BF60-212B-298717B4B2A7">
+<createdBy>rwang</createdBy>
+<createdTime>2015-02-23 15:38:15 UTC</createdTime>
+<ownerDesignName>spectra-cluster</ownerDesignName>
+</ForeignKey>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="psm_spectrum_FK" id="F77DA20C-5DDC-DE92-C287-AB94BA4548ED">
+<createdBy>rwang</createdBy>
+<createdTime>2015-02-23 15:38:15 UTC</createdTime>
+<ownerDesignName>spectra-cluster</ownerDesignName>
+</ForeignKey>
+</foreignKeys>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="peptide_PK" id="E45D7407-BA29-B00F-1C98-14B65E86D470">
+<createdBy>rwang</createdBy>
+<createdTime>2015-02-23 15:38:15 UTC</createdTime>
+<ownerDesignName>spectra-cluster</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</PrimaryKey>
+</primaryKeys>
+<uniqueKeys>
+<UniqueKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.UniqueOraclev10g" name="psm_UN" id="F0062D4E-8C4B-07C6-FE8B-1559E2EF742D">
+<createdBy>rwang</createdBy>
+<createdTime>2015-02-23 15:38:15 UTC</createdTime>
+<ownerDesignName>spectra-cluster</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</UniqueKey>
+</uniqueKeys>
+</TableProxyOraclev11g>
