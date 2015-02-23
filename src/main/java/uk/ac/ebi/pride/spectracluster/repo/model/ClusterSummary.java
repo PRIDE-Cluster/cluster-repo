@@ -16,6 +16,7 @@ public class ClusterSummary {
     private int numberOfSpectra;
     private float maxPeptideRatio;
     private int numberOfProjects;
+    private ClusterQuality quality;
     private String annotation;
 
     public Long getId() {
@@ -90,6 +91,14 @@ public class ClusterSummary {
         this.numberOfProjects = numberOfProjects;
     }
 
+    public ClusterQuality getQuality() {
+        return quality;
+    }
+
+    public void setQuality(ClusterQuality quality) {
+        this.quality = quality;
+    }
+
     public String getAnnotation() {
         return annotation;
     }
@@ -107,6 +116,7 @@ public class ClusterSummary {
                 ", numberOfSpectra=" + numberOfSpectra +
                 ", maxPeptideRatio=" + maxPeptideRatio +
                 ", numberOfProjects=" + numberOfProjects +
+                ", quality=" + quality +
                 ", annotation=" + annotation +
                 '}';
     }

@@ -1,18 +1,18 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
 <oracle.dbtools.crest.model.design.relational.RelationalDesign>
+   <object objectType="Table" objectID="B6428E30-B00D-1649-C79A-86087AD8FE2F" name="assay" seqName="seg_0"/>
    <object objectType="Table" objectID="364A34C6-5AE0-B473-8EC6-17DEED613B56" name="cluster_has_psm" seqName="seg_0"/>
    <object objectType="Table" objectID="5DFCFD5B-7644-35CB-67C6-6FA22C8BD0A4" name="cluster_has_spectrum" seqName="seg_0"/>
    <object objectType="Table" objectID="9689DF03-EF68-3D19-1E42-B3F25252DB08" name="cluster_run" seqName="seg_0"/>
    <object objectType="Table" objectID="A3A4028C-6DB9-529E-A0C0-3E3E17DBAB4C" name="cluster_statistics" seqName="seg_0"/>
-   <object objectType="Table" objectID="B6428E30-B00D-1649-C79A-86087AD8FE2F" name="assay" seqName="seg_0"/>
-   <object objectType="Table" objectID="C3C917B3-4F7E-66E9-C4C8-57185E00C28C" name="spectrum_cluster" seqName="seg_0"/>
    <object objectType="Table" objectID="CEF72DA1-3084-EDFE-CBB5-B6934C708CE8" name="psm" seqName="seg_0"/>
    <object objectType="Table" objectID="E0A6A829-25EF-3FEB-E8BF-282B1A8231F0" name="spectrum" seqName="seg_0"/>
-   <object objectType="FKIndexAssociation" objectID="5245EB7B-1474-D155-A71A-FF3FF2CCD45F" name="spectrum_assay_FK" seqName="seg_0"/>
-   <object objectType="FKIndexAssociation" objectID="64C15C0E-9C85-DC6C-945B-82B4F96B4696" name="cluster_has_psm_psm_FK" seqName="seg_0"/>
-   <object objectType="FKIndexAssociation" objectID="68A9718D-4B90-4271-D60C-CE1C937259B5" name="psm_assay_FK" seqName="seg_0"/>
-   <object objectType="FKIndexAssociation" objectID="6F5F36F8-E8D1-5400-DCD9-D5C296A7FDC2" name="cluster_to_spectrum_cluster_FK" seqName="seg_0"/>
-   <object objectType="FKIndexAssociation" objectID="8E389FBE-53B9-43CA-B94C-61BD6D46AAE2" name="cluster_to_spec_spec_FK" seqName="seg_0"/>
+   <object objectType="Table" objectID="C3C917B3-4F7E-66E9-C4C8-57185E00C28C" name="spectrum_cluster" seqName="seg_0"/>
    <object objectType="FKIndexAssociation" objectID="8E5D90DF-905A-22E7-2E2D-DADE0C12F1B0" name="cluster_has_psm_cluster_FK" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="64C15C0E-9C85-DC6C-945B-82B4F96B4696" name="cluster_has_psm_psm_FK" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="8E389FBE-53B9-43CA-B94C-61BD6D46AAE2" name="cluster_to_spec_spec_FK" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="6F5F36F8-E8D1-5400-DCD9-D5C296A7FDC2" name="cluster_to_spectrum_cluster_FK" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="68A9718D-4B90-4271-D60C-CE1C937259B5" name="psm_assay_FK" seqName="seg_0"/>
    <object objectType="FKIndexAssociation" objectID="AC91C8A5-1147-5611-002A-67C9ADBE5C81" name="psm_spectrum_FK" seqName="seg_0"/>
+   <object objectType="FKIndexAssociation" objectID="5245EB7B-1474-D155-A71A-FF3FF2CCD45F" name="spectrum_assay_FK" seqName="seg_0"/>
 </oracle.dbtools.crest.model.design.relational.RelationalDesign>

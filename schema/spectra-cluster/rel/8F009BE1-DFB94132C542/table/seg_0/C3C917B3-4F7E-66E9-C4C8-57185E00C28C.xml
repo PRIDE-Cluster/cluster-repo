@@ -94,6 +94,15 @@
 <logicalDatatype>LOGDT011</logicalDatatype>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
+<Column name="quality" id="63432E8C-ED3F-81B5-77B6-0B45CDE12F90">
+<createdBy>rwang</createdBy>
+<createdTime>2015-02-23 10:07:00 UTC</createdTime>
+<ownerDesignName>spectra-cluster</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT018</logicalDatatype>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
 <Column name="annotation" id="BB871811-4DB7-4BB7-FA00-C7CA27E04345">
 <createdBy>rwang</createdBy>
 <createdTime>2015-02-09 13:43:27 UTC</createdTime>
@@ -146,6 +155,15 @@
 <colUsage columnID="EE69FCE0-4D4E-DE78-418C-46672E32473A"/>
 <colUsage columnID="D55CE45F-77EE-747D-0DE9-CFDC0C94134C"/>
 <colUsage columnID="7D3A6148-E44D-E2DD-35A0-8B947FE5592E"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="7BF59806-8CA6-2844-6AEF-1956C673D31E" name="spectrum_cluster_quality_IDX">
+<createdBy>rwang</createdBy>
+<createdTime>2015-02-23 10:07:28 UTC</createdTime>
+<ownerDesignName>spectra-cluster</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="63432E8C-ED3F-81B5-77B6-0B45CDE12F90"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

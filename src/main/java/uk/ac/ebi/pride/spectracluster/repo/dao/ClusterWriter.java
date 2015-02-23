@@ -113,6 +113,7 @@ public class ClusterWriter implements IClusterWriteDao {
         parameters.put("number_of_spectra", cluster.getNumberOfSpectra());
         parameters.put("max_ratio", 0);
         parameters.put("number_of_projects", cluster.getNumberOfProjects());
+        parameters.put("quality", cluster.getQuality().getQualityLevel());
         parameters.put("annotation", cluster.getAnnotation());
         parameters.put("consensus_spectrum_mz", cluster.getConsensusSpectrumMz());
         parameters.put("consensus_spectrum_intensity", cluster.getConsensusSpectrumIntensity());
@@ -203,22 +204,6 @@ public class ClusterWriter implements IClusterWriteDao {
             logger.error(message);
             throw new IllegalStateException(message);
         }
-    }
-
-
-    private List<String> concatenateSpectrumReferencesForQuery(final List<ClusteredSpectrumDetail> clusteredSpectra, int limit) {
-        List<String> queries = new ArrayList<String>();
-
-        List<List<ClusteredSpectrumDetail>> chunks = QueryUtils.chunks(clusteredSpectra, limit);
-        for (List<ClusteredSpectrumDetail> chunk : chunks) {
-            String query = "";
-            for (ClusteredSpectrumDetail clusteredSpectrumDetail : chunk) {
-                query += "'" + clusteredSpectrumDetail.getReferenceId() + "',";
-            }
-            queries.add(query.substring(0, query.length() - 1));
-        }
-
-        return queries;
     }
 
     private List<String> concatenateSpectrumIdForQuery(final List<ClusteredSpectrumDetail> clusteredSpectra, int limit) {
@@ -353,7 +338,6 @@ public class ClusterWriter implements IClusterWriteDao {
     private void saveBatchOfSpectra(final List<SpectrumDetail> spectra) {
         if (spectra.size() > MAX_INCREMENT)
             throw new IllegalStateException("The number of spectra cannot excceed: " + MAX_INCREMENT);
-
 
         final long startingKey = spectrumPrimaryKeyIncrementer.nextLongValue();
 

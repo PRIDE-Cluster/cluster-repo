@@ -4,7 +4,7 @@
     <groupId>uk.ac.ebi.pride.spectracluster</groupId>
     <artifactId>spectra-cluster-repo</artifactId>
     <packaging>jar</packaging>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>1.0.2-SNAPSHOT</version>
 
     <name>spectra-cluster-repo</name>
 

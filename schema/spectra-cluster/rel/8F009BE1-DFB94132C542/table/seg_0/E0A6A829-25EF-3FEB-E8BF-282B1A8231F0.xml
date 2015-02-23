@@ -92,6 +92,7 @@
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="320F0ABF-BDE8-D1C0-B393-B7757B256D33"/>
+<colUsage columnID="36EDC43C-8E46-CAFE-9E8E-22C8492840A7"/>
 </indexColumnUsage>
 </ind_PK_UK>
 <ind_PK_UK id="C267BAC4-7439-3945-9FBC-C20E78237E8C" name="spectrum_precursor_mz_IDX">

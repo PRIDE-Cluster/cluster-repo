@@ -274,7 +274,18 @@
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="FD10A661-F9DA-2E79-0050-71B97B3B3635"/>
-<colUsage columnID="A83D9A37-3A35-CFA1-3326-87D90030B617"/>
+<colUsage columnID="A2A72E9B-7829-B333-D51D-B9C4B1089DD0"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="E8A73EF2-01B5-B88A-52C7-DD69BA88E045" name="psm_spectrum_fk_pk_seq_IDX">
+<createdBy>rwang</createdBy>
+<createdTime>2015-02-23 10:12:52 UTC</createdTime>
+<ownerDesignName>spectra-cluster</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="3DE787EC-24B0-361C-A440-D5EA25314A36"/>
+<colUsage columnID="17E8AC49-BF2A-2A6B-AB53-61F6C906EC34"/>
+<colUsage columnID="FD10A661-F9DA-2E79-0050-71B97B3B3635"/>
 </indexColumnUsage>
 </ind_PK_UK>
 <ind_PK_UK id="F77DA20C-5DDC-DE92-C287-AB94BA4548ED" name="psm_spectrum_FK">

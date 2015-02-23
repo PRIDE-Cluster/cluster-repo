@@ -121,7 +121,7 @@
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
-<dataTypeSize>250 CHAR</dataTypeSize>
+<dataTypeSize>500 CHAR</dataTypeSize>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 <Column name="instrument" id="0CEA3978-C529-6F36-87B8-6411FEF5BE4F">
