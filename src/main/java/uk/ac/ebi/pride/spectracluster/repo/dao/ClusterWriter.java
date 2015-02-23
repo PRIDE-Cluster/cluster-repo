@@ -428,7 +428,7 @@ public class ClusterWriter implements IClusterWriteDao {
         String INSERT_QUERY = "INSERT INTO psm (psm_pk, spectrum_fk, assay_fk, archive_psm_id, sequence, modifications, modifications_standardised, search_engine, " +
                 "search_engine_scores, search_database, protein_accession, protein_group, protein_name, start_position, " +
                 "stop_position, pre_amino_acid, post_amino_acid, delta_mz, quantification_label) VALUES " +
-                "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         template.batchUpdate(INSERT_QUERY, new BatchPreparedStatementSetter() {
             @Override
