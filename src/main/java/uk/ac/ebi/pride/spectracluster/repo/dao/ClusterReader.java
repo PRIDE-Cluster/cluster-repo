@@ -336,6 +336,7 @@ public class ClusterReader implements IClusterReadDao {
                 psmDetail.setArchivePSMId(rs.getString("archive_psm_id"));
                 psmDetail.setSequence(rs.getString("sequence"));
                 psmDetail.setModifications(rs.getString("modifications"));
+                psmDetail.setStandardisedModifications(rs.getString("modifications_standardised"));
                 psmDetail.setSearchEngine(rs.getString("search_engine"));
                 psmDetail.setSearchEngineScores(rs.getString("search_engine_scores"));
                 psmDetail.setSearchDatabase(rs.getString("search_database"));

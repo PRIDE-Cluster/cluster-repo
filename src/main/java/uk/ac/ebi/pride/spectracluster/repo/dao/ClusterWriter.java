@@ -425,7 +425,7 @@ public class ClusterWriter implements IClusterWriteDao {
     }
 
     private void savePSMsWithPrimaryKey(final List<PSMDetail> psms) {
-        String INSERT_QUERY = "INSERT INTO psm (psm_pk, spectrum_fk, assay_fk, archive_psm_id, sequence, modifications, search_engine, " +
+        String INSERT_QUERY = "INSERT INTO psm (psm_pk, spectrum_fk, assay_fk, archive_psm_id, sequence, modifications, modifications_standardised, search_engine, " +
                 "search_engine_scores, search_database, protein_accession, protein_group, protein_name, start_position, " +
                 "stop_position, pre_amino_acid, post_amino_acid, delta_mz, quantification_label) VALUES " +
                 "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -440,18 +440,19 @@ public class ClusterWriter implements IClusterWriteDao {
                 ps.setString(4, psm.getArchivePSMId());
                 ps.setString(5, psm.getSequence());
                 ps.setString(6, psm.getModifications());
-                ps.setString(7, psm.getSearchEngine());
-                ps.setString(8, psm.getSearchEngineScores());
-                ps.setString(9, psm.getSearchDatabase());
-                ps.setString(10, psm.getProteinAccession());
-                ps.setString(11, psm.getProteinGroup());
-                ps.setString(12, psm.getProteinName());
-                ps.setInt(13, psm.getStartPosition());
-                ps.setInt(14, psm.getStopPosition());
-                ps.setString(15, psm.getPreAminoAcid());
-                ps.setString(16, psm.getPostAminoAcid());
-                ps.setFloat(17, psm.getDeltaMZ());
-                ps.setString(18, psm.getQuantificationLabel());
+                ps.setString(7, psm.getStandardisedModifications());
+                ps.setString(8, psm.getSearchEngine());
+                ps.setString(9, psm.getSearchEngineScores());
+                ps.setString(10, psm.getSearchDatabase());
+                ps.setString(11, psm.getProteinAccession());
+                ps.setString(12, psm.getProteinGroup());
+                ps.setString(13, psm.getProteinName());
+                ps.setInt(14, psm.getStartPosition());
+                ps.setInt(15, psm.getStopPosition());
+                ps.setString(16, psm.getPreAminoAcid());
+                ps.setString(17, psm.getPostAminoAcid());
+                ps.setFloat(18, psm.getDeltaMZ());
+                ps.setString(19, psm.getQuantificationLabel());
             }
 
             @Override
@@ -479,6 +480,9 @@ public class ClusterWriter implements IClusterWriteDao {
 
         if (psm.getModifications() != null)
             parameters.put("modifications", psm.getModifications());
+
+        if (psm.getStandardisedModifications() != null)
+            parameters.put("modifications_standardised", psm.getStandardisedModifications());
 
         if (psm.getSearchEngine() != null)
             parameters.put("search_engine", psm.getSearchEngine());
