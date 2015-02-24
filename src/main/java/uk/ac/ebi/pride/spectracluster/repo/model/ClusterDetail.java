@@ -93,4 +93,6 @@ public class ClusterDetail extends ClusterSummary{
     private String cleanPeptideSequence(String original) {
         return original.toUpperCase().replaceAll("I", "L");
     }
+
+
 }

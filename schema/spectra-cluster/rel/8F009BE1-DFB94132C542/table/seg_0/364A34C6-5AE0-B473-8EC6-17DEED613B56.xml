@@ -38,8 +38,8 @@
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT026</logicalDatatype>
-<dataTypePrecision>4</dataTypePrecision>
-<dataTypeScale>3</dataTypeScale>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>5</dataTypeScale>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 <Column name="rank" id="16E6204E-4CDC-D4F2-DE8C-6729DFB9911D">
@@ -49,8 +49,8 @@
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT026</logicalDatatype>
-<dataTypePrecision>4</dataTypePrecision>
-<dataTypeScale>3</dataTypeScale>
+<dataTypePrecision>10</dataTypePrecision>
+<dataTypeScale>5</dataTypeScale>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 </columns>

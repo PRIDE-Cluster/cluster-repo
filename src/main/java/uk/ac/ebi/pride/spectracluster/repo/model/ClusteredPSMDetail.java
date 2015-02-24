@@ -79,4 +79,18 @@ public class ClusteredPSMDetail {
     public void setPsmDetail(PSMDetail psmDetail) {
         this.psmDetail = psmDetail;
     }
+
+    @Override
+    public String toString() {
+        return "ClusteredPSMDetail{" +
+                "clusterId=" + clusterId +
+                ", psmId=" + psmId +
+                ", spectrumId=" + spectrumId +
+                ", sequence='" + sequence + '\'' +
+                ", modifications='" + modifications + '\'' +
+                ", psmRatio=" + psmRatio +
+                ", rank=" + rank +
+                ", psmDetail=" + psmDetail +
+                '}';
+    }
 }

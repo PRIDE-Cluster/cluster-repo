@@ -61,4 +61,16 @@ public class SpectrumDetail {
     public void setIdentified(boolean identified) {
         this.identified = identified;
     }
+
+    @Override
+    public String toString() {
+        return "SpectrumDetail{" +
+                "id=" + id +
+                ", assayId=" + assayId +
+                ", referenceId='" + referenceId + '\'' +
+                ", precursorMz=" + precursorMz +
+                ", precursorCharge=" + precursorCharge +
+                ", identified=" + identified +
+                '}';
+    }
 }

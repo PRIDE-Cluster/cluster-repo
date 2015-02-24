@@ -217,4 +217,29 @@ public class PSMDetail {
         result = 31 * result + (modifications != null ? modifications.hashCode() : 0);
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "PSMDetail{" +
+                "id=" + id +
+                ", spectrumId=" + spectrumId +
+                ", assayId=" + assayId +
+                ", archivePSMId='" + archivePSMId + '\'' +
+                ", sequence='" + sequence + '\'' +
+                ", modifications='" + modifications + '\'' +
+                ", standardisedModifications='" + standardisedModifications + '\'' +
+                ", searchEngine='" + searchEngine + '\'' +
+                ", searchEngineScores='" + searchEngineScores + '\'' +
+                ", searchDatabase='" + searchDatabase + '\'' +
+                ", proteinAccession='" + proteinAccession + '\'' +
+                ", proteinGroup='" + proteinGroup + '\'' +
+                ", proteinName='" + proteinName + '\'' +
+                ", startPosition=" + startPosition +
+                ", stopPosition=" + stopPosition +
+                ", preAminoAcid='" + preAminoAcid + '\'' +
+                ", postAminoAcid='" + postAminoAcid + '\'' +
+                ", deltaMZ=" + deltaMZ +
+                ", quantificationLabel='" + quantificationLabel + '\'' +
+                '}';
+    }
 }

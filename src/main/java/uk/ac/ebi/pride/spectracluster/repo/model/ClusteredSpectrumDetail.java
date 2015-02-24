@@ -54,4 +54,15 @@ public class ClusteredSpectrumDetail {
     public void setSpectrumDetail(SpectrumDetail spectrumDetail) {
         this.spectrumDetail = spectrumDetail;
     }
+
+    @Override
+    public String toString() {
+        return "ClusteredSpectrumDetail{" +
+                "clusterId=" + clusterId +
+                ", spectrumId=" + spectrumId +
+                ", referenceId='" + referenceId + '\'' +
+                ", similarityScore=" + similarityScore +
+                ", spectrumDetail=" + spectrumDetail +
+                '}';
+    }
 }

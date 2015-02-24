@@ -249,6 +249,7 @@ public class ClusterWriter implements IClusterWriteDao {
             @Override
             public void setValues(PreparedStatement ps, int i) throws SQLException {
                 ClusteredPSMDetail clusteredPSMDetail = clusteredPSMSummaries.get(i);
+                logger.debug(clusteredPSMDetail.toString());
                 ps.setLong(1, clusteredPSMDetail.getClusterId());
                 ps.setLong(2, clusteredPSMDetail.getPsmId());
                 ps.setFloat(3, clusteredPSMDetail.getPsmRatio());

@@ -167,4 +167,24 @@ public class AssayDetail {
     public void setBioMedical(boolean bioMedical) {
         this.bioMedical = bioMedical;
     }
+
+    @Override
+    public String toString() {
+        return "AssayDetail{" +
+                "id=" + id +
+                ", accession='" + accession + '\'' +
+                ", projectAccession='" + projectAccession + '\'' +
+                ", projectTitle='" + projectTitle + '\'' +
+                ", assayTitle='" + assayTitle + '\'' +
+                ", species='" + species + '\'' +
+                ", multiSpecies=" + multiSpecies +
+                ", taxonomyId='" + taxonomyId + '\'' +
+                ", disease='" + disease + '\'' +
+                ", tissue='" + tissue + '\'' +
+                ", searchEngine='" + searchEngine + '\'' +
+                ", instrument='" + instrument + '\'' +
+                ", instrumentType='" + instrumentType + '\'' +
+                ", bioMedical=" + bioMedical +
+                '}';
+    }
 }

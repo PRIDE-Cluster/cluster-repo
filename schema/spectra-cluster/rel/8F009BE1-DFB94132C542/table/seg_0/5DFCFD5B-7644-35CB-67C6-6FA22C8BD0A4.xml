@@ -39,7 +39,7 @@
 <use>1</use>
 <logicalDatatype>LOGDT026</logicalDatatype>
 <dataTypePrecision>10</dataTypePrecision>
-<dataTypeScale>4</dataTypeScale>
+<dataTypeScale>5</dataTypeScale>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 </columns>

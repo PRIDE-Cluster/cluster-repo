@@ -34,7 +34,7 @@
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT026</logicalDatatype>
-<dataTypePrecision>7</dataTypePrecision>
+<dataTypePrecision>10</dataTypePrecision>
 <dataTypeScale>3</dataTypeScale>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
