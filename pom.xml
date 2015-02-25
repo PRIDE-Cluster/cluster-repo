@@ -38,6 +38,7 @@
         <oracle-thin.version>11.2.0.1.0</oracle-thin.version>
         <commons-lang3.version>3.3.2</commons-lang3.version>
         <junit.version>4.11</junit.version>
+        <pride-mod.version>2.0.0-SNAPSHOT</pride-mod.version>
     </properties>
 
     <build>
@@ -157,6 +158,13 @@
             <groupId>com.oracle</groupId>
             <artifactId>oracle-thin</artifactId>
             <version>${oracle-thin.version}</version>
+        </dependency>
+
+        <!-- pride mod library -->
+        <dependency>
+            <groupId>uk.ac.ebi.pride.tools</groupId>
+            <artifactId>pride-mod</artifactId>
+            <version>${pride-mod.version}</version>
         </dependency>
 
     </dependencies>

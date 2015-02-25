@@ -440,8 +440,8 @@ public class ClusterWriter implements IClusterWriteDao {
                 ps.setLong(3, psm.getAssayId());
                 ps.setString(4, psm.getArchivePSMId());
                 ps.setString(5, psm.getSequence());
-                ps.setString(6, psm.getModifications());
-                ps.setString(7, psm.getStandardisedModifications());
+                ps.setString(6, psm.getModificationString());
+                ps.setString(7, psm.getStandardisedModificationString());
                 ps.setString(8, psm.getSearchEngine());
                 ps.setString(9, psm.getSearchEngineScores());
                 ps.setString(10, psm.getSearchDatabase());

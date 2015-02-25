@@ -2,6 +2,7 @@ package uk.ac.ebi.pride.spectracluster.repo.utils;
 
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -26,5 +27,18 @@ public final class StringUtils {
         }
 
         return entries;
+    }
+
+    public static <T> String concatenate(List<T> contents, String separator) {
+        if (contents == null || contents.isEmpty())
+            return null;
+
+        String concatenation = "";
+
+        for (Object content : contents) {
+            concatenation += content.toString() + separator;
+        }
+
+        return concatenation.substring(0, concatenation.length() - separator.length());
     }
 }

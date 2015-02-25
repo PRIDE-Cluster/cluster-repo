@@ -1,8 +1,8 @@
 package uk.ac.ebi.pride.spectracluster.repo.model;
 
-import uk.ac.ebi.pride.spectracluster.repo.utils.StringUtils;
+import uk.ac.ebi.pride.spectracluster.repo.utils.PTMUtils;
 
-import java.util.Set;
+import java.util.List;
 
 /**
  * Details of a spectrum
@@ -16,8 +16,8 @@ public class PSMDetail {
     private Long assayId;
     private String archivePSMId;
     private String sequence;
-    private String modifications;
-    private String standardisedModifications;
+    private List<PTMDetail> modifications;
+    private List<PTMDetail> standardisedModifications;
     private String searchEngine;
     private String searchEngineScores;
     private String searchDatabase;
@@ -71,28 +71,36 @@ public class PSMDetail {
         this.sequence = sequence;
     }
 
-    public String getModifications() {
+    public List<PTMDetail> getModifications() {
         return modifications;
     }
 
-    public Set<String> getModificationEntries() {
-        return StringUtils.split(modifications, ",");
-    }
-
-    public void setModifications(String modifications) {
+    public void setModifications(List<PTMDetail> modifications) {
         this.modifications = modifications;
     }
 
-    public String getStandardisedModifications() {
+    public void setModifications(String modifications) {
+        this.modifications = PTMUtils.getPTMs(modifications);
+    }
+
+    public String getModificationString() {
+        return PTMUtils.constructPTMString(this.modifications);
+    }
+
+    public List<PTMDetail> getStandardisedModifications() {
         return standardisedModifications;
     }
 
-    public Set<String> getStandardisedModificationEntries() {
-        return StringUtils.split(standardisedModifications, ",");
+    public void setStandardisedModifications(List<PTMDetail> standardisedModifications) {
+        this.standardisedModifications = standardisedModifications;
     }
 
     public void setStandardisedModifications(String standardisedModifications) {
-        this.standardisedModifications = standardisedModifications;
+        this.standardisedModifications = PTMUtils.getPTMs(standardisedModifications);
+    }
+
+    public String getStandardisedModificationString() {
+        return PTMUtils.constructPTMString(this.standardisedModifications);
     }
 
     public String getSearchEngine() {
