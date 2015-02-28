@@ -35,7 +35,7 @@ public class ClusterDetail extends ClusterSummary{
         return clusteredSpectrumDetails;
     }
 
-    public ClusteredSpectrumDetail getClusteredSpectrumSummary(String spectrumRef) {
+    public ClusteredSpectrumDetail getClusteredSpectrumDetail(String spectrumRef) {
         return spectrumRefToClusteredSpectrumDetail.get(spectrumRef);
     }
 
@@ -57,6 +57,16 @@ public class ClusterDetail extends ClusterSummary{
     public List<ClusteredPSMDetail> getClusteredPSMDetails(String sequence) {
         String cleanPeptideSequence = cleanPeptideSequence(sequence);
         return peptideToClusteredPSMDetail.get(cleanPeptideSequence);
+    }
+
+    public ClusteredPSMDetail getClusteredPSMDetail(Long spectrumId) {
+        for (ClusteredPSMDetail clusteredPSMDetail : clusteredPSMDetails) {
+            if (clusteredPSMDetail.getSpectrumId().equals(spectrumId)) {
+                return clusteredPSMDetail;
+            }
+        }
+
+        return null;
     }
 
     public void addClusteredPSMDetail(ClusteredPSMDetail clusteredPSMDetail) {
