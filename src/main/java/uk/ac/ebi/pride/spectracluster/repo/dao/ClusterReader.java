@@ -230,7 +230,7 @@ public class ClusterReader implements IClusterReadDao {
 
             // read assay details
             List<AssayDetail> assaySummaries = findAssays(assayIds);
-            clusterDetail.addAssaySummaries(assaySummaries);
+            clusterDetail.addAssayDetails(assaySummaries);
         }
 
         return clusterDetail;

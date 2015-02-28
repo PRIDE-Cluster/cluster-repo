@@ -59,6 +59,8 @@ public final class PTMUtils {
                     // name
                     String ptmName = getPTMName(parts[1]);
                     ptmDetail.setName(ptmName);
+
+                    ptmDetails.add(ptmDetail);
                 }
             }
         }
