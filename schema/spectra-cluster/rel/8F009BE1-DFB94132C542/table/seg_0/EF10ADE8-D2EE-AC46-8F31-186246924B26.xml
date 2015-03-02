@@ -6,7 +6,7 @@
 <allowColumnReorder>false</allowColumnReorder>
 <existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
 <columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
-<Column name="version" id="C4B76ED9-9BA3-A323-5709-509271445F07">
+<Column name="release_version" id="C4B76ED9-9BA3-A323-5709-509271445F07">
 <createdBy>rwang</createdBy>
 <createdTime>2015-03-02 14:21:49 UTC</createdTime>
 <ownerDesignName>spectra-cluster</ownerDesignName>

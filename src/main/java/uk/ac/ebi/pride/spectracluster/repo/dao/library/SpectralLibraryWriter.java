@@ -45,7 +45,7 @@ public class SpectralLibraryWriter implements ISpectralLibraryWriteDao {
         simpleJdbcInsert.withTableName("spectral_library");
 
         Map<String, Object> parameters = new HashMap<String, Object>();
-        parameters.put("version", spectralLibraryDetail.getVersion());
+        parameters.put("release_version", spectralLibraryDetail.getVersion());
         parameters.put("release_date", spectralLibraryDetail.getReleaseDate());
         parameters.put("taxonomy_id", spectralLibraryDetail.getTaxonomyId());
         parameters.put("species_scientific_name", spectralLibraryDetail.getSpeciesScientificName());

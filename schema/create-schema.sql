@@ -211,7 +211,7 @@ ALTER TABLE psm ADD CONSTRAINT psm_UN UNIQUE ( archive_psm_id ) ;
 CREATE
 TABLE spectral_library
 (
-  version                 VARCHAR2 (50 CHAR) NOT NULL ,
+  release_version                 VARCHAR2 (50 CHAR) NOT NULL ,
   release_date            DATE NOT NULL ,
   taxonomy_id             INTEGER NOT NULL ,
   species_scientific_name VARCHAR2 (200 CHAR) NOT NULL ,
@@ -230,11 +230,11 @@ TABLESPACE PRIDECLUS_IND LOGGING ;
 CREATE
 INDEX spectral_library_version_IDX ON spectral_library
 (
-  version ASC
+  release_version ASC
 )
 TABLESPACE PRIDECLUS_IND LOGGING ;
 ALTER TABLE spectral_library ADD CONSTRAINT spectral_library_PK PRIMARY KEY (
-  version, taxonomy_id, file_name ) ;
+  release_version, taxonomy_id, file_name ) ;
 
 CREATE
 TABLE spectrum

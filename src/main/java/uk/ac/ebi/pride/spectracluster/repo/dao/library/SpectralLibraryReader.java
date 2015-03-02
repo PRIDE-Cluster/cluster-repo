@@ -28,7 +28,7 @@ public class SpectralLibraryReader implements ISpectralLibraryReadDao {
 
     @Override
     public String getLatestSpectralLibraryVersion() {
-        final String QUERY = "SELECT DISTINCT version FROM spectral_library WHERE release_date = (SELECT MAX(release_date) FROM spectral_library)";
+        final String QUERY = "SELECT DISTINCT release_version FROM spectral_library WHERE release_date = (SELECT MAX(release_date) FROM spectral_library)";
         return template.queryForObject(QUERY, String.class);
     }
 
@@ -38,7 +38,7 @@ public class SpectralLibraryReader implements ISpectralLibraryReadDao {
 
         final String latestSpectralLibraryVersion = getLatestSpectralLibraryVersion();
 
-        final String QUERY = "SELECT * FROM spectral_library WHERE version = ?";
+        final String QUERY = "SELECT * FROM spectral_library WHERE release_version = ?";
 
         template.query(QUERY, new PreparedStatementSetter() {
             @Override
@@ -50,7 +50,7 @@ public class SpectralLibraryReader implements ISpectralLibraryReadDao {
             public void processRow(ResultSet rs) throws SQLException {
                 SpectralLibraryDetail spectralLibraryDetail = new SpectralLibraryDetail();
 
-                spectralLibraryDetail.setVersion(rs.getString("version"));
+                spectralLibraryDetail.setVersion(rs.getString("release_version"));
                 spectralLibraryDetail.setReleaseDate(rs.getDate("release_date"));
                 spectralLibraryDetail.setTaxonomyId(rs.getLong("taxonomy_id"));
                 spectralLibraryDetail.setSpeciesName(rs.getString("species_name"));
@@ -77,7 +77,7 @@ public class SpectralLibraryReader implements ISpectralLibraryReadDao {
             public void processRow(ResultSet rs) throws SQLException {
                 SpectralLibraryDetail spectralLibraryDetail = new SpectralLibraryDetail();
 
-                spectralLibraryDetail.setVersion(rs.getString("version"));
+                spectralLibraryDetail.setVersion(rs.getString("release_version"));
                 spectralLibraryDetail.setReleaseDate(rs.getDate("release_date"));
                 spectralLibraryDetail.setTaxonomyId(rs.getLong("taxonomy_id"));
                 spectralLibraryDetail.setSpeciesName(rs.getString("species_name"));
