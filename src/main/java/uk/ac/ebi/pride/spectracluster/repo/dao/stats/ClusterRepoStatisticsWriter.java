@@ -1,4 +1,4 @@
-package uk.ac.ebi.pride.spectracluster.repo.dao;
+package uk.ac.ebi.pride.spectracluster.repo.dao.stats;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -14,4 +14,5 @@
    <object objectType="Table" objectID="C3C917B3-4F7E-66E9-C4C8-57185E00C28C" name="spectrum_cluster" seqName="seg_0"/>
    <object objectType="Table" objectID="CEF72DA1-3084-EDFE-CBB5-B6934C708CE8" name="psm" seqName="seg_0"/>
    <object objectType="Table" objectID="E0A6A829-25EF-3FEB-E8BF-282B1A8231F0" name="spectrum" seqName="seg_0"/>
+   <object objectType="Table" objectID="EF10ADE8-D2EE-AC46-8F31-186246924B26" name="spectral_library" seqName="seg_0"/>
 </oracle.dbtools.crest.model.design.storage.oracle.v11g.StorageDesignOraclev11g>

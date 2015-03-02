@@ -14,6 +14,8 @@ DROP TABLE psm CASCADE CONSTRAINTS ;
 
 DROP TABLE spectrum CASCADE CONSTRAINTS ;
 
+DROP TABLE spectral_library CASCADE CONSTRAINTS ;
+
 DROP SEQUENCE assay_pk_sequence ;
 
 DROP SEQUENCE cluster_pk_sequence ;

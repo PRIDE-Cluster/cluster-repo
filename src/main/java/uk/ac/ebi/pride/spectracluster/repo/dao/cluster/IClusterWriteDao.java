@@ -1,4 +1,4 @@
-package uk.ac.ebi.pride.spectracluster.repo.dao;
+package uk.ac.ebi.pride.spectracluster.repo.dao.cluster;
 
 
 import uk.ac.ebi.pride.spectracluster.repo.model.*;

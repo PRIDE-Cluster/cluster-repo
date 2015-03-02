@@ -1,4 +1,4 @@
-package uk.ac.ebi.pride.spectracluster.repo.dao;
+package uk.ac.ebi.pride.spectracluster.repo.dao.stats;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowCallbackHandler;

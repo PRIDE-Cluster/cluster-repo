@@ -1,4 +1,4 @@
-package uk.ac.ebi.pride.spectracluster.repo.dao;
+package uk.ac.ebi.pride.spectracluster.repo.dao.cluster;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;

@@ -5,6 +5,7 @@
 	<automatic_uk_generation value="false" />
 	<automatic_fk_generation value="false" />
 	<preserve_ddl_generation_options value="false" />
+	<use_global_design_level_settings value="false" />
 	<substitution_patterns>
 	</substitution_patterns>
 	<classification_types>
@@ -13,6 +14,7 @@
 		<type name="Logging" color="-1776412" prefix="" id="3" />
 		<type name="Summary" color="-3148598" prefix="" id="4" />
 		<type name="Temporary" color="-1" prefix="" id="5" />
+		<type name="External" color="-720908" prefix="" id="6" />
 	</classification_types>
 	<default_fonts_and_colors>
 		<fc_object classname="Entity" background="-5971457" foreground="-16776961">
@@ -25,6 +27,7 @@
 			<font_object fo_type="UK Element" font_color="-16776961" font_name="Dialog" font_size="10" font_style="0"/>
 			<font_object fo_type="Not Null" font_color="-65536" font_name="Dialog" font_size="10" font_style="0"/>
 			<font_object fo_type="Key" font_color="-16777216" font_name="Dialog" font_size="10" font_style="0"/>
+			<font_object fo_type="Comments" font_color="-12566464" font_name="Dialog" font_size="10" font_style="0"/>
 		</fonts>
 		</fc_object>
 		<fc_object classname="Logical View" background="-25750" foreground="-16776961">
@@ -32,6 +35,7 @@
 			<font_object fo_type="Title" font_color="-16776961" font_name="Dialog" font_size="10" font_style="1"/>
 			<font_object fo_type="Attribute" font_color="-16777216" font_name="Dialog" font_size="10" font_style="0"/>
 			<font_object fo_type="Datatype" font_color="-16744448" font_name="Dialog" font_size="10" font_style="0"/>
+			<font_object fo_type="Comments" font_color="-12566464" font_name="Dialog" font_size="10" font_style="0"/>
 		</fonts>
 		</fc_object>
 		<fc_object classname="Table" background="-76" foreground="-16776961">
@@ -44,6 +48,7 @@
 			<font_object fo_type="UK Element" font_color="-16776961" font_name="Dialog" font_size="10" font_style="0"/>
 			<font_object fo_type="Not Null" font_color="-65536" font_name="Dialog" font_size="10" font_style="0"/>
 			<font_object fo_type="Key" font_color="-16777216" font_name="Dialog" font_size="10" font_style="0"/>
+			<font_object fo_type="Comments" font_color="-12566464" font_name="Dialog" font_size="10" font_style="0"/>
 		</fonts>
 		</fc_object>
 		<fc_object classname="Relational View" background="-6881386" foreground="-16776961">
@@ -51,6 +56,7 @@
 			<font_object fo_type="Title" font_color="-16776961" font_name="Dialog" font_size="10" font_style="1"/>
 			<font_object fo_type="Column" font_color="-16777216" font_name="Dialog" font_size="10" font_style="0"/>
 			<font_object fo_type="Datatype" font_color="-16744448" font_name="Dialog" font_size="10" font_style="0"/>
+			<font_object fo_type="Comments" font_color="-12566464" font_name="Dialog" font_size="10" font_style="0"/>
 		</fonts>
 		</fc_object>
 		<fc_object classname="Structured Type" background="-7537956" foreground="-16777216">
@@ -190,6 +196,7 @@
 			<idx value="{table}_{column}_IDX"/>
 			<automatic_idx value="{table}_{column}_IDX"/>
 			<colck value="CK_{table}_{column}"/>
+			<colnnc value="NNC_{table abbr}_{column}"/>
 			<column_foreign_key value="{ref table}_{ref column}"/>
 			<ui value="{entity} PK"/>
 			<relation_attribute value="{ref entity}_{ref attribute}"/>
@@ -284,6 +291,7 @@
 			<property name="Comment in RDBMS" selected="true"/>
 			<property name="Notes" selected="true"/>
 			<property name="Structured Type" selected="true"/>
+			<property name="Type Substitution (Super-Type Object)" selected="true"/>
 			<property name="WHERE" selected="true"/>
 			<property name="HAVING" selected="true"/>
 			<property name="User Defined SQL" selected="true"/>
@@ -291,4 +299,27 @@
 	</eng_compare>
 	<model_compare_props_filter>
 	</model_compare_props_filter>
+	<model_compare_storage_props_filter>
+	</model_compare_storage_props_filter>
+	<naming_options>
+		<model_options objectid="8F009BE1-1374-8958-3359-DFB94132C542">
+			<naming_option class_name="oracle.dbtools.crest.model.design.relational.Table" max_name_length="30" case_type="2" valid_characters="" all_valid="true" />
+			<naming_option class_name="oracle.dbtools.crest.model.design.relational.Column" max_name_length="30" case_type="2" valid_characters="" all_valid="true" />
+			<naming_option class_name="oracle.dbtools.crest.model.design.relational.TableView" max_name_length="30" case_type="2" valid_characters="" all_valid="true" />
+			<naming_option class_name="oracle.dbtools.crest.model.design.constraint.TableLevelConstraint" max_name_length="30" case_type="2" valid_characters="" all_valid="true" />
+			<naming_option class_name="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" max_name_length="30" case_type="2" valid_characters="" all_valid="true" />
+			<naming_option class_name="oracle.dbtools.crest.model.design.relational.Index" max_name_length="30" case_type="2" valid_characters="" all_valid="true" />
+		</model_options>
+		<model_options objectid="2EA53383-9AA2-E5CD-02FD-BCD3903C7E79">
+			<naming_option class_name="oracle.dbtools.crest.model.design.logical.Entity" max_name_length="254" case_type="2" valid_characters="" all_valid="true" />
+			<naming_option class_name="oracle.dbtools.crest.model.design.logical.Attribute" max_name_length="254" case_type="2" valid_characters="" all_valid="true" />
+			<naming_option class_name="oracle.dbtools.crest.model.design.logical.EntityView" max_name_length="254" case_type="2" valid_characters="" all_valid="true" />
+		</model_options>
+	</naming_options>
+	<merge_conflicts>
+	</merge_conflicts>
+	<deleted_files>
+	</deleted_files>
+	<dynamic_properties>
+	</dynamic_properties>
 </settings>

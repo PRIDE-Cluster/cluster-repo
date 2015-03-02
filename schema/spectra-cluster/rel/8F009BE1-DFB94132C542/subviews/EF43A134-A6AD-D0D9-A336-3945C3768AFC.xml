@@ -14,7 +14,7 @@
 <objectViews>
 <OView class="oracle.dbtools.crest.swingui.relational.TVTable" oid="364A34C6-5AE0-B473-8EC6-17DEED613B56" otype="Table" vid="A4E3B2A6-3967-2625-FF79-7260185FC478">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
-<bounds x="187" y="684" width="241" height="139"/>
+<bounds x="187" y="684" width="241" height="185"/>
 </OView>
 <OView class="oracle.dbtools.crest.swingui.relational.TVTable" oid="5DFCFD5B-7644-35CB-67C6-6FA22C8BD0A4" otype="Table" vid="EE6FC7EF-4343-8B5D-867E-3B7A5BFFA18C">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
@@ -22,11 +22,11 @@
 </OView>
 <OView class="oracle.dbtools.crest.swingui.relational.TVTable" oid="9689DF03-EF68-3D19-1E42-B3F25252DB08" otype="Table" vid="2D7ABE33-C788-EDEE-096D-BFB437A8E21D">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
-<bounds x="946" y="473" width="299" height="77"/>
+<bounds x="942" y="420" width="299" height="77"/>
 </OView>
 <OView class="oracle.dbtools.crest.swingui.relational.TVTable" oid="A3A4028C-6DB9-529E-A0C0-3E3E17DBAB4C" otype="Table" vid="4C239D24-370F-B6D6-CD55-527E75222CDF">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
-<bounds x="948" y="595" width="299" height="90"/>
+<bounds x="944" y="542" width="299" height="90"/>
 </OView>
 <OView class="oracle.dbtools.crest.swingui.relational.TVTable" oid="B6428E30-B00D-1649-C79A-86087AD8FE2F" otype="Table" vid="D8474817-3CA7-48EA-60B9-BAE3A2F4099E">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
@@ -43,6 +43,10 @@
 <OView class="oracle.dbtools.crest.swingui.relational.TVTable" oid="E0A6A829-25EF-3FEB-E8BF-282B1A8231F0" otype="Table" vid="81FB6572-8EEC-80A8-28B2-71264FB978EF">
 <hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
 <bounds x="503" y="13" width="272" height="178"/>
+</OView>
+<OView class="oracle.dbtools.crest.swingui.relational.TVTable" oid="EF10ADE8-D2EE-AC46-8F31-186246924B26" otype="Table" vid="1239B363-C394-CF09-93F7-A207188844BA">
+<hideElementsInCurrentOnly>false</hideElementsInCurrentOnly>
+<bounds x="944" y="657" width="297" height="186"/>
 </OView>
 </objectViews>
 <connectors>

@@ -1,0 +1,76 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev11g class="oracle.dbtools.crest.model.design.storage.oracle.v11g.TableProxyOraclev11g" name="spectral_library" directorySegmentName="seg_0" id="EF10ADE8-D2EE-AC46-8F31-186246924B26">
+<createdBy>rwang</createdBy>
+<createdTime>2015-03-02 14:20:36 UTC</createdTime>
+<ownerDesignName>spectra-cluster</ownerDesignName>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<tableSpace>CAC0F871-B420-4A76-2DCF-5DE118D43A23</tableSpace>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<indexProxies>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="spectral_library_version_IDX" id="37905D27-1A12-4F53-345E-2DF633E28FFA">
+<createdBy>rwang</createdBy>
+<createdTime>2015-03-02 14:28:12 UTC</createdTime>
+<ownerDesignName>spectra-cluster</ownerDesignName>
+<tableSpace>168E818E-A3C5-54B0-AA20-FE54C47AA105</tableSpace>
+</IndexProxy>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="spectral_library_rdate_IDX" id="F1AF9D96-EF32-C841-5789-88DA2EB7D29B">
+<createdBy>rwang</createdBy>
+<createdTime>2015-03-02 14:28:12 UTC</createdTime>
+<ownerDesignName>spectra-cluster</ownerDesignName>
+<tableSpace>168E818E-A3C5-54B0-AA20-FE54C47AA105</tableSpace>
+</IndexProxy>
+</indexProxies>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="release_date" id="3C096F48-B8A3-7437-344D-04F8101EEA1D">
+<createdBy>rwang</createdBy>
+<createdTime>2015-03-02 14:22:04 UTC</createdTime>
+<ownerDesignName>spectra-cluster</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="species_name" id="5AA2277D-6EE2-ACB6-97B8-27BAD9DD7B96">
+<createdBy>rwang</createdBy>
+<createdTime>2015-03-02 14:23:43 UTC</createdTime>
+<ownerDesignName>spectra-cluster</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="number_of_spectra" id="66E4B11F-7E58-E20F-09E5-2CF345DBAF1D">
+<createdBy>rwang</createdBy>
+<createdTime>2015-03-02 14:24:02 UTC</createdTime>
+<ownerDesignName>spectra-cluster</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="file_name" id="AE70BA6D-CA3D-E811-94C8-51CF2F27A871">
+<createdBy>rwang</createdBy>
+<createdTime>2015-03-02 14:25:06 UTC</createdTime>
+<ownerDesignName>spectra-cluster</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="version" id="C4B76ED9-9BA3-A323-5709-509271445F07">
+<createdBy>rwang</createdBy>
+<createdTime>2015-03-02 14:21:49 UTC</createdTime>
+<ownerDesignName>spectra-cluster</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="taxonomy_id" id="E05D754F-A60C-640A-07C2-C72B4B6E5BC8">
+<createdBy>rwang</createdBy>
+<createdTime>2015-03-02 14:22:48 UTC</createdTime>
+<ownerDesignName>spectra-cluster</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="file_size" id="E367A6B1-DB22-8BB1-DE94-E366AB67AB04">
+<createdBy>rwang</createdBy>
+<createdTime>2015-03-02 14:24:46 UTC</createdTime>
+<ownerDesignName>spectra-cluster</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="species_scientific_name" id="F68A9415-92D3-F945-C0C2-45CC1AD418C3">
+<createdBy>rwang</createdBy>
+<createdTime>2015-03-02 14:23:22 UTC</createdTime>
+<ownerDesignName>spectra-cluster</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="spectral_library_PK" id="6E4DAADA-8E99-5CA7-849A-E887D0A71235">
+<createdBy>rwang</createdBy>
+<createdTime>2015-03-02 14:27:43 UTC</createdTime>
+<ownerDesignName>spectra-cluster</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</PrimaryKey>
+</primaryKeys>
+</TableProxyOraclev11g>
