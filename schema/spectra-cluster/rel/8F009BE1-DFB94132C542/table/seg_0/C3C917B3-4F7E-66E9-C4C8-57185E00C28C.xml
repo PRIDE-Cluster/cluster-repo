@@ -71,7 +71,16 @@
 <ownerDesignName>spectra-cluster</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT018</logicalDatatype>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="total_number_of_spectra" id="0CF46C5D-DD38-706F-19E3-113E0E76A863">
+<createdBy>rwang</createdBy>
+<createdTime>2015-03-05 11:50:00 UTC</createdTime>
+<ownerDesignName>spectra-cluster</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 <Column name="max_ratio" id="D55CE45F-77EE-747D-0DE9-CFDC0C94134C">
@@ -88,6 +97,51 @@
 <Column name="number_of_projects" id="7D3A6148-E44D-E2DD-35A0-8B947FE5592E">
 <createdBy>rwang</createdBy>
 <createdTime>2015-02-09 13:27:04 UTC</createdTime>
+<ownerDesignName>spectra-cluster</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="total_number_of_projects" id="32D66AF7-49C2-6EC2-4622-DE1B5C826B86">
+<createdBy>rwang</createdBy>
+<createdTime>2015-03-05 11:50:52 UTC</createdTime>
+<ownerDesignName>spectra-cluster</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="number_of_species" id="569909C9-ED22-6A81-9F38-46A86C21A257">
+<createdBy>rwang</createdBy>
+<createdTime>2015-03-05 11:53:45 UTC</createdTime>
+<ownerDesignName>spectra-cluster</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="total_number_of_species" id="1608B7B7-E7BD-93A1-427A-C614A80A2DEA">
+<createdBy>rwang</createdBy>
+<createdTime>2015-03-05 11:54:16 UTC</createdTime>
+<ownerDesignName>spectra-cluster</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="number_of_modifications" id="BDE219A7-FB6D-CCA1-9E80-CB096D9BF3BA">
+<createdBy>rwang</createdBy>
+<createdTime>2015-03-05 11:55:31 UTC</createdTime>
+<ownerDesignName>spectra-cluster</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="total_number_of_modifications" id="8FDBA3BD-FDC9-7695-8747-6F72D901987A">
+<createdBy>rwang</createdBy>
+<createdTime>2015-03-05 11:56:28 UTC</createdTime>
 <ownerDesignName>spectra-cluster</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>

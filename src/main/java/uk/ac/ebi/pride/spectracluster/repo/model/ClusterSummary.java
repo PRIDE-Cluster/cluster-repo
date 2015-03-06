@@ -14,8 +14,14 @@ public class ClusterSummary {
     private String consensusSpectrumMz;
     private String consensusSpectrumIntensity;
     private int numberOfSpectra;
+    private int totalNumberOfSpectra;
     private float maxPeptideRatio;
     private int numberOfProjects;
+    private int totalNumberOfProjects;
+    private int numberOfSpecies;
+    private int totalNumberOfSpecies;
+    private int numberOfPTMs;
+    private int totalNumberOfPTMs;
     private ClusterQuality quality;
     private String annotation;
 
@@ -75,6 +81,14 @@ public class ClusterSummary {
         this.numberOfSpectra = numberOfSpectra;
     }
 
+    public int getTotalNumberOfSpectra() {
+        return totalNumberOfSpectra;
+    }
+
+    public void setTotalNumberOfSpectra(int totalNumberOfSpectra) {
+        this.totalNumberOfSpectra = totalNumberOfSpectra;
+    }
+
     public float getMaxPeptideRatio() {
         return maxPeptideRatio;
     }
@@ -89,6 +103,46 @@ public class ClusterSummary {
 
     public void setNumberOfProjects(int numberOfProjects) {
         this.numberOfProjects = numberOfProjects;
+    }
+
+    public int getTotalNumberOfProjects() {
+        return totalNumberOfProjects;
+    }
+
+    public void setTotalNumberOfProjects(int totalNumberOfProjects) {
+        this.totalNumberOfProjects = totalNumberOfProjects;
+    }
+
+    public int getNumberOfSpecies() {
+        return numberOfSpecies;
+    }
+
+    public void setNumberOfSpecies(int numberOfSpecies) {
+        this.numberOfSpecies = numberOfSpecies;
+    }
+
+    public int getTotalNumberOfSpecies() {
+        return totalNumberOfSpecies;
+    }
+
+    public void setTotalNumberOfSpecies(int totalNumberOfSpecies) {
+        this.totalNumberOfSpecies = totalNumberOfSpecies;
+    }
+
+    public int getNumberOfPTMs() {
+        return numberOfPTMs;
+    }
+
+    public void setNumberOfPTMs(int numberOfPTMs) {
+        this.numberOfPTMs = numberOfPTMs;
+    }
+
+    public int getTotalNumberOfPTMs() {
+        return totalNumberOfPTMs;
+    }
+
+    public void setTotalNumberOfPTMs(int totalNumberOfPTMs) {
+        this.totalNumberOfPTMs = totalNumberOfPTMs;
     }
 
     public ClusterQuality getQuality() {

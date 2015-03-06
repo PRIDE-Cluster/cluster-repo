@@ -8,7 +8,7 @@ import java.util.Date;
  * @author Rui Wang
  * @version $Id$
  */
-public class SpectralLibraryDetail {
+public class SpectrumLibraryDetail {
     private String version;
     private Date releaseDate;
     private Long taxonomyId;
