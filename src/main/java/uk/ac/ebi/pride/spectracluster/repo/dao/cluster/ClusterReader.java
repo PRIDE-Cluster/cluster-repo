@@ -267,7 +267,8 @@ public class ClusterReader implements IClusterReadDao {
         return clusterDetail;
     }
 
-    private ClusterSummary findClusterSummary(final Long clusterId) {
+    @Override
+    public ClusterSummary findClusterSummary(final Long clusterId) {
         final ClusterSummary cluster = new ClusterSummary();
 
         final String CLUSTER_QUERY = "SELECT * FROM spectrum_cluster WHERE cluster_pk=?";
@@ -393,6 +394,56 @@ public class ClusterReader implements IClusterReadDao {
         });
 
         return clusteredPSMSummaries;
+    }
+
+    @Override
+    public ClusteredPSMDetail findClusteredPSMSummaryByArchiveId(final String archivePeptideId) {
+        final ClusteredPSMDetail clusteredPSMDetail = new ClusteredPSMDetail();
+
+        final String PSM_QUERY = "SELECT * FROM cluster_has_psm JOIN psm ON (psm_fk = psm_pk) WHERE archive_psm_id=?";
+
+        template.query(PSM_QUERY, new PreparedStatementSetter() {
+            @Override
+            public void setValues(PreparedStatement ps) throws SQLException {
+                ps.setString(1, archivePeptideId);
+            }
+        }, new RowCallbackHandler() {
+            @Override
+            public void processRow(ResultSet rs) throws SQLException {
+                clusteredPSMDetail.setClusterId(rs.getLong("cluster_fk"));
+                clusteredPSMDetail.setPsmId(rs.getLong("psm_fk"));
+                clusteredPSMDetail.setPsmRatio(rs.getFloat("ratio"));
+                clusteredPSMDetail.setRank(rs.getFloat("rank"));
+                String sequence = rs.getString("sequence");
+                clusteredPSMDetail.setSequence(sequence);
+                long spectrumId = rs.getLong("spectrum_fk");
+                clusteredPSMDetail.setSpectrumId(spectrumId);
+
+                PSMDetail psmDetail = new PSMDetail();
+                psmDetail.setId(rs.getLong("psm_pk"));
+                psmDetail.setSpectrumId(spectrumId);
+                psmDetail.setAssayId(rs.getLong("assay_fk"));
+                psmDetail.setArchivePSMId(rs.getString("archive_psm_id"));
+                psmDetail.setSequence(rs.getString("sequence"));
+                psmDetail.setModifications(rs.getString("modifications"));
+                psmDetail.setStandardisedModifications(rs.getString("modifications_standardised"));
+                psmDetail.setSearchEngine(rs.getString("search_engine"));
+                psmDetail.setSearchEngineScores(rs.getString("search_engine_scores"));
+                psmDetail.setSearchDatabase(rs.getString("search_database"));
+                psmDetail.setProteinAccession(rs.getString("protein_accession"));
+                psmDetail.setProteinGroup(rs.getString("protein_group"));
+                psmDetail.setProteinName(rs.getString("protein_name"));
+                psmDetail.setStartPosition(rs.getInt("start_position"));
+                psmDetail.setStopPosition(rs.getInt("stop_position"));
+                psmDetail.setPreAminoAcid(rs.getString("pre_amino_acid"));
+                psmDetail.setPostAminoAcid(rs.getString("post_amino_acid"));
+                psmDetail.setDeltaMZ(rs.getFloat("delta_mz"));
+                psmDetail.setQuantificationLabel(rs.getString("quantification_label"));
+                clusteredPSMDetail.setPsmDetail(psmDetail);
+            }
+        });
+
+        return clusteredPSMDetail;
     }
 
 

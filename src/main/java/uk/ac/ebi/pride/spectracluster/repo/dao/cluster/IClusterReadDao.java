@@ -33,10 +33,11 @@ public interface IClusterReadDao {
 
     /**
      * Get a page of cluster ids above or equal to a given quality limit
-     * @param pageNo    page number
-     * @param pageSize  the size of the page
-     * @param lowestQualityLimit    the lowest acceptable quality
-     * @return  a page of cluster ids
+     *
+     * @param pageNo             page number
+     * @param pageSize           the size of the page
+     * @param lowestQualityLimit the lowest acceptable quality
+     * @return a page of cluster ids
      */
     Page<Long> getAllClusterIdsByQuality(final int pageNo, final int pageSize, final int lowestQualityLimit);
 
@@ -50,10 +51,10 @@ public interface IClusterReadDao {
     /**
      * Get a page of clusters above or equal to a given quality limit
      *
-     * @param pageNo    page number
-     * @param pageSize  the size of the page
-     * @param lowestQualityLimit    the lowest acceptable quality
-     * @return  a page of clusters
+     * @param pageNo             page number
+     * @param pageSize           the size of the page
+     * @param lowestQualityLimit the lowest acceptable quality
+     * @return a page of clusters
      */
     Page<ClusterSummary> getAllClusterSummariesByQuality(final int pageNo, final int pageSize, final int lowestQualityLimit);
 
@@ -64,6 +65,14 @@ public interface IClusterReadDao {
      * @return cluster
      */
     ClusterDetail findCluster(Long clusterId);
+
+    /**
+     * Find a summary of a cluster using a given cluster id
+     *
+     * @param clusterId cluster id
+     * @return cluster
+     */
+    ClusterSummary findClusterSummary(final Long clusterId);
 
     /**
      * Find spectra using a list of spectrum references
@@ -84,15 +93,25 @@ public interface IClusterReadDao {
 
     /**
      * Find clustered PSMs using a given cluster id
+     *
      * @param clusterId given cluster id
-     * @return  a list of clustered psms
+     * @return a list of clustered psms
      */
     List<ClusteredPSMDetail> findClusteredPSMSummaryByClusterId(final Long clusterId);
 
     /**
+     * Find a clustered PSM using a given id from PRIDE Archive
+     *
+     * @param archivePeptideId pride archive peptide id
+     * @return a clustered psm detail
+     */
+    ClusteredPSMDetail findClusteredPSMSummaryByArchiveId(final String archivePeptideId);
+
+    /**
      * Find clustered spectrum details using a given cluster id
+     *
      * @param clusterId given cluster id
-     * @return  a list of clustered spectrum details
+     * @return a list of clustered spectrum details
      */
     List<ClusteredSpectrumDetail> findClusteredSpectrumSummaryByClusterId(final Long clusterId);
 
