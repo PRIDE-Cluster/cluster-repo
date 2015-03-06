@@ -32,11 +32,30 @@ public interface IClusterReadDao {
     Page<Long> getAllClusterIds(final int pageNo, final int pageSize);
 
     /**
+     * Get a page of cluster ids above or equal to a given quality limit
+     * @param pageNo    page number
+     * @param pageSize  the size of the page
+     * @param lowestQualityLimit    the lowest acceptable quality
+     * @return  a page of cluster ids
+     */
+    Page<Long> getAllClusterIdsByQuality(final int pageNo, final int pageSize, final int lowestQualityLimit);
+
+    /**
      * Get a Page of clusters
      *
      * @return A Page of ClusterSummary objects
      */
     Page<ClusterSummary> getAllClusterSummaries(final int pageNo, final int pageSize);
+
+    /**
+     * Get a page of clusters above or equal to a given quality limit
+     *
+     * @param pageNo    page number
+     * @param pageSize  the size of the page
+     * @param lowestQualityLimit    the lowest acceptable quality
+     * @return  a page of clusters
+     */
+    Page<ClusterSummary> getAllClusterSummariesByQuality(final int pageNo, final int pageSize, final int lowestQualityLimit);
 
     /**
      * Find a cluster using a given cluster id

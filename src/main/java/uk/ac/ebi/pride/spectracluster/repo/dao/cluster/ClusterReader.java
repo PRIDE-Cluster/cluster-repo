@@ -38,7 +38,7 @@ public class ClusterReader implements IClusterReadDao {
         final List<String> concatenateIds = QueryUtils.concatenateIds(spectrumReferences, 500);
 
         for (String concatenateId : concatenateIds) {
-            final String SELECT_QUERY = "select * from spectrum where spectrum_ref in (" + concatenateId + ")";
+            final String SELECT_QUERY = "SELECT * FROM spectrum WHERE spectrum_ref IN (" + concatenateId + ")";
 
             template.query(SELECT_QUERY, new RowCallbackHandler() {
                 @Override
@@ -67,7 +67,7 @@ public class ClusterReader implements IClusterReadDao {
         final List<String> concatenateIds = QueryUtils.concatenateIds(spectrumIds, 500);
 
         for (String concatenateId : concatenateIds) {
-            final String SELECT_QUERY = "select * from psm where spectrum_fk in (" + concatenateId + ")";
+            final String SELECT_QUERY = "SELECT * FROM psm WHERE spectrum_fk IN (" + concatenateId + ")";
 
             template.query(SELECT_QUERY, new RowCallbackHandler() {
                 @Override
@@ -108,7 +108,7 @@ public class ClusterReader implements IClusterReadDao {
         List<String> concatenateIds = QueryUtils.concatenateIds(assayIds, 500);
 
         for (String concatenateId : concatenateIds) {
-            final String ASSAY_QUERY = "select * from assay where assay_pk in (" + concatenateId + ")";
+            final String ASSAY_QUERY = "SELECT * FROM assay WHERE assay_pk IN (" + concatenateId + ")";
 
             template.query(ASSAY_QUERY, new RowCallbackHandler() {
                 @Override
@@ -140,22 +140,34 @@ public class ClusterReader implements IClusterReadDao {
 
     @Override
     public long getNumberOfClusters() {
-        final String QUERY = "select count(*) from spectrum_cluster";
+        final String QUERY = "SELECT count(*) FROM spectrum_cluster";
 
         return template.queryForObject(QUERY, Long.class);
     }
 
     @Override
     public Page<Long> getAllClusterIds(int pageNo, int pageSize) {
-        PaginationHelper<Long> ph = new PaginationHelper<Long>();
+        final String CLUSTER_QUERY_COUNT = "SELECT count(*) FROM spectrum_cluster";
+        final String CLUSTER_QUERY = "SELECT cluster_pk FROM spectrum_cluster";
 
-        final String CLUSTER_QUERY_COUNT = "select count(*) from spectrum_cluster";
-        final String CLUSTER_QUERY = "select cluster_pk from spectrum_cluster";
+        return getPaginatedClusterIds(pageNo, pageSize, CLUSTER_QUERY_COUNT, CLUSTER_QUERY);
+    }
+
+    @Override
+    public Page<Long> getAllClusterIdsByQuality(int pageNo, int pageSize, int lowestQualityLimit) {
+        final String CLUSTER_QUERY_COUNT = "SELECT COUNT(*) FROM spectrum_cluster WHERE quality >= " + lowestQualityLimit;
+        final String CLUSTER_QUERY = "SELECT cluster_pk FROM spectrum_cluster WHERE quality >= " + lowestQualityLimit;
+
+        return getPaginatedClusterIds(pageNo, pageSize, CLUSTER_QUERY_COUNT, CLUSTER_QUERY);
+    }
+
+    private Page<Long> getPaginatedClusterIds(int pageNo, int pageSize, String countQuery, String clusterQuery) {
+        PaginationHelper<Long> ph = new PaginationHelper<Long>();
 
         return ph.fetchPage(
                 template,
-                CLUSTER_QUERY_COUNT,
-                CLUSTER_QUERY,
+                countQuery,
+                clusterQuery,
                 new Object[]{},
                 pageNo,
                 pageSize,
@@ -170,15 +182,28 @@ public class ClusterReader implements IClusterReadDao {
     @Override
     public Page<ClusterSummary> getAllClusterSummaries(int pageNo, int pageSize) {
 
-        PaginationHelper<ClusterSummary> ph = new PaginationHelper<ClusterSummary>();
+        final String CLUSTER_QUERY_COUNT = "SELECT count(*) FROM spectrum_cluster";
+        final String CLUSTER_QUERY = "SELECT * FROM spectrum_cluster";
 
-        final String CLUSTER_QUERY_COUNT = "select count(*) from spectrum_cluster";
-        final String CLUSTER_QUERY = "select * from spectrum_cluster";
+        return getPaginatedClusterSummaries(pageNo, pageSize, CLUSTER_QUERY_COUNT, CLUSTER_QUERY);
+    }
+
+    @Override
+    public Page<ClusterSummary> getAllClusterSummariesByQuality(int pageNo, int pageSize, int lowestQualityLimit) {
+        final String CLUSTER_QUERY_COUNT = "SELECT count(*) FROM spectrum_cluster WHERE quality >= " + lowestQualityLimit;
+        final String CLUSTER_QUERY = "SELECT * FROM spectrum_cluster WHERE quality >= " + lowestQualityLimit;
+
+        return getPaginatedClusterSummaries(pageNo, pageSize, CLUSTER_QUERY_COUNT, CLUSTER_QUERY);
+    }
+
+    private Page<ClusterSummary> getPaginatedClusterSummaries(int pageNo, int pageSize, String countQuery, String clusterQuery) {
+
+        PaginationHelper<ClusterSummary> ph = new PaginationHelper<ClusterSummary>();
 
         return ph.fetchPage(
                 template,
-                CLUSTER_QUERY_COUNT,
-                CLUSTER_QUERY,
+                countQuery,
+                clusterQuery,
                 new Object[]{},
                 pageNo,
                 pageSize,
@@ -245,7 +270,7 @@ public class ClusterReader implements IClusterReadDao {
     private ClusterSummary findClusterSummary(final Long clusterId) {
         final ClusterSummary cluster = new ClusterSummary();
 
-        final String CLUSTER_QUERY = "select * from spectrum_cluster where cluster_pk=?";
+        final String CLUSTER_QUERY = "SELECT * FROM spectrum_cluster WHERE cluster_pk=?";
 
         template.query(CLUSTER_QUERY, new PreparedStatementSetter() {
             @Override
@@ -283,8 +308,8 @@ public class ClusterReader implements IClusterReadDao {
     public List<ClusteredSpectrumDetail> findClusteredSpectrumSummaryByClusterId(final Long clusterId) {
         final ArrayList<ClusteredSpectrumDetail> clusteredSpectrumSummaries = new ArrayList<ClusteredSpectrumDetail>();
 
-        final String SPECTRUM_QUERY = "select * from cluster_has_spectrum join spectrum on (spectrum_fk = spectrum_pk) " +
-                "where cluster_fk=?";
+        final String SPECTRUM_QUERY = "SELECT * FROM cluster_has_spectrum JOIN spectrum ON (spectrum_fk = spectrum_pk) " +
+                "WHERE cluster_fk=?";
 
         template.query(SPECTRUM_QUERY, new PreparedStatementSetter() {
             @Override
@@ -321,7 +346,7 @@ public class ClusterReader implements IClusterReadDao {
     public List<ClusteredPSMDetail> findClusteredPSMSummaryByClusterId(final Long clusterId) {
         final ArrayList<ClusteredPSMDetail> clusteredPSMSummaries = new ArrayList<ClusteredPSMDetail>();
 
-        final String PSM_QUERY = "select * from cluster_has_psm join psm on (psm_fk = psm_pk) where cluster_fk=?";
+        final String PSM_QUERY = "SELECT * FROM cluster_has_psm JOIN psm ON (psm_fk = psm_pk) WHERE cluster_fk=?";
 
         template.query(PSM_QUERY, new PreparedStatementSetter() {
             @Override
