@@ -345,7 +345,7 @@ public class ClusterReader implements IClusterReadDao {
 
     @Override
     public List<ClusteredPSMDetail> findClusteredPSMSummaryByClusterId(final Long clusterId) {
-        final ArrayList<ClusteredPSMDetail> clusteredPSMSummaries = new ArrayList<ClusteredPSMDetail>();
+        final List<ClusteredPSMDetail> clusteredPSMSummaries = new ArrayList<ClusteredPSMDetail>();
 
         final String PSM_QUERY = "SELECT * FROM cluster_has_psm JOIN psm ON (psm_fk = psm_pk) WHERE cluster_fk=?";
 
@@ -397,8 +397,8 @@ public class ClusterReader implements IClusterReadDao {
     }
 
     @Override
-    public ClusteredPSMDetail findClusteredPSMSummaryByArchiveId(final String archivePeptideId) {
-        final ClusteredPSMDetail clusteredPSMDetail = new ClusteredPSMDetail();
+    public List<ClusteredPSMDetail> findClusteredPSMSummaryByArchiveId(final String archivePeptideId) {
+        final List<ClusteredPSMDetail> clusteredPSMSummaries = new ArrayList<ClusteredPSMDetail>();
 
         final String PSM_QUERY = "SELECT * FROM cluster_has_psm JOIN psm ON (psm_fk = psm_pk) WHERE archive_psm_id=?";
 
@@ -410,6 +410,7 @@ public class ClusterReader implements IClusterReadDao {
         }, new RowCallbackHandler() {
             @Override
             public void processRow(ResultSet rs) throws SQLException {
+                ClusteredPSMDetail clusteredPSMDetail = new ClusteredPSMDetail();
                 clusteredPSMDetail.setClusterId(rs.getLong("cluster_fk"));
                 clusteredPSMDetail.setPsmId(rs.getLong("psm_fk"));
                 clusteredPSMDetail.setPsmRatio(rs.getFloat("ratio"));
@@ -440,10 +441,12 @@ public class ClusterReader implements IClusterReadDao {
                 psmDetail.setDeltaMZ(rs.getFloat("delta_mz"));
                 psmDetail.setQuantificationLabel(rs.getString("quantification_label"));
                 clusteredPSMDetail.setPsmDetail(psmDetail);
+
+                clusteredPSMSummaries.add(clusteredPSMDetail);
             }
         });
 
-        return clusteredPSMDetail;
+        return clusteredPSMSummaries;
     }
 
 

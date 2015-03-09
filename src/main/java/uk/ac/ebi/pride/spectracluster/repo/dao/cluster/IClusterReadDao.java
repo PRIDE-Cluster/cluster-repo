@@ -100,12 +100,12 @@ public interface IClusterReadDao {
     List<ClusteredPSMDetail> findClusteredPSMSummaryByClusterId(final Long clusterId);
 
     /**
-     * Find a clustered PSM using a given id from PRIDE Archive
+     * Find a list of clustered PSM using a given id from PRIDE Archive
      *
      * @param archivePeptideId pride archive peptide id
      * @return a clustered psm detail
      */
-    ClusteredPSMDetail findClusteredPSMSummaryByArchiveId(final String archivePeptideId);
+    List<ClusteredPSMDetail> findClusteredPSMSummaryByArchiveId(final String archivePeptideId);
 
     /**
      * Find clustered spectrum details using a given cluster id
