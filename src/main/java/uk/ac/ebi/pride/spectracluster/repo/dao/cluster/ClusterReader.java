@@ -154,9 +154,9 @@ public class ClusterReader implements IClusterReadDao {
     }
 
     @Override
-    public Page<Long> getAllClusterIdsByQuality(int pageNo, int pageSize, int lowestQualityLimit) {
-        final String CLUSTER_QUERY_COUNT = "SELECT COUNT(*) FROM spectrum_cluster WHERE quality >= " + lowestQualityLimit;
-        final String CLUSTER_QUERY = "SELECT cluster_pk FROM spectrum_cluster WHERE quality >= " + lowestQualityLimit;
+    public Page<Long> getAllClusterIdsByQuality(int pageNo, int pageSize, ClusterQuality lowestClusterQuality) {
+        final String CLUSTER_QUERY_COUNT = "SELECT COUNT(*) FROM spectrum_cluster WHERE quality >= " + lowestClusterQuality.getQualityLevel();
+        final String CLUSTER_QUERY = "SELECT cluster_pk FROM spectrum_cluster WHERE quality >= " + lowestClusterQuality.getQualityLevel();
 
         return getPaginatedClusterIds(pageNo, pageSize, CLUSTER_QUERY_COUNT, CLUSTER_QUERY);
     }
@@ -189,9 +189,9 @@ public class ClusterReader implements IClusterReadDao {
     }
 
     @Override
-    public Page<ClusterSummary> getAllClusterSummariesByQuality(int pageNo, int pageSize, int lowestQualityLimit) {
-        final String CLUSTER_QUERY_COUNT = "SELECT count(*) FROM spectrum_cluster WHERE quality >= " + lowestQualityLimit;
-        final String CLUSTER_QUERY = "SELECT * FROM spectrum_cluster WHERE quality >= " + lowestQualityLimit;
+    public Page<ClusterSummary> getAllClusterSummariesByQuality(int pageNo, int pageSize, ClusterQuality lowestClusterQuality) {
+        final String CLUSTER_QUERY_COUNT = "SELECT count(*) FROM spectrum_cluster WHERE quality >= " + lowestClusterQuality.getQualityLevel();
+        final String CLUSTER_QUERY = "SELECT * FROM spectrum_cluster WHERE quality >= " + lowestClusterQuality.getQualityLevel();
 
         return getPaginatedClusterSummaries(pageNo, pageSize, CLUSTER_QUERY_COUNT, CLUSTER_QUERY);
     }
