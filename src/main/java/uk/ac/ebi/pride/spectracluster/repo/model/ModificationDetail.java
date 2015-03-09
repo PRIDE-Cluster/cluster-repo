@@ -6,7 +6,7 @@ package uk.ac.ebi.pride.spectracluster.repo.model;
  * @author Rui Wang
  * @version $Id$
  */
-public class PTMDetail {
+public class ModificationDetail {
     private String accession;
     private String name;
     private int position;
@@ -38,13 +38,13 @@ public class PTMDetail {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof PTMDetail)) return false;
+        if (!(o instanceof ModificationDetail)) return false;
 
-        PTMDetail ptmDetail = (PTMDetail) o;
+        ModificationDetail modificationDetail = (ModificationDetail) o;
 
-        if (position != ptmDetail.position) return false;
-        if (accession != null ? !accession.equals(ptmDetail.accession) : ptmDetail.accession != null) return false;
-        if (name != null ? !name.equals(ptmDetail.name) : ptmDetail.name != null) return false;
+        if (position != modificationDetail.position) return false;
+        if (accession != null ? !accession.equals(modificationDetail.accession) : modificationDetail.accession != null) return false;
+        if (name != null ? !name.equals(modificationDetail.name) : modificationDetail.name != null) return false;
 
         return true;
     }

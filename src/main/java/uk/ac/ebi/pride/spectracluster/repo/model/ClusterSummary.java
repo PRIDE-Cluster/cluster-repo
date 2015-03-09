@@ -20,8 +20,8 @@ public class ClusterSummary {
     private int totalNumberOfProjects;
     private int numberOfSpecies;
     private int totalNumberOfSpecies;
-    private int numberOfPTMs;
-    private int totalNumberOfPTMs;
+    private int numberOfModifications;
+    private int totalNumberOfModifications;
     private ClusterQuality quality;
     private String annotation;
 
@@ -129,20 +129,20 @@ public class ClusterSummary {
         this.totalNumberOfSpecies = totalNumberOfSpecies;
     }
 
-    public int getNumberOfPTMs() {
-        return numberOfPTMs;
+    public int getNumberOfModifications() {
+        return numberOfModifications;
     }
 
-    public void setNumberOfPTMs(int numberOfPTMs) {
-        this.numberOfPTMs = numberOfPTMs;
+    public void setNumberOfModifications(int numberOfModifications) {
+        this.numberOfModifications = numberOfModifications;
     }
 
-    public int getTotalNumberOfPTMs() {
-        return totalNumberOfPTMs;
+    public int getTotalNumberOfModifications() {
+        return totalNumberOfModifications;
     }
 
-    public void setTotalNumberOfPTMs(int totalNumberOfPTMs) {
-        this.totalNumberOfPTMs = totalNumberOfPTMs;
+    public void setTotalNumberOfModifications(int totalNumberOfModifications) {
+        this.totalNumberOfModifications = totalNumberOfModifications;
     }
 
     public ClusterQuality getQuality() {

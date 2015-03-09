@@ -224,8 +224,8 @@ public class ClusterReader implements IClusterReadDao {
                         cluster.setTotalNumberOfProjects(rs.getInt("total_number_of_projects"));
                         cluster.setNumberOfSpecies(rs.getInt("number_of_species"));
                         cluster.setTotalNumberOfSpecies(rs.getInt("total_number_of_species"));
-                        cluster.setNumberOfPTMs(rs.getInt("number_of_modifications"));
-                        cluster.setTotalNumberOfPTMs(rs.getInt("total_number_of_modifications"));
+                        cluster.setNumberOfModifications(rs.getInt("number_of_modifications"));
+                        cluster.setTotalNumberOfModifications(rs.getInt("total_number_of_modifications"));
                         ClusterQuality quality = ClusterQuality.getClusterQuality(rs.getInt("quality"));
                         cluster.setQuality(quality);
                         cluster.setAnnotation(rs.getString("annotation"));
@@ -294,8 +294,8 @@ public class ClusterReader implements IClusterReadDao {
                 cluster.setTotalNumberOfProjects(rs.getInt("total_number_of_projects"));
                 cluster.setNumberOfSpecies(rs.getInt("number_of_species"));
                 cluster.setTotalNumberOfSpecies(rs.getInt("total_number_of_species"));
-                cluster.setNumberOfPTMs(rs.getInt("number_of_modifications"));
-                cluster.setTotalNumberOfPTMs(rs.getInt("total_number_of_modifications"));
+                cluster.setNumberOfModifications(rs.getInt("number_of_modifications"));
+                cluster.setTotalNumberOfModifications(rs.getInt("total_number_of_modifications"));
                 ClusterQuality quality = ClusterQuality.getClusterQuality(rs.getInt("quality"));
                 cluster.setQuality(quality);
                 cluster.setAnnotation(rs.getString("annotation"));
