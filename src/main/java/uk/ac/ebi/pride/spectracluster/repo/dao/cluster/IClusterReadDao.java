@@ -100,6 +100,14 @@ public interface IClusterReadDao {
     List<ClusteredPSMDetail> findClusteredPSMSummaryByClusterId(final Long clusterId);
 
     /**
+     * Find clustered PSMs that above a given ratio for a cluster
+     * @param clusterId cluster id
+     * @param minimumRanking  the minimum ranking for the PSM
+     * @return  a list of psm details
+     */
+    List<ClusteredPSMDetail> findClusteredPSMSummaryByClusterId(final Long clusterId, final float minimumRanking);
+
+    /**
      * Find a list of clustered PSM using a given id from PRIDE Archive
      *
      * @param archivePeptideId pride archive peptide id
