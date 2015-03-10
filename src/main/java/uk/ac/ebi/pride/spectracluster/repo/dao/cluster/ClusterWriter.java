@@ -78,7 +78,7 @@ public class ClusterWriter implements IClusterWriteDao {
     }
 
     private void updateMaxRatio(final ClusterSummary cluster, final float maxRatio) {
-        String UPDATE_QUERY = "update spectrum_cluster set max_ratio = ? where cluster_pk=?";
+        String UPDATE_QUERY = "UPDATE spectrum_cluster SET max_ratio = ? WHERE cluster_pk=?";
 
         template.update(UPDATE_QUERY, new PreparedStatementSetter() {
             @Override
@@ -141,7 +141,7 @@ public class ClusterWriter implements IClusterWriteDao {
 
     private void updateSpectrumIdForClusteredSpectra(final ClusterDetail cluster) {
 
-        String SPECTRUM_SELECT_QUERY = "select spectrum_pk from spectrum where spectrum_ref = ? ";
+        String SPECTRUM_SELECT_QUERY = "SELECT spectrum_pk FROM spectrum WHERE spectrum_ref = ? ";
         for (final ClusteredSpectrumDetail clusteredSpectrumDetail : cluster.getClusteredSpectrumDetails()) {
             template.query(SPECTRUM_SELECT_QUERY, new PreparedStatementSetter() {
                 @Override
@@ -162,7 +162,7 @@ public class ClusterWriter implements IClusterWriteDao {
         }
 
         //todo: this needs to be change to use the standardised modifications, so instead of psm.modifications, it should be psm.modifications_standardised
-        String PSM_SELECT_QUERY = "select spectrum_fk, psm_pk, sequence, modifications from psm where spectrum_fk in ";
+        String PSM_SELECT_QUERY = "SELECT spectrum_fk, psm_pk, sequence, modifications FROM psm WHERE spectrum_fk IN ";
         List<String> psmSubQueries = concatenateSpectrumIdForQuery(cluster.getClusteredSpectrumDetails(), 500);
         for (final String query : psmSubQueries) {
             String sql = PSM_SELECT_QUERY + "(" + query + ")";
@@ -228,8 +228,7 @@ public class ClusterWriter implements IClusterWriteDao {
     }
 
     private void saveClusteredSpectra(final List<ClusteredSpectrumDetail> clusteredSpectra) {
-        String INSERT_QUERY = "INSERT INTO cluster_has_spectrum (cluster_fk, spectrum_fk, similarity) " +
-                "VALUES (?, ?, ?)";
+        String INSERT_QUERY = "INSERT INTO cluster_has_spectrum (cluster_fk, spectrum_fk, similarity) VALUES (?, ?, ?)";
 
         template.batchUpdate(INSERT_QUERY, new BatchPreparedStatementSetter() {
             @Override
@@ -248,8 +247,7 @@ public class ClusterWriter implements IClusterWriteDao {
     }
 
     private void saveClusteredPSMs(final List<ClusteredPSMDetail> clusteredPSMSummaries) {
-        String INSERT_QUERY = "INSERT INTO cluster_has_psm (cluster_fk, psm_fk, ratio, rank) " +
-                "VALUES (?, ?, ?, ?)";
+        String INSERT_QUERY = "INSERT INTO cluster_has_psm (cluster_fk, psm_fk, ratio, rank) VALUES (?, ?, ?, ?)";
 
         template.batchUpdate(INSERT_QUERY, new BatchPreparedStatementSetter() {
             @Override
