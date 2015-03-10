@@ -23,12 +23,22 @@ public class ClusterDetail extends ClusterSummary{
 
     public ClusterDetail(ClusterSummary clusterSummary) {
         setId(clusterSummary.getId());
+        setUUID(clusterSummary.getUUID());
         setAveragePrecursorCharge(clusterSummary.getAveragePrecursorCharge());
         setAveragePrecursorMz(clusterSummary.getAveragePrecursorMz());
         setConsensusSpectrumIntensity(clusterSummary.getConsensusSpectrumIntensity());
         setConsensusSpectrumMz(clusterSummary.getConsensusSpectrumMz());
         setMaxPeptideRatio(clusterSummary.getMaxPeptideRatio());
         setNumberOfSpectra(clusterSummary.getNumberOfSpectra());
+        setTotalNumberOfSpectra(clusterSummary.getTotalNumberOfSpectra());
+        setNumberOfProjects(clusterSummary.getNumberOfProjects());
+        setTotalNumberOfProjects(clusterSummary.getTotalNumberOfProjects());
+        setNumberOfSpecies(clusterSummary.getNumberOfSpecies());
+        setTotalNumberOfSpecies(clusterSummary.getTotalNumberOfSpecies());
+        setNumberOfModifications(clusterSummary.getNumberOfModifications());
+        setTotalNumberOfModifications(clusterSummary.getTotalNumberOfModifications());
+        setQuality(clusterSummary.getQuality());
+        setAnnotation(clusterSummary.getAnnotation());
     }
 
     public List<ClusteredSpectrumDetail> getClusteredSpectrumDetails() {
