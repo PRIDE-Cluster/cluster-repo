@@ -39,6 +39,8 @@
         <commons-lang3.version>3.3.2</commons-lang3.version>
         <junit.version>4.11</junit.version>
         <pride-mod.version>2.0.0-SNAPSHOT</pride-mod.version>
+        <archive.data.provider.api.version>2.0.6</archive.data.provider.api.version>
+        <pride.index.utils.version>0.1.2-SNAPSHOT</pride.index.utils.version>
     </properties>
 
     <build>
@@ -105,6 +107,20 @@
     </build>
 
     <dependencies>
+
+        <!-- pride index tools -->
+        <dependency>
+            <groupId>uk.ac.ebi.pride</groupId>
+            <artifactId>index-utils</artifactId>
+            <version>${pride.index.utils.version}</version>
+        </dependency>
+
+        <!--archive data provider-->
+        <dependency>
+            <groupId>uk.ac.ebi.pride.archive</groupId>
+            <artifactId>archive-data-provider-api</artifactId>
+            <version>${archive.data.provider.api.version}</version>
+        </dependency>
 
         <!--logging-->
         <dependency>
