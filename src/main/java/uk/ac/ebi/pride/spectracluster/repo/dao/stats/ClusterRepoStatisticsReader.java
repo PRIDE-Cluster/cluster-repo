@@ -29,7 +29,7 @@ public class ClusterRepoStatisticsReader implements IClusterRepoStatisticsReadDa
         final List<ClusterRepoStatistics> clusterRepoStatistics = new ArrayList<ClusterRepoStatistics>();
 
 
-        final String SELECT_QUERY = "SELECT * FROM cluster_statistics WHERE name NOT LIKE '%_%'";
+        final String SELECT_QUERY = "SELECT * FROM cluster_statistics WHERE name NOT LIKE '%-%'";
 
         template.query(SELECT_QUERY, new RowCallbackHandler() {
             @Override
