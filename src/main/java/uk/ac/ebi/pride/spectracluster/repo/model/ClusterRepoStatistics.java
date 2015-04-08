@@ -9,7 +9,15 @@ package uk.ac.ebi.pride.spectracluster.repo.model;
 public class ClusterRepoStatistics {
 
     private String name;
-    private String value;
+    private Long value;
+
+    public ClusterRepoStatistics() {
+    }
+
+    public ClusterRepoStatistics(String name, Long value) {
+        this.name = name;
+        this.value = value;
+    }
 
     public String getName() {
         return name;
@@ -19,11 +27,11 @@ public class ClusterRepoStatistics {
         this.name = name;
     }
 
-    public String getValue() {
+    public Long getValue() {
         return value;
     }
 
-    public void setValue(String value) {
+    public void setValue(Long value) {
         this.value = value;
     }
 

@@ -142,7 +142,7 @@ CREATE
 TABLE cluster_statistics
 (
   name  VARCHAR2 (100 CHAR) NOT NULL ,
-  value NUMBER (10,4)
+  value NUMBER (20,4)
 )
 TABLESPACE PRIDECLUS_TAB LOGGING ;
 ALTER TABLE cluster_statistics ADD CONSTRAINT cluster_statistics_PK PRIMARY KEY

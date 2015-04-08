@@ -41,7 +41,7 @@ public class ClusterRepoStatisticsWriter implements IClusterRepoStatisticsWriteD
             public void setValues(PreparedStatement ps, int i) throws SQLException {
                 ClusterRepoStatistics stat = statistics.get(i);
                 ps.setString(1, stat.getName());
-                ps.setString(2, stat.getValue());
+                ps.setLong(2, stat.getValue());
             }
 
             @Override

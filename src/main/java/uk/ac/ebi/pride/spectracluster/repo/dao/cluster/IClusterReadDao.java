@@ -23,6 +23,49 @@ public interface IClusterReadDao {
     long getNumberOfClusters();
 
     /**
+     * Get the total number of clusters of a given quality
+     *
+     * @param quality given cluster quality
+     * @return total number of clusters of a given quality
+     */
+    long getNumberOfClustersByQuality(ClusterQuality quality);
+
+    /**
+     * Get the total number of clustered species
+     *
+     * @return total number clustered species
+     */
+    long getNumberOfClusteredSpecies();
+
+    /**
+     * Get the total number of clustered projects
+     *
+     * @return total number of clustered projects
+     */
+    long getNumberOfClusteredProjects();
+
+    /**
+     * Get the total number of clustered assays
+     *
+     * @return total number of clustered assays
+     */
+    long getNumberOfClusteredAssays();
+
+    /**
+     * Get the total number of clustered unique peptide sequences
+     *
+     * @return total number of clustered unique peptide sequences
+     */
+    long getNumberOfClusteredDistinctPeptides();
+
+    /**
+     * Get the total number of clustered identified spectra
+     *
+     * @return total number of clustered spectra
+     */
+    long getNumberOfClusteredIdentifiedSpectra();
+
+    /**
      * Get a page of cluster ids
      *
      * @param pageNo   page number
@@ -34,8 +77,8 @@ public interface IClusterReadDao {
     /**
      * Get a page of cluster ids above or equal to a given quality limit
      *
-     * @param pageNo             page number
-     * @param pageSize           the size of the page
+     * @param pageNo               page number
+     * @param pageSize             the size of the page
      * @param lowestClusterQuality the lowest acceptable quality
      * @return a page of cluster ids
      */
@@ -51,8 +94,8 @@ public interface IClusterReadDao {
     /**
      * Get a page of clusters above or equal to a given quality limit
      *
-     * @param pageNo             page number
-     * @param pageSize           the size of the page
+     * @param pageNo               page number
+     * @param pageSize             the size of the page
      * @param lowestClusterQuality the lowest acceptable quality
      * @return a page of clusters
      */
@@ -101,9 +144,10 @@ public interface IClusterReadDao {
 
     /**
      * Find clustered PSMs that above a given ratio for a cluster
-     * @param clusterId cluster id
-     * @param minimumRanking  the minimum ranking for the PSM
-     * @return  a list of psm details
+     *
+     * @param clusterId      cluster id
+     * @param minimumRanking the minimum ranking for the PSM
+     * @return a list of psm details
      */
     List<ClusteredPSMDetail> findClusteredPSMSummaryByClusterId(final Long clusterId, final float minimumRanking);
 

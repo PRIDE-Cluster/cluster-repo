@@ -146,6 +146,48 @@ public class ClusterReader implements IClusterReadDao {
     }
 
     @Override
+    public long getNumberOfClustersByQuality(final ClusterQuality quality) {
+        final String QUERY = "SELECT count(*) FROM spectrum_cluster WHERE quality = " + quality.getQualityLevel();
+
+        return template.queryForObject(QUERY, Long.class);
+    }
+
+    @Override
+    public long getNumberOfClusteredSpecies() {
+        final String QUERY = "SELECT count(distinct species) FROM assay";
+
+        return template.queryForObject(QUERY, Long.class);
+    }
+
+    @Override
+    public long getNumberOfClusteredProjects() {
+        final String QUERY = "SELECT count(distinct project_accession) FROM assay";
+
+        return template.queryForObject(QUERY, Long.class);
+    }
+
+    @Override
+    public long getNumberOfClusteredAssays() {
+        final String QUERY = "SELECT count(distinct assay_accession) FROM assay";
+
+        return template.queryForObject(QUERY, Long.class);
+    }
+
+    @Override
+    public long getNumberOfClusteredDistinctPeptides() {
+        final String QUERY = "SELECT count(distinct sequence) FROM cluster_has_psm join psm on(psm_fk = psm_pk)";
+
+        return template.queryForObject(QUERY, Long.class);
+    }
+
+    @Override
+    public long getNumberOfClusteredIdentifiedSpectra() {
+        final String QUERY = "SELECT count(distinct spectrum_fk) FROM cluster_has_spectrum";
+
+        return template.queryForObject(QUERY, Long.class);
+    }
+
+    @Override
     public Page<Long> getAllClusterIds(int pageNo, int pageSize) {
         final String CLUSTER_QUERY_COUNT = "SELECT count(*) FROM spectrum_cluster";
         final String CLUSTER_QUERY = "SELECT cluster_pk FROM spectrum_cluster";
@@ -502,6 +544,4 @@ public class ClusterReader implements IClusterReadDao {
 
         return clusteredPSMSummaries;
     }
-
-
 }

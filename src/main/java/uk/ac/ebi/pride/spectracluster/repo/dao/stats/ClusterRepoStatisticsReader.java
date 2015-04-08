@@ -37,7 +37,7 @@ public class ClusterRepoStatisticsReader implements IClusterRepoStatisticsReadDa
                 ClusterRepoStatistics statistics = new ClusterRepoStatistics();
 
                 statistics.setName(rs.getString("name"));
-                statistics.setValue(rs.getString("value"));
+                statistics.setValue(rs.getLong("value"));
 
                 clusterRepoStatistics.add(statistics);
             }
