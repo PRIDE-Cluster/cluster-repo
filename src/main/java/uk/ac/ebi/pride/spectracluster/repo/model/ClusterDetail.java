@@ -14,7 +14,7 @@ import java.util.Map;
 public class ClusterDetail extends ClusterSummary{
     private final List<ClusteredSpectrumDetail> clusteredSpectrumDetails = new ArrayList<ClusteredSpectrumDetail>();
     private final List<ClusteredPSMDetail> clusteredPSMDetails = new ArrayList<ClusteredPSMDetail>();
-    private final List<AssayDetail> assayDetails = new ArrayList<AssayDetail>();
+    private final Map<Long, AssayDetail> assayDetails = new HashMap<Long, AssayDetail>();
     private final Map<String, ClusteredSpectrumDetail> spectrumRefToClusteredSpectrumDetail = new HashMap<String, ClusteredSpectrumDetail>();
     private final Map<String, List<ClusteredPSMDetail>> peptideToClusteredPSMDetail = new HashMap<String, List<ClusteredPSMDetail>>();
 
@@ -99,25 +99,21 @@ public class ClusterDetail extends ClusterSummary{
     }
 
     public List<AssayDetail> getAssayDetails() {
-        return assayDetails;
+        return new ArrayList<AssayDetail>(assayDetails.values());
     }
 
     public AssayDetail getAssayDetail(Long assayId) {
-        for (AssayDetail assayDetail : assayDetails) {
-            if (assayDetail.getId().equals(assayId)) {
-                return assayDetail;
-            }
-        }
-
-        return null;
+        return assayDetails.get(assayId);
     }
 
     public void addAssayDetail(AssayDetail assayDetail) {
-        assayDetails.add(assayDetail);
+        assayDetails.put(assayDetail.getId(), assayDetail);
     }
 
     public void addAssayDetails(List<AssayDetail> assaySummaries) {
-        assayDetails.addAll(assaySummaries);
+        for (AssayDetail assaySummary : assaySummaries) {
+            addAssayDetail(assaySummary);
+        }
     }
 
     private String cleanPeptideSequence(String original) {
