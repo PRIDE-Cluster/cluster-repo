@@ -18,4 +18,13 @@ public interface IClusterRepoStatisticsReadDao {
      * @return a list of statistics
      */
     List<ClusterRepoStatistics> getGeneralStatistics();
+
+    /**
+     * Get statistics using a given prefix
+     *
+     * @return  a list of statistics which starts with the given prefix
+     */
+    List<ClusterRepoStatistics> getStatisticsByPrefix(String prefix);
+
+
 }

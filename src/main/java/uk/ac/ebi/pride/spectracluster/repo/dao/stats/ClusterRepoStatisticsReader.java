@@ -45,4 +45,26 @@ public class ClusterRepoStatisticsReader implements IClusterRepoStatisticsReadDa
 
         return clusterRepoStatistics;
     }
+
+    @Override
+    public List<ClusterRepoStatistics> getStatisticsByPrefix(String prefix) {
+        final List<ClusterRepoStatistics> clusterRepoStatistics = new ArrayList<ClusterRepoStatistics>();
+
+
+        final String SELECT_QUERY = "SELECT * FROM cluster_statistics WHERE name LIKE '" + prefix + "-%'";
+
+        template.query(SELECT_QUERY, new RowCallbackHandler() {
+            @Override
+            public void processRow(ResultSet rs) throws SQLException {
+                ClusterRepoStatistics statistics = new ClusterRepoStatistics();
+
+                statistics.setName(rs.getString("name"));
+                statistics.setValue(rs.getLong("value"));
+
+                clusterRepoStatistics.add(statistics);
+            }
+        });
+
+        return clusterRepoStatistics;
+    }
 }
