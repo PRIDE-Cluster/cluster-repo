@@ -51,7 +51,7 @@ public class ClusterRepoStatisticsReader implements IClusterRepoStatisticsReadDa
         final List<ClusterRepoStatistics> clusterRepoStatistics = new ArrayList<ClusterRepoStatistics>();
 
 
-        final String SELECT_QUERY = "SELECT * FROM cluster_statistics WHERE name LIKE '" + prefix + "-%'";
+        final String SELECT_QUERY = "SELECT * FROM cluster_statistics WHERE name LIKE '" + prefix + "%-%'";
 
         template.query(SELECT_QUERY, new RowCallbackHandler() {
             @Override
