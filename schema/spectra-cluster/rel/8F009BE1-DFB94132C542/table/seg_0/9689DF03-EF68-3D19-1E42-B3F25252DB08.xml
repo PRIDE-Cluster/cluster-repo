@@ -12,7 +12,7 @@
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
-<dataTypeSize>100 CHAR</dataTypeSize>
+<dataTypeSize>2000 CHAR</dataTypeSize>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 <Column name="value" id="1016E6F8-54A5-8875-1ED3-F0C0B75F1516">

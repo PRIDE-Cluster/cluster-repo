@@ -141,7 +141,7 @@ ALTER TABLE cluster_run ADD CONSTRAINT cluster_run_PK PRIMARY KEY ( name ) ;
 CREATE
 TABLE cluster_statistics
 (
-  name  VARCHAR2 (100 CHAR) NOT NULL ,
+  name  VARCHAR2 (2000 CHAR) NOT NULL ,
   value NUMBER (20,4)
 )
 TABLESPACE PRIDECLUS_TAB LOGGING ;
