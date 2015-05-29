@@ -63,6 +63,15 @@
 <logicalDatatype>LOGDT011</logicalDatatype>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
+<Column name="number_of_peptides" id="ED38562F-D571-CFF7-8F84-5753C7C3BB44">
+<createdBy>rwang</createdBy>
+<createdTime>2015-05-28 15:35:20 UTC</createdTime>
+<ownerDesignName>spectra-cluster</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
 <Column name="file_size" id="E367A6B1-DB22-8BB1-DE94-E366AB67AB04">
 <createdBy>rwang</createdBy>
 <createdTime>2015-03-02 14:24:46 UTC</createdTime>

@@ -51,6 +51,7 @@ public class SpectrumLibraryWriter implements ISpectrumLibraryWriteDao {
         parameters.put("species_scientific_name", spectrumLibraryDetail.getSpeciesScientificName());
         parameters.put("species_name", spectrumLibraryDetail.getSpeciesName());
         parameters.put("number_of_spectra", spectrumLibraryDetail.getNumberOfSpectra());
+        parameters.put("number_of_peptides", spectrumLibraryDetail.getNumberOfPeptides());
         parameters.put("file_size", spectrumLibraryDetail.getFileSize());
         parameters.put("file_name", spectrumLibraryDetail.getFileName());
 

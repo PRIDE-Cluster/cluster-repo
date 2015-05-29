@@ -15,6 +15,7 @@ public class SpectrumLibraryDetail {
     private String speciesScientificName;
     private String speciesName;
     private long numberOfSpectra;
+    private long numberOfPeptides;
     private long fileSize;
     private String fileName;
 
@@ -64,6 +65,14 @@ public class SpectrumLibraryDetail {
 
     public void setNumberOfSpectra(long numberOfSpectra) {
         this.numberOfSpectra = numberOfSpectra;
+    }
+
+    public long getNumberOfPeptides() {
+        return numberOfPeptides;
+    }
+
+    public void setNumberOfPeptides(long numberOfPeptides) {
+        this.numberOfPeptides = numberOfPeptides;
     }
 
     public long getFileSize() {

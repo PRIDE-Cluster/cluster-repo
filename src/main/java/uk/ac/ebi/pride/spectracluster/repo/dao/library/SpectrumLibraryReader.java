@@ -56,6 +56,7 @@ public class SpectrumLibraryReader implements ISpectrumLibraryReadDao {
                 spectrumLibraryDetail.setSpeciesName(rs.getString("species_name"));
                 spectrumLibraryDetail.setSpeciesScientificName(rs.getString("species_scientific_name"));
                 spectrumLibraryDetail.setNumberOfSpectra(rs.getLong("number_of_spectra"));
+                spectrumLibraryDetail.setNumberOfPeptides(rs.getLong("number_of_peptides"));
                 spectrumLibraryDetail.setFileSize(rs.getLong("file_size"));
                 spectrumLibraryDetail.setFileName(rs.getString("file_name"));
 
@@ -83,6 +84,7 @@ public class SpectrumLibraryReader implements ISpectrumLibraryReadDao {
                 spectrumLibraryDetail.setSpeciesName(rs.getString("species_name"));
                 spectrumLibraryDetail.setSpeciesScientificName(rs.getString("species_scientific_name"));
                 spectrumLibraryDetail.setNumberOfSpectra(rs.getLong("number_of_spectra"));
+                spectrumLibraryDetail.setNumberOfPeptides(rs.getLong("number_of_peptides"));
                 spectrumLibraryDetail.setFileSize(rs.getLong("file_size"));
                 spectrumLibraryDetail.setFileName(rs.getString("file_name"));
 

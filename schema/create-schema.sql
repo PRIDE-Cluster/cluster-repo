@@ -217,6 +217,7 @@ TABLE spectral_library
   species_scientific_name VARCHAR2 (200 CHAR) NOT NULL ,
   species_name            VARCHAR2 (200 CHAR) NOT NULL ,
   number_of_spectra       INTEGER NOT NULL ,
+  number_of_peptides       INTEGER NOT NULL ,
   file_size               INTEGER NOT NULL ,
   file_name               VARCHAR2 (200 CHAR) NOT NULL
 )
