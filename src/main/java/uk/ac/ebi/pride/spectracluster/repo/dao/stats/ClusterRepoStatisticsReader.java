@@ -18,6 +18,8 @@ import java.util.List;
  */
 public class ClusterRepoStatisticsReader implements IClusterRepoStatisticsReadDao {
 
+    private static final String FIELD_SEPARATOR = "|";
+
     private final JdbcTemplate template;
 
     public ClusterRepoStatisticsReader(DataSource dataSource) {
@@ -29,7 +31,7 @@ public class ClusterRepoStatisticsReader implements IClusterRepoStatisticsReadDa
         final List<ClusterRepoStatistics> clusterRepoStatistics = new ArrayList<ClusterRepoStatistics>();
 
 
-        final String SELECT_QUERY = "SELECT * FROM cluster_statistics WHERE name NOT LIKE '%-%'";
+        final String SELECT_QUERY = "SELECT * FROM cluster_statistics WHERE name NOT LIKE '%" + FIELD_SEPARATOR + "%'";
 
         template.query(SELECT_QUERY, new RowCallbackHandler() {
             @Override
@@ -51,7 +53,7 @@ public class ClusterRepoStatisticsReader implements IClusterRepoStatisticsReadDa
         final List<ClusterRepoStatistics> clusterRepoStatistics = new ArrayList<ClusterRepoStatistics>();
 
 
-        final String SELECT_QUERY = "SELECT * FROM cluster_statistics WHERE name LIKE '" + prefix + "%-%'";
+        final String SELECT_QUERY = "SELECT * FROM cluster_statistics WHERE name LIKE '" + prefix + "%" + FIELD_SEPARATOR+ "%'";
 
         template.query(SELECT_QUERY, new RowCallbackHandler() {
             @Override
