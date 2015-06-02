@@ -110,12 +110,26 @@ public interface IClusterReadDao {
     ClusterDetail findCluster(Long clusterId);
 
     /**
+     * Find a cluster using a unique UUID
+     * @param uuid  UUID
+     * @return cluster
+     */
+    ClusterDetail findClusterByUUID(String uuid);
+
+    /**
      * Find a summary of a cluster using a given cluster id
      *
      * @param clusterId cluster id
      * @return cluster
      */
     ClusterSummary findClusterSummary(final Long clusterId);
+
+    /**
+     * Find a summary of a cluster using its unique UUID
+     * @param uuid  UUID
+     * @return  cluster
+     */
+    ClusterSummary findClusterSummaryByUUID(final String uuid);
 
     /**
      * Find spectra using a list of spectrum references

@@ -280,19 +280,29 @@ public class ClusterReader implements IClusterReadDao {
     }
 
     @Override
+    public ClusterDetail findClusterByUUID(String uuid) {
+        ClusterSummary cluster = findClusterSummaryByUUID(uuid);
+        return getClusterDetail(cluster);
+    }
+
+    @Override
     public ClusterDetail findCluster(final Long clusterId) {
         // read cluster summary
         ClusterSummary cluster = findClusterSummary(clusterId);
+        return getClusterDetail(cluster);
+    }
+
+    private ClusterDetail getClusterDetail(ClusterSummary cluster) {
         ClusterDetail clusterDetail = new ClusterDetail(cluster);
 
         if (cluster.getId() != null) {
 
             // read spectra details
-            List<ClusteredSpectrumDetail> spectrumSummaries = findClusteredSpectrumSummaryByClusterId(clusterId);
+            List<ClusteredSpectrumDetail> spectrumSummaries = findClusteredSpectrumSummaryByClusterId(cluster.getId());
             clusterDetail.addClusteredSpectrumDetails(spectrumSummaries);
 
             // read psm details
-            List<ClusteredPSMDetail> psmSummaries = findClusteredPSMSummaryByClusterId(clusterId);
+            List<ClusteredPSMDetail> psmSummaries = findClusteredPSMSummaryByClusterId(cluster.getId());
             clusterDetail.addClusteredPSMDetails(psmSummaries);
 
             // collection all the unique assay ids
@@ -307,6 +317,44 @@ public class ClusterReader implements IClusterReadDao {
         }
 
         return clusterDetail;
+    }
+
+    @Override
+    public ClusterSummary findClusterSummaryByUUID(final String uuid) {
+        final ClusterSummary cluster = new ClusterSummary();
+
+        final String CLUSTER_QUERY = "SELECT * FROM spectrum_cluster WHERE uuid=?";
+
+        template.query(CLUSTER_QUERY, new PreparedStatementSetter() {
+            @Override
+            public void setValues(PreparedStatement ps) throws SQLException {
+                ps.setString(1, uuid);
+            }
+        }, new RowCallbackHandler() {
+            @Override
+            public void processRow(ResultSet rs) throws SQLException {
+                cluster.setId(rs.getLong("cluster_pk"));
+                cluster.setUUID(rs.getString("uuid"));
+                cluster.setAveragePrecursorMz(rs.getFloat("avg_precursor_mz"));
+                cluster.setAveragePrecursorCharge(rs.getInt("avg_precursor_charge"));
+                cluster.setConsensusSpectrumMz(rs.getString("consensus_spectrum_mz"));
+                cluster.setConsensusSpectrumIntensity(rs.getString("consensus_spectrum_intensity"));
+                cluster.setNumberOfSpectra(rs.getInt("number_of_spectra"));
+                cluster.setTotalNumberOfSpectra(rs.getInt("total_number_of_spectra"));
+                cluster.setMaxPeptideRatio(rs.getFloat("max_ratio"));
+                cluster.setNumberOfProjects(rs.getInt("number_of_projects"));
+                cluster.setTotalNumberOfProjects(rs.getInt("total_number_of_projects"));
+                cluster.setNumberOfSpecies(rs.getInt("number_of_species"));
+                cluster.setTotalNumberOfSpecies(rs.getInt("total_number_of_species"));
+                cluster.setNumberOfModifications(rs.getInt("number_of_modifications"));
+                cluster.setTotalNumberOfModifications(rs.getInt("total_number_of_modifications"));
+                ClusterQuality quality = ClusterQuality.getClusterQuality(rs.getInt("quality"));
+                cluster.setQuality(quality);
+                cluster.setAnnotation(rs.getString("annotation"));
+            }
+        });
+
+        return cluster;
     }
 
     @Override
