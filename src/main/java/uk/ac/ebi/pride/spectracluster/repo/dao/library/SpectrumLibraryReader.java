@@ -27,6 +27,7 @@ public class SpectrumLibraryReader implements ISpectrumLibraryReadDao {
     @Override
     public String getLatestSpectrumLibraryVersion() {
         final String QUERY = "SELECT DISTINCT release_version FROM spectral_library WHERE release_date = (SELECT MAX(release_date) FROM spectral_library)";
+
         return template.queryForObject(QUERY, String.class);
     }
 
