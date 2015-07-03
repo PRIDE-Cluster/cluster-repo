@@ -3,7 +3,6 @@
    <object objectType="Table" objectID="B6428E30-B00D-1649-C79A-86087AD8FE2F" name="assay" seqName="seg_0"/>
    <object objectType="Table" objectID="364A34C6-5AE0-B473-8EC6-17DEED613B56" name="cluster_has_psm" seqName="seg_0"/>
    <object objectType="Table" objectID="5DFCFD5B-7644-35CB-67C6-6FA22C8BD0A4" name="cluster_has_spectrum" seqName="seg_0"/>
-   <object objectType="Table" objectID="9689DF03-EF68-3D19-1E42-B3F25252DB08" name="cluster_run" seqName="seg_0"/>
    <object objectType="Table" objectID="A3A4028C-6DB9-529E-A0C0-3E3E17DBAB4C" name="cluster_statistics" seqName="seg_0"/>
    <object objectType="Table" objectID="CEF72DA1-3084-EDFE-CBB5-B6934C708CE8" name="psm" seqName="seg_0"/>
    <object objectType="Table" objectID="EF10ADE8-D2EE-AC46-8F31-186246924B26" name="spectral_library" seqName="seg_0"/>

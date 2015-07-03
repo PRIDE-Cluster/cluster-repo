@@ -65,6 +65,17 @@
 <logicalDatatype>LOGDT040</logicalDatatype>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
+<Column name="max_ratio" id="D55CE45F-77EE-747D-0DE9-CFDC0C94134C">
+<createdBy>rwang</createdBy>
+<createdTime>2014-08-07 16:07:30 UTC</createdTime>
+<ownerDesignName>spectra-cluster</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT026</logicalDatatype>
+<dataTypePrecision>4</dataTypePrecision>
+<dataTypeScale>3</dataTypeScale>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
 <Column name="number_of_spectra" id="EE69FCE0-4D4E-DE78-418C-46672E32473A">
 <createdBy>rwang</createdBy>
 <createdTime>2014-08-07 16:07:05 UTC</createdTime>
@@ -83,15 +94,22 @@
 <logicalDatatype>LOGDT011</logicalDatatype>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="max_ratio" id="D55CE45F-77EE-747D-0DE9-CFDC0C94134C">
+<Column name="number_of_psms" id="0129C17A-908B-2E19-026C-1B392FEE4E00">
 <createdBy>rwang</createdBy>
-<createdTime>2014-08-07 16:07:30 UTC</createdTime>
+<createdTime>2015-07-02 08:55:12 UTC</createdTime>
 <ownerDesignName>spectra-cluster</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
-<logicalDatatype>LOGDT026</logicalDatatype>
-<dataTypePrecision>4</dataTypePrecision>
-<dataTypeScale>3</dataTypeScale>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="total_number_of_psms" id="032A8912-FED6-854B-B614-E715D6098308">
+<createdBy>rwang</createdBy>
+<createdTime>2015-07-02 08:55:35 UTC</createdTime>
+<ownerDesignName>spectra-cluster</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 <Column name="number_of_projects" id="7D3A6148-E44D-E2DD-35A0-8B947FE5592E">
