@@ -138,6 +138,8 @@ public final class RowMapperFactory {
             cluster.setConsensusSpectrumIntensity(rs.getString("consensus_spectrum_intensity"));
             cluster.setNumberOfSpectra(rs.getInt("number_of_spectra"));
             cluster.setTotalNumberOfSpectra(rs.getInt("total_number_of_spectra"));
+            cluster.setNumberOfPSMs(rs.getInt("number_of_psms"));
+            cluster.setTotalNumberOfPSMs(rs.getInt("total_number_of_psms"));
             cluster.setMaxPeptideRatio(rs.getFloat("max_ratio"));
             cluster.setNumberOfProjects(rs.getInt("number_of_projects"));
             cluster.setTotalNumberOfProjects(rs.getInt("total_number_of_projects"));

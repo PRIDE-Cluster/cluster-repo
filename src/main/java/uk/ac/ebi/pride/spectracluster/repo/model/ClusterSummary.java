@@ -15,6 +15,8 @@ public class ClusterSummary {
     private String consensusSpectrumIntensity;
     private int numberOfSpectra;
     private int totalNumberOfSpectra;
+    private int numberOfPSMs;
+    private int totalNumberOfPSMs;
     private float maxPeptideRatio;
     private int numberOfProjects;
     private int totalNumberOfProjects;
@@ -79,6 +81,22 @@ public class ClusterSummary {
 
     public void setNumberOfSpectra(int numberOfSpectra) {
         this.numberOfSpectra = numberOfSpectra;
+    }
+
+    public int getNumberOfPSMs() {
+        return numberOfPSMs;
+    }
+
+    public void setNumberOfPSMs(int numberOfPSMs) {
+        this.numberOfPSMs = numberOfPSMs;
+    }
+
+    public int getTotalNumberOfPSMs() {
+        return totalNumberOfPSMs;
+    }
+
+    public void setTotalNumberOfPSMs(int totalNumberOfPSMs) {
+        this.totalNumberOfPSMs = totalNumberOfPSMs;
     }
 
     public int getTotalNumberOfSpectra() {

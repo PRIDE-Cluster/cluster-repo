@@ -112,6 +112,8 @@ public class ClusterWriter implements IClusterWriteDao {
         parameters.put("avg_precursor_charge", cluster.getAveragePrecursorCharge());
         parameters.put("number_of_spectra", cluster.getNumberOfSpectra());
         parameters.put("total_number_of_spectra", cluster.getTotalNumberOfSpectra());
+        parameters.put("number_of_psms", cluster.getNumberOfPSMs());
+        parameters.put("total_number_of_psms", cluster.getTotalNumberOfPSMs());
         parameters.put("max_ratio", 0);
         parameters.put("number_of_projects", cluster.getNumberOfProjects());
         parameters.put("total_number_of_projects", cluster.getTotalNumberOfProjects());
