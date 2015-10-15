@@ -1,10 +1,10 @@
 package uk.ac.ebi.pride.spectracluster.repo.utils;
 
-import uk.ac.ebi.pridemod.controller.DataAccessController;
-import uk.ac.ebi.pridemod.controller.impl.PSIModDataAccessController;
-import uk.ac.ebi.pridemod.controller.impl.UnimodDataAccessController;
-import uk.ac.ebi.pridemod.model.PTM;
-import uk.ac.ebi.pridemod.model.Specificity;
+import uk.ac.ebi.pride.utilities.pridemod.controller.DataAccessController;
+import uk.ac.ebi.pride.utilities.pridemod.controller.impl.PSIModDataAccessController;
+import uk.ac.ebi.pride.utilities.pridemod.controller.impl.UnimodDataAccessController;
+import uk.ac.ebi.pride.utilities.pridemod.model.PTM;
+import uk.ac.ebi.pride.utilities.pridemod.model.Specificity;
 
 import java.io.InputStream;
 import java.util.List;

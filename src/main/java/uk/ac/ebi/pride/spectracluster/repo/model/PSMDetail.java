@@ -88,6 +88,14 @@ public class PSMDetail {
         return ModificationUtils.constructModificationString(this.modifications);
     }
 
+    public String getAnchorModificationString(){
+        return ModificationUtils.constructAnchorModificationString(this.modifications, sequence);
+    }
+
+    public List<ModificationProvider> getAnchorModifications() {
+        return ModificationUtils.constructAnchorModification(this.modifications, sequence);
+    }
+
     public List<ModificationProvider> getStandardisedModifications() {
         return standardisedModifications;
     }
@@ -251,4 +259,5 @@ public class PSMDetail {
                 ", quantificationLabel='" + quantificationLabel + '\'' +
                 '}';
     }
+
 }

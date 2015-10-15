@@ -38,7 +38,8 @@
         <oracle-thin.version>11.2.0.1.0</oracle-thin.version>
         <commons-lang3.version>3.3.2</commons-lang3.version>
         <junit.version>4.11</junit.version>
-        <pride-mod.version>2.0.0-SNAPSHOT</pride-mod.version>
+        <!-- here we have the same library two times-->
+        <pride-mod.version>2.1.1-SNAPSHOT</pride-mod.version>
         <archive.data.provider.api.version>2.0.6</archive.data.provider.api.version>
         <pride.index.utils.version>0.1.2-SNAPSHOT</pride.index.utils.version>
     </properties>
@@ -178,7 +179,7 @@
 
         <!-- pride mod library -->
         <dependency>
-            <groupId>uk.ac.ebi.pride.tools</groupId>
+            <groupId>uk.ac.ebi.pride.utilities</groupId>
             <artifactId>pride-mod</artifactId>
             <version>${pride-mod.version}</version>
         </dependency>
