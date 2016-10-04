@@ -69,7 +69,7 @@ public class ClusterDetail extends ClusterSummary{
         return peptideToClusteredPSMDetail.get(cleanPeptideSequence);
     }
 
-    public ClusteredPSMDetail getClusteredPSMDetail(Long spectrumId) {
+    public ClusteredPSMDetail getClusteredPSMDetail(PeptideForm spectrumId) {
         for (ClusteredPSMDetail clusteredPSMDetail : clusteredPSMDetails) {
             if (clusteredPSMDetail.getSpectrumId().equals(spectrumId)) {
                 return clusteredPSMDetail;

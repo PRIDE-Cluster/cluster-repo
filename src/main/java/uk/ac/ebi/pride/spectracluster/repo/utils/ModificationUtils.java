@@ -1,5 +1,6 @@
 package uk.ac.ebi.pride.spectracluster.repo.utils;
 
+import org.apache.commons.lang3.math.NumberUtils;
 import uk.ac.ebi.pride.archive.dataprovider.identification.ModificationProvider;
 import uk.ac.ebi.pride.indexutils.helpers.ModificationHelper;
 import uk.ac.ebi.pride.indexutils.modifications.Modification;
@@ -21,6 +22,14 @@ import java.util.Set;
 public final class ModificationUtils {
 
     private static final String PTM_SEPARATOR = ",";
+
+    private static final String NTERM = "N-Term";
+
+    private static final String CTERM = "C-Term";
+
+    private static final String CHEMOD = "CHEMMOD";
+
+    private static final java.lang.String CHEMOD_SEP = ":";
 
     public static List<ModificationProvider> getModifications(String ptms) {
         List<ModificationProvider> modificationDetails = new ArrayList<ModificationProvider>();
@@ -63,8 +72,13 @@ public final class ModificationUtils {
         if(mod.getPositionMap() != null && !mod.getPositionMap().isEmpty()){
             for(Integer position: mod.getPositionMap().keySet()){
                 if(position != null && position < sequence.length()){
-                    position = (position == 0)?1:position;
-                    return sequence.substring(position-1, position);
+                    if(position != 0 && position < sequence.length() -1)
+                        return sequence.substring(position - 1, position);
+                    else if(position == 0)
+                        return NTERM;
+                    else if(position > sequence.length() - 1)
+                        return CTERM;
+
                 }
             }
         }
@@ -88,8 +102,6 @@ public final class ModificationUtils {
                 anchorPTMs = modReader.getAnchorModification(accession, aa);
             else
                 anchorPTMs = modReader.getAnchorModification(accession);
-
-            //System.out.println(anchorPTMs.size());
 
             if(anchorPTMs.size() == 1){
                 ((Modification)modificationDetail).setAccession(anchorPTMs.get(0).getAccession());
@@ -115,10 +127,25 @@ public final class ModificationUtils {
             String aa = getCommonAminoAcid(modificationDetail, sequence);
             List<PTM> anchorPTMs;
             if(aa != null)
-                anchorPTMs = modReader.getAnchorModification(accession, aa);
+                if(aa.equalsIgnoreCase(NTERM) || aa.equalsIgnoreCase(CTERM))
+                    anchorPTMs = modReader.getAnchorModificationPosition(accession, aa);
+                else
+                    anchorPTMs = modReader.getAnchorModification(accession, aa);
             else
                 anchorPTMs = modReader.getAnchorModification(accession);
 
+            if(anchorPTMs.size() == 0 && accession.contains(CHEMOD)){
+                String[] massString = accession.split(CHEMOD_SEP);
+                Double delMass = null;
+                if(massString.length == 2 && NumberUtils.isNumber(massString[1])){
+                    delMass = Double.parseDouble(massString[1]);
+                }
+                if(aa != null && delMass != null)
+                    if(aa.equalsIgnoreCase(NTERM) || aa.equalsIgnoreCase(CTERM))
+                        anchorPTMs = modReader.getAnchorMassModificationPosition(delMass, aa);
+                    else
+                        anchorPTMs = modReader.getAnchorMassModification(delMass, aa);
+            }
             if(anchorPTMs.size() == 1){
                 ((Modification)modificationDetail).setAccession(anchorPTMs.get(0).getAccession());
                 ((Modification)modificationDetail).setName(anchorPTMs.get(0).getName());
@@ -128,5 +155,19 @@ public final class ModificationUtils {
         }
 
         return listModifications;
+    }
+
+    public static boolean checkWrongAnnotation(List<ModificationProvider> modifications, String sequence) {
+        if (modifications == null || modifications.isEmpty()) {
+            return false;
+        }
+        ModReader modReader = ModReader.getInstance();
+        for (ModificationProvider modificationDetail : modifications) {
+            String accession = modificationDetail.getAccession();
+            String aa = getCommonAminoAcid(modificationDetail, sequence);
+            if(modReader.isWrongAnnotated(accession, aa))
+                return true;
+        }
+        return false;
     }
 }

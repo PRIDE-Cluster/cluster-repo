@@ -322,6 +322,59 @@ public class ClusterReader implements IClusterReadDao {
         }, RowMapperFactory.getClusteredPSMDetailRowMapper());
     }
 
+    private Page<ClusteredPSMReport> getClusteredPSMReport(int pageNo, int pageSize, long rowCount, String clusterQuery) {
+        PaginationHelper<ClusteredPSMReport> ph = new PaginationHelper<ClusteredPSMReport>();
+
+        return ph.fetchPage(
+                template,
+                rowCount,
+                clusterQuery,
+                new Object[]{},
+                pageNo,
+                pageSize,
+                RowMapperFactory.getClusteredPSMReportRowMapper()
+        );
+    }
+
+
+    @Override
+    public Page<ClusteredPSMReport> getClusteredPSMsReport(int pageNo, int pageSize, long rowCount, ClusterQuality quality) {
+        final String PSM_REPORT_QUERY = " SELECT psm.PSM_PK, sp.CLUSTER_PK, psm.ASSAY_FK, psm.SEQUENCE," +
+                " psm.MODIFICATIONS, psm.PROTEIN_ACCESSION, psm.DELTA_MZ, sp.NUMBER_OF_PROJECTS, " +
+                " sp.NUMBER_OF_PSMS, sp.NUMBER_OF_SPECTRA, sp.AVG_PRECURSOR_MZ, sp.AVG_PRECURSOR_CHARGE, sp.QUALITY" +
+                " FROM SPECTRUM_CLUSTER sp " +
+                " INNER JOIN CLUSTER_HAS_PSM cpsm " +
+                " ON sp.CLUSTER_PK = cpsm.CLUSTER_FK " +
+                " INNER JOIN PSM psm " +
+                " ON cpsm.PSM_FK = psm.PSM_PK " +
+                " WHERE sp.QUALITY <= " + quality.getQualityLevel();
+        return getClusteredPSMReport(pageNo, pageSize, rowCount, PSM_REPORT_QUERY);
+
+    }
+
+    @Override
+    public List<AssayReport> readFullAssaySet() {
+        final String ASSAY_REPORT_QUERY = "SELECT ASSAY_PK, ASSAY_ACCESSION, PROJECT_ACCESSION," +
+                " TAXONOMY_ID, SPECIES,MULTI_SPECIES " +
+                "FROM ASSAY";
+        return template.query(ASSAY_REPORT_QUERY, new PreparedStatementSetter() {
+            @Override
+            public void setValues(PreparedStatement ps) throws SQLException {
+            }
+        }, RowMapperFactory.getAssayReportRowMapper());
+
+    }
+
+    @Override
+    public long getNumberClusteredPSMs(ClusterQuality quality){
+        final String PSM_REPORT_COUNT = "SELECT count(*) FROM (SELECT sp.CLUSTER_PK FROM SPECTRUM_CLUSTER sp \n" +
+                "       INNER JOIN CLUSTER_HAS_PSM cpsm\n" +
+                "          ON sp.CLUSTER_PK = cpsm.CLUSTER_FK\n" +
+                "      INNER JOIN PSM psm\n" +
+                "          ON cpsm.PSM_FK = psm.PSM_PK\n" +
+                "      WHERE sp.QUALITY <= " + quality.getQualityLevel() + ")";
+        return template.queryForObject(PSM_REPORT_COUNT, Long.class);
+    }
 
 
 }

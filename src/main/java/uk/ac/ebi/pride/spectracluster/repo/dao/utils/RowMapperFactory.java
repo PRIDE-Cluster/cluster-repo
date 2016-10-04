@@ -1,11 +1,13 @@
 package uk.ac.ebi.pride.spectracluster.repo.dao.utils;
 
+import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
 import uk.ac.ebi.pride.spectracluster.repo.model.*;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Set;
 
 /**
  * Factory class for generating row mappers
@@ -16,6 +18,7 @@ import java.sql.SQLException;
 public final class RowMapperFactory {
 
     private static final ClusteredPSMDetailRowMapper clusteredPSMDetailRowMapper = new ClusteredPSMDetailRowMapper();
+    private static final ClusteredPSMReportRowMapper clusterRowMapper   = new ClusteredPSMReportRowMapper();
     private static final ClusteredSpectrumRowMapper clusteredSpectrumRowMapper = new ClusteredSpectrumRowMapper();
     private static final ClusterSummaryRowMapper clusterSummaryRowMapper = new ClusterSummaryRowMapper();
     private static final AssayDetailRowMapper assayDetailRowMapper = new AssayDetailRowMapper();
@@ -23,6 +26,7 @@ public final class RowMapperFactory {
     private static final SpectrumDetailRowMapper spectrumDetailRowMapper = new SpectrumDetailRowMapper();
     private static final SpectrumLibraryDetailRowMapper spectrumLibraryDetailRowMapper = new SpectrumLibraryDetailRowMapper();
     private static final ClusterRepoStatisticsRowMapper clusterRepoStatisticsRowMapper = new ClusterRepoStatisticsRowMapper();
+    private static final AssayReportRowMapper assayReportRowMapper = new AssayReportRowMapper();
 
     private RowMapperFactory(){}
 
@@ -56,6 +60,29 @@ public final class RowMapperFactory {
 
     public static ClusterRepoStatisticsRowMapper getClusterRepoStatisticsRowMapper() {
         return clusterRepoStatisticsRowMapper;
+    }
+
+    public static ClusteredPSMReportRowMapper getClusteredPSMReportRowMapper() {
+        return clusterRowMapper;
+    }
+
+    public static AssayReportRowMapper getAssayReportRowMapper() {
+        return assayReportRowMapper;
+    }
+
+    public static class  AssayReportRowMapper implements RowMapper<AssayReport>{
+
+        @Override
+        public AssayReport mapRow(ResultSet rs, int rowNum) throws SQLException {
+            AssayReport assayReport = new AssayReport();
+            assayReport.setId(rs.getLong("assay_pk"));
+            assayReport.setAccession(rs.getString("assay_accession"));
+            assayReport.setProjectAccession(rs.getString("project_accession"));
+            assayReport.setTaxonomyId(rs.getString("taxonomy_id"));
+            assayReport.setSpecies(rs.getString("species"));
+            assayReport.setMultiSpecies(rs.getBoolean("multi_species"));
+            return assayReport;
+        }
     }
 
     private static class ClusteredPSMDetailRowMapper implements RowMapper<ClusteredPSMDetail> {
@@ -152,6 +179,32 @@ public final class RowMapperFactory {
             cluster.setAnnotation(rs.getString("annotation"));
 
             return cluster;
+        }
+    }
+
+    private static class ClusteredPSMReportRowMapper implements ParameterizedRowMapper<ClusteredPSMReport>{
+
+        @Override
+        public ClusteredPSMReport mapRow(ResultSet rs, int rowNum) throws SQLException {
+            ClusteredPSMReport clusteredPSM = new ClusteredPSMReport();
+            clusteredPSM.setClusterId(rs.getLong("cluster_pk"));
+            clusteredPSM.setNumberOfSpectra(rs.getInt("number_of_spectra"));
+            clusteredPSM.setPsmId(rs.getLong("psm_pk"));
+            clusteredPSM.setAssayID(rs.getLong("assay_fk"));
+            clusteredPSM.setModifications(rs.getString("modifications"));
+            clusteredPSM.setProteinAccession(rs.getString("protein_accession"));
+            clusteredPSM.setDeltaMZ(rs.getFloat("delta_mz"));
+            clusteredPSM.setClusterNumberProjects(rs.getInt("number_of_projects"));
+            clusteredPSM.setClusterNumberPSMs(rs.getInt("number_of_psms"));
+            clusteredPSM.setClusterNumberSpectra(rs.getInt("number_of_spectra"));
+            clusteredPSM.setSequence(rs.getString("sequence"));
+            clusteredPSM.setClusterAvgMz(rs.getFloat("avg_precursor_mz"));
+            clusteredPSM.setClusterAvgCharge(rs.getFloat("avg_precursor_charge"));
+            ClusterQuality quality = ClusterQuality.getClusterQuality(rs.getInt("quality"));
+            clusteredPSM.setQuality(quality);
+
+
+            return clusteredPSM;
         }
     }
 

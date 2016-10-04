@@ -19,7 +19,8 @@ public class ClusterRepoStatistics {
     public static final String NUMBER_OF_IDENTIFIED_SPECTRA = "Number of identified spectra";
     public static final String NUMBER_OF_CLUSTERS_PER_SPECIES = "Number of clusters per species";
     public static final String NUMBER_OF_UNIQUE_PEPTIDES_PER_SPECIES = "Number of unique peptides per species";
-    public static final String OVERLAPPING_UNIQUE_PEPTIDES_ON_SPEICES = "Overlapping unique peptides on species";
+    public static final String OVERLAPPING_UNIQUE_PEPTIDES_ON_SPECIES = "Overlapping unique peptides on species";
+    public static final String ALL_STATISTICS = "";
 
     private String name;
     private Long value;

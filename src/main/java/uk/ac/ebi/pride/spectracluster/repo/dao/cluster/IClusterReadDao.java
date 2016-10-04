@@ -4,6 +4,7 @@ package uk.ac.ebi.pride.spectracluster.repo.dao.cluster;
 import uk.ac.ebi.pride.spectracluster.repo.model.*;
 import uk.ac.ebi.pride.spectracluster.repo.utils.paging.Page;
 
+import java.lang.Long;
 import java.util.List;
 
 /**
@@ -189,4 +190,22 @@ public interface IClusterReadDao {
      */
     List<AssayDetail> findAssays(final List<Long> assayIds);
 
+    /**
+     * This method retrieve all the PSMs as Report in PRIDE Clusters for an specific
+     * @param pageNo The page number of
+     * @param pageSize The page size of the Report
+     * @param rowCount Row count for the specific query
+     * @param quality The quality to be filter for PSMs
+     * @return
+     */
+    Page<ClusteredPSMReport> getClusteredPSMsReport(int pageNo, int pageSize, long rowCount, ClusterQuality quality);
+
+    /**
+     * This function read all the assays in cluster and put all of then in Set. WARN, the number of assays
+     * can be huge, then should be consider carefully the use of this function.
+     * @return
+     */
+    List<AssayReport> readFullAssaySet();
+
+    long getNumberClusteredPSMs(ClusterQuality quality);
 }

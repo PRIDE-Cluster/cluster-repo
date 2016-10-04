@@ -1,5 +1,6 @@
 package uk.ac.ebi.pride.spectracluster.repo.utils;
 
+import uk.ac.ebi.pride.utilities.pridemod.ModReader;
 import uk.ac.ebi.pride.utilities.pridemod.controller.DataAccessController;
 import uk.ac.ebi.pride.utilities.pridemod.controller.impl.PSIModDataAccessController;
 import uk.ac.ebi.pride.utilities.pridemod.controller.impl.UnimodDataAccessController;
@@ -19,10 +20,12 @@ public final class ModificationDetailFetcher implements DataAccessController{
 
     private final PSIModDataAccessController psiModDataAccessController;
     private final UnimodDataAccessController unimodDataAccessController;
+    private final ModReader modReader;
 
     public ModificationDetailFetcher(InputStream psiModFile, InputStream uniModFile) {
         psiModDataAccessController = new PSIModDataAccessController(psiModFile);
         unimodDataAccessController = new UnimodDataAccessController(uniModFile);
+        modReader = ModReader.getInstance();
     }
 
     @Override
@@ -111,6 +114,13 @@ public final class ModificationDetailFetcher implements DataAccessController{
             }
             return ptms;
         }
+        return null;
+    }
+
+    public PTM getAnchorPTMAccession(String accession, String aa){
+        List<PTM> ptms = modReader.getAnchorModification(accession, aa);
+        if(ptms != null && ptms.size() == 1 && ptms.get(0) != null && ptms.get(0).getAccession() != null)
+            return ptms.get(0);
         return null;
     }
 }

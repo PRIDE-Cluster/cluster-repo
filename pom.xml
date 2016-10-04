@@ -187,7 +187,7 @@
     </dependencies>
 
     <repositories>
-        <repository> <!-- EBI repo -->
+        <repository> <!-- EBI services -->
             <id>nexus-ebi-repo</id>
             <name>The EBI internal repository</name>
             <url>http://www.ebi.ac.uk/intact/maven/nexus/content/repositories/ebi-repo/</url>
@@ -197,7 +197,7 @@
                 <enabled>false</enabled>
             </snapshots>
         </repository>
-        <repository> <!-- EBI SNAPSHOT repo -->
+        <repository> <!-- EBI SNAPSHOT services -->
             <id>nexus-ebi-snapshot-repo</id>
             <name>The EBI internal snapshot repository</name>
             <url>http://www.ebi.ac.uk/intact/maven/nexus/content/repositories/ebi-repo-snapshots/</url>
@@ -212,12 +212,12 @@
 
 
     <distributionManagement>
-        <!-- EBI repo -->
+        <!-- EBI services -->
         <repository>
             <id>nexus-ebi-repo</id>
             <url>http://www.ebi.ac.uk/intact/maven/nexus/content/repositories/ebi-repo</url>
         </repository>
-        <!-- EBI SNAPSHOT repo -->
+        <!-- EBI SNAPSHOT services -->
         <snapshotRepository>
             <id>nexus-ebi-repo-snapshots</id>
             <url>http://www.ebi.ac.uk/intact/maven/nexus/content/repositories/ebi-repo-snapshots</url>
