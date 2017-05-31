@@ -34,7 +34,6 @@
         <uk.ac.ebi.pride-index-utils.version>1.0.0</uk.ac.ebi.pride-index-utils.version>
         <uk.ac.ebi.pride.archive-archive-data-provider-api.version>2.0.9</uk.ac.ebi.pride.archive-archive-data-provider-api.version>
 
-        <jcl-over-slf4j.version>1.7.2</jcl-over-slf4j.version>
         <commons-dbcp.version>1.4</commons-dbcp.version>
         <spring-jdbc.version>3.2.9.RELEASE</spring-jdbc.version>
         <oracle-thin.version>11.2.0.1.0</oracle-thin.version>
@@ -45,27 +44,26 @@
     </properties>
 
     <dependencies>
-
         <!-- pride index tools -->
         <dependency>
             <groupId>uk.ac.ebi.pride</groupId>
             <artifactId>index-utils</artifactId>
             <version>${uk.ac.ebi.pride-index-utils.version}</version>
         </dependency>
-
         <!--archive data provider-->
         <dependency>
             <groupId>uk.ac.ebi.pride.archive</groupId>
             <artifactId>archive-data-provider-api</artifactId>
             <version>${uk.ac.ebi.pride.archive-archive-data-provider-api.version}</version>
         </dependency>
-
+        <!-- Logging -->
         <dependency>
             <groupId>uk.ac.ebi.pride.architectural</groupId>
             <artifactId>pride-logging</artifactId>
             <type>pom</type>
             <version>${uk.ac.ebi.pride.architectural-pride-logging.version}</version>
         </dependency>
+        <!-- TDD -->
         <dependency>
             <groupId>uk.ac.ebi.pride.architectural</groupId>
             <artifactId>pride-tdd</artifactId>
