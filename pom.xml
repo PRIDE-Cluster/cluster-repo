@@ -27,6 +27,10 @@
     </developers>
 
     <properties>
+        <!-- Logging capabilities -->
+        <uk.ac.ebi.pride.architectural-pride-logging.version>1.0.0</uk.ac.ebi.pride.architectural-pride-logging.version>
+        <!-- TDD -->
+        <uk.ac.ebi.pride.architectural-pride-tdd.version>1.0.3</uk.ac.ebi.pride.architectural-pride-tdd.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <slf4j-api.version>1.7.5</slf4j-api.version>
         <jcl-over-slf4j.version>1.7.2</jcl-over-slf4j.version>
@@ -58,39 +62,18 @@
             <version>${archive.data.provider.api.version}</version>
         </dependency>
 
-        <!--logging-->
         <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>${slf4j-api.version}</version>
+            <groupId>uk.ac.ebi.pride.architectural</groupId>
+            <artifactId>pride-logging</artifactId>
+            <type>pom</type>
+            <version>${uk.ac.ebi.pride.architectural-pride-logging.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>jcl-over-slf4j</artifactId>
-            <version>${jcl-over-slf4j.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-core</artifactId>
-            <version>${logback-core.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <version>${logback-core.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-            <version>${commons-lang3.version}</version>
-        </dependency>
-
-        <!-- unit test -->
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>${junit.version}</version>
+            <groupId>uk.ac.ebi.pride.architectural</groupId>
+            <artifactId>pride-tdd</artifactId>
+            <type>pom</type>
+            <version>${uk.ac.ebi.pride.architectural-pride-tdd.version}</version>
+            <scope>test</scope>
         </dependency>
 
         <!-- database -->
