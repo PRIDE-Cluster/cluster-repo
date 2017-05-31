@@ -36,9 +36,10 @@
     </developers>
 
     <scm>
-        <connection>scm:svn:https://spectra-cluster.googlecode.com/svn/spectra-cluster-repo/trunk</connection>
-        <developerConnection>scm:svn:https://spectra-cluster.googlecode.com/svn/spectra-cluster-repo/trunk</developerConnection>
-        <url>https://spectra-cluster.googlecode.com/svn/spectra-cluster-repo/trunk</url>
+        <connection>scm:git:https://github.com/PRIDE-Cluster/cluster-repo.git</connection>
+        <developerConnection>scm:git:https://github.com/PRIDE-Cluster/cluster-repo.git</developerConnection>
+        <url>https://github.com/PRIDE-Cluster/cluster-repo.git</url>
+        <tag>HEAD</tag>
     </scm>
 
     <properties>
