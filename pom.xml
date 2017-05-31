@@ -22,6 +22,19 @@
         <url>http://www.ebi.ac.uk</url>
     </organization>
 
+    <developers>
+        <developer>
+            <id>mbernal</id>
+            <name>Manuel Bernal-Llinares</name>
+            <organization>Proteomics Team, EMBL-European Bioinformatics Institute</organization>
+            <organizationUrl>http://www.ebi.ac.uk/pride</organizationUrl>
+            <roles>
+                <role>developer</role>
+            </roles>
+            <timezone>Europe/London</timezone>
+        </developer>
+    </developers>
+
     <scm>
         <connection>scm:svn:https://spectra-cluster.googlecode.com/svn/spectra-cluster-repo/trunk</connection>
         <developerConnection>scm:svn:https://spectra-cluster.googlecode.com/svn/spectra-cluster-repo/trunk</developerConnection>
@@ -39,9 +52,9 @@
         <commons-lang3.version>3.3.2</commons-lang3.version>
         <junit.version>4.11</junit.version>
         <!-- here we have the same library two times-->
-        <pride-mod.version>2.1.1-SNAPSHOT</pride-mod.version>
+        <pride-mod.version>2.1.3</pride-mod.version>
         <archive.data.provider.api.version>2.0.6</archive.data.provider.api.version>
-        <pride.index.utils.version>0.1.2-SNAPSHOT</pride.index.utils.version>
+        <pride.index.utils.version>1.0.0</pride.index.utils.version>
     </properties>
 
     <build>
