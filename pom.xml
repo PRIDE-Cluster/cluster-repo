@@ -3,7 +3,7 @@
     <groupId>uk.ac.ebi.pride.spectracluster</groupId>
     <artifactId>spectra-cluster-repo</artifactId>
     <packaging>jar</packaging>
-    <version>1.0.3-SNAPSHOT</version>
+    <version>1.0.3</version>
 
     <name>spectra-cluster-repo</name>
 
@@ -151,7 +151,7 @@
         <connection>scm:git:https://github.com/PRIDE-Cluster/cluster-repo.git</connection>
         <developerConnection>scm:git:https://github.com/PRIDE-Cluster/cluster-repo.git</developerConnection>
         <url>https://github.com/PRIDE-Cluster/cluster-repo.git</url>
-        <tag>HEAD</tag>
+        <tag>spectra-cluster-repo-1.0.3</tag>
     </scm>
 
 
