@@ -31,10 +31,9 @@
         <uk.ac.ebi.pride.architectural-pride-logging.version>1.0.0</uk.ac.ebi.pride.architectural-pride-logging.version>
         <!-- TDD -->
         <uk.ac.ebi.pride.architectural-pride-tdd.version>1.0.3</uk.ac.ebi.pride.architectural-pride-tdd.version>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <slf4j-api.version>1.7.5</slf4j-api.version>
+        <uk.ac.ebi.pride-index-utils.version>1.0.0</uk.ac.ebi.pride-index-utils.version>
+
         <jcl-over-slf4j.version>1.7.2</jcl-over-slf4j.version>
-        <logback-core.version>1.0.13</logback-core.version>
         <commons-dbcp.version>1.4</commons-dbcp.version>
         <spring-jdbc.version>3.2.9.RELEASE</spring-jdbc.version>
         <oracle-thin.version>11.2.0.1.0</oracle-thin.version>
@@ -43,7 +42,6 @@
         <!-- here we have the same library two times-->
         <pride-mod.version>2.1.3</pride-mod.version>
         <archive.data.provider.api.version>2.0.6</archive.data.provider.api.version>
-        <pride.index.utils.version>1.0.0</pride.index.utils.version>
     </properties>
 
     <dependencies>
@@ -52,7 +50,7 @@
         <dependency>
             <groupId>uk.ac.ebi.pride</groupId>
             <artifactId>index-utils</artifactId>
-            <version>${pride.index.utils.version}</version>
+            <version>${uk.ac.ebi.pride-index-utils.version}</version>
         </dependency>
 
         <!--archive data provider-->
