@@ -13,7 +13,7 @@
         <artifactId>pride-core</artifactId>
         <version>1.0.1</version>
     </parent>
-    
+
     <developers>
         <developer>
             <id>mbernal</id>
@@ -26,13 +26,6 @@
             <timezone>Europe/London</timezone>
         </developer>
     </developers>
-
-    <scm>
-        <connection>scm:git:https://github.com/PRIDE-Cluster/cluster-repo.git</connection>
-        <developerConnection>scm:git:https://github.com/PRIDE-Cluster/cluster-repo.git</developerConnection>
-        <url>https://github.com/PRIDE-Cluster/cluster-repo.git</url>
-        <tag>HEAD</tag>
-    </scm>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -49,6 +42,85 @@
         <archive.data.provider.api.version>2.0.6</archive.data.provider.api.version>
         <pride.index.utils.version>1.0.0</pride.index.utils.version>
     </properties>
+
+    <dependencies>
+
+        <!-- pride index tools -->
+        <dependency>
+            <groupId>uk.ac.ebi.pride</groupId>
+            <artifactId>index-utils</artifactId>
+            <version>${pride.index.utils.version}</version>
+        </dependency>
+
+        <!--archive data provider-->
+        <dependency>
+            <groupId>uk.ac.ebi.pride.archive</groupId>
+            <artifactId>archive-data-provider-api</artifactId>
+            <version>${archive.data.provider.api.version}</version>
+        </dependency>
+
+        <!--logging-->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j-api.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jcl-over-slf4j</artifactId>
+            <version>${jcl-over-slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-core</artifactId>
+            <version>${logback-core.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logback-core.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${commons-lang3.version}</version>
+        </dependency>
+
+        <!-- unit test -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+        </dependency>
+
+        <!-- database -->
+        <dependency>
+            <groupId>commons-dbcp</groupId>
+            <artifactId>commons-dbcp</artifactId>
+            <version>${commons-dbcp.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>${spring-jdbc.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.oracle</groupId>
+            <artifactId>oracle-thin</artifactId>
+            <version>${oracle-thin.version}</version>
+        </dependency>
+
+        <!-- pride mod library -->
+        <dependency>
+            <groupId>uk.ac.ebi.pride.utilities</groupId>
+            <artifactId>pride-mod</artifactId>
+            <version>${pride-mod.version}</version>
+        </dependency>
+
+    </dependencies>
 
     <build>
         <resources>
@@ -129,84 +201,12 @@
         </plugins>
     </build>
 
-    <dependencies>
-
-        <!-- pride index tools -->
-        <dependency>
-            <groupId>uk.ac.ebi.pride</groupId>
-            <artifactId>index-utils</artifactId>
-            <version>${pride.index.utils.version}</version>
-        </dependency>
-
-        <!--archive data provider-->
-        <dependency>
-            <groupId>uk.ac.ebi.pride.archive</groupId>
-            <artifactId>archive-data-provider-api</artifactId>
-            <version>${archive.data.provider.api.version}</version>
-        </dependency>
-
-        <!--logging-->
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>${slf4j-api.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>jcl-over-slf4j</artifactId>
-            <version>${jcl-over-slf4j.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-core</artifactId>
-            <version>${logback-core.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <version>${logback-core.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-            <version>${commons-lang3.version}</version>
-        </dependency>
-
-        <!-- unit test -->
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>${junit.version}</version>
-        </dependency>
-
-        <!-- database -->
-        <dependency>
-            <groupId>commons-dbcp</groupId>
-            <artifactId>commons-dbcp</artifactId>
-            <version>${commons-dbcp.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-jdbc</artifactId>
-            <version>${spring-jdbc.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.oracle</groupId>
-            <artifactId>oracle-thin</artifactId>
-            <version>${oracle-thin.version}</version>
-        </dependency>
-
-        <!-- pride mod library -->
-        <dependency>
-            <groupId>uk.ac.ebi.pride.utilities</groupId>
-            <artifactId>pride-mod</artifactId>
-            <version>${pride-mod.version}</version>
-        </dependency>
-
-    </dependencies>
+    <scm>
+        <connection>scm:git:https://github.com/PRIDE-Cluster/cluster-repo.git</connection>
+        <developerConnection>scm:git:https://github.com/PRIDE-Cluster/cluster-repo.git</developerConnection>
+        <url>https://github.com/PRIDE-Cluster/cluster-repo.git</url>
+        <tag>HEAD</tag>
+    </scm>
 
     <repositories>
         <repository> <!-- EBI services -->
