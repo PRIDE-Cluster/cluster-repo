@@ -33,6 +33,7 @@
         <uk.ac.ebi.pride.architectural-pride-tdd.version>1.0.3</uk.ac.ebi.pride.architectural-pride-tdd.version>
         <uk.ac.ebi.pride-index-utils.version>1.0.0</uk.ac.ebi.pride-index-utils.version>
         <uk.ac.ebi.pride.archive-archive-data-provider-api.version>2.0.9</uk.ac.ebi.pride.archive-archive-data-provider-api.version>
+        <uk.ac.ebi.pride.utilities-pride-mod.version>2.1.3</uk.ac.ebi.pride.utilities-pride-mod.version>
 
         <commons-dbcp.version>1.4</commons-dbcp.version>
         <spring-jdbc.version>3.2.9.RELEASE</spring-jdbc.version>
@@ -40,7 +41,6 @@
         <commons-lang3.version>3.3.2</commons-lang3.version>
         <junit.version>4.11</junit.version>
         <!-- here we have the same library two times-->
-        <pride-mod.version>2.1.3</pride-mod.version>
     </properties>
 
     <dependencies>
@@ -95,7 +95,7 @@
         <dependency>
             <groupId>uk.ac.ebi.pride.utilities</groupId>
             <artifactId>pride-mod</artifactId>
-            <version>${pride-mod.version}</version>
+            <version>${uk.ac.ebi.pride.utilities-pride-mod.version}</version>
         </dependency>
 
     </dependencies>
