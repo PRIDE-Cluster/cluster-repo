@@ -3,7 +3,7 @@ package uk.ac.ebi.pride.spectracluster.repo.utils.paging;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
-import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
+import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -34,7 +34,7 @@ public class PaginationHelper<E> {
             final Object args[],
             final int pageNo,
             final int pageSize,
-            final ParameterizedRowMapper<E> rowMapper) {
+            final RowMapper<E> rowMapper) {
 
         // determine how many rows are available
         final long rowCount = jt.queryForObject(sqlCountRows, Long.class, args);
@@ -90,7 +90,7 @@ public class PaginationHelper<E> {
             final Object args[],
             final int pageNo,
             final int pageSize,
-            final ParameterizedRowMapper<E> rowMapper) {
+            final RowMapper<E> rowMapper) {
 
         // determine how many rows are available
         // calculate the number of pages
