@@ -1,162 +1,85 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>uk.ac.ebi.pride.spectracluster</groupId>
     <artifactId>spectra-cluster-repo</artifactId>
     <packaging>jar</packaging>
-    <version>1.0.3-SNAPSHOT</version>
+    <version>1.0.5-SNAPSHOT</version>
 
     <name>spectra-cluster-repo</name>
 
-    <licenses>
-        <license>
-            <name>Apache 2</name>
-            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-            <distribution>repo</distribution>
-            <comments>A business-friendly OSS license</comments>
-        </license>
-    </licenses>
+    <parent>
+        <groupId>uk.ac.ebi.pride.architectural</groupId>
+        <artifactId>pride-core</artifactId>
+        <version>1.0.1</version>
+    </parent>
 
-    <!-- This must be run using db-pride-repopridearch-user db-pride-repo-pridecluster-user-->
-    <organization>
-        <name>European Bioinformatics Institute</name>
-        <url>http://www.ebi.ac.uk</url>
-    </organization>
+    <developers>
 
-    <scm>
-        <connection>scm:svn:https://spectra-cluster.googlecode.com/svn/spectra-cluster-repo/trunk</connection>
-        <developerConnection>scm:svn:https://spectra-cluster.googlecode.com/svn/spectra-cluster-repo/trunk</developerConnection>
-        <url>https://spectra-cluster.googlecode.com/svn/spectra-cluster-repo/trunk</url>
-    </scm>
+        <developer>
+            <id>yperez</id>
+            <name>Yasset Perez-Riverol</name>
+            <organization>Proteomics Team, EMBL-European Bioinformatics Institute</organization>
+            <organizationUrl>http://www.ebi.ac.uk/pride</organizationUrl>
+            <roles>
+                <role>developer</role>
+            </roles>
+            <timezone>Europe/London</timezone>
+        </developer>
+        <developer>
+            <id>mbernal</id>
+            <name>Manuel Bernal-Llinares</name>
+            <organization>Proteomics Team, EMBL-European Bioinformatics Institute</organization>
+            <organizationUrl>http://www.ebi.ac.uk/pride</organizationUrl>
+            <roles>
+                <role>developer</role>
+            </roles>
+            <timezone>Europe/London</timezone>
+        </developer>
+    </developers>
 
     <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <slf4j-api.version>1.7.5</slf4j-api.version>
-        <jcl-over-slf4j.version>1.7.2</jcl-over-slf4j.version>
-        <logback-core.version>1.0.13</logback-core.version>
+        <!-- Logging capabilities -->
+        <uk.ac.ebi.pride.architectural-pride-logging.version>1.0.0</uk.ac.ebi.pride.architectural-pride-logging.version>
+        <!-- TDD -->
+        <uk.ac.ebi.pride.architectural-pride-tdd.version>1.0.3</uk.ac.ebi.pride.architectural-pride-tdd.version>
+        <uk.ac.ebi.pride-index-utils.version>1.0.0</uk.ac.ebi.pride-index-utils.version>
+        <uk.ac.ebi.pride.archive-archive-data-provider-api.version>2.0.9</uk.ac.ebi.pride.archive-archive-data-provider-api.version>
+        <uk.ac.ebi.pride.utilities-pride-mod.version>2.1.3</uk.ac.ebi.pride.utilities-pride-mod.version>
+
         <commons-dbcp.version>1.4</commons-dbcp.version>
         <spring-jdbc.version>3.2.9.RELEASE</spring-jdbc.version>
         <oracle-thin.version>11.2.0.1.0</oracle-thin.version>
         <commons-lang3.version>3.3.2</commons-lang3.version>
-        <junit.version>4.11</junit.version>
         <!-- here we have the same library two times-->
-        <pride-mod.version>2.1.1-SNAPSHOT</pride-mod.version>
-        <archive.data.provider.api.version>2.0.6</archive.data.provider.api.version>
-        <pride.index.utils.version>0.1.2-SNAPSHOT</pride.index.utils.version>
     </properties>
 
-    <build>
-        <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-                <filtering>true</filtering>
-            </resource>
-        </resources>
-
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.1</version>
-                <configuration>
-                    <source>1.6</source>
-                    <target>1.6</target>
-                </configuration>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <version>2.4</version>
-                <configuration>
-                    <archive>
-                        <manifest>
-                            <mainClass>uk.ac.ebi.pride.tools.cluster.loader.ClusteringFileLoader</mainClass>
-                            <addClasspath>true</addClasspath>
-                            <classpathPrefix>lib/</classpathPrefix>
-                        </manifest>
-                    </archive>
-                </configuration>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-source-plugin</artifactId>
-                <version>2.1.2</version>
-                <executions>
-                    <execution>
-                        <id>attach-sources</id>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>jar-no-fork</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <!-- Maven release plugin -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-release-plugin</artifactId>
-                <version>2.2.1</version>
-                <configuration>
-                    <remoteTagging>true</remoteTagging>
-                    <goals>deploy</goals>
-                </configuration>
-            </plugin>
-
-        </plugins>
-    </build>
-
     <dependencies>
-
         <!-- pride index tools -->
         <dependency>
             <groupId>uk.ac.ebi.pride</groupId>
             <artifactId>index-utils</artifactId>
-            <version>${pride.index.utils.version}</version>
+            <version>${uk.ac.ebi.pride-index-utils.version}</version>
         </dependency>
-
         <!--archive data provider-->
         <dependency>
             <groupId>uk.ac.ebi.pride.archive</groupId>
             <artifactId>archive-data-provider-api</artifactId>
-            <version>${archive.data.provider.api.version}</version>
+            <version>${uk.ac.ebi.pride.archive-archive-data-provider-api.version}</version>
         </dependency>
-
-        <!--logging-->
+        <!-- Logging -->
         <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>${slf4j-api.version}</version>
+            <groupId>uk.ac.ebi.pride.architectural</groupId>
+            <artifactId>pride-logging</artifactId>
+            <type>pom</type>
+            <version>${uk.ac.ebi.pride.architectural-pride-logging.version}</version>
         </dependency>
+        <!-- TDD -->
         <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>jcl-over-slf4j</artifactId>
-            <version>${jcl-over-slf4j.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-core</artifactId>
-            <version>${logback-core.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <version>${logback-core.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-            <version>${commons-lang3.version}</version>
-        </dependency>
-
-        <!-- unit test -->
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>${junit.version}</version>
+            <groupId>uk.ac.ebi.pride.architectural</groupId>
+            <artifactId>pride-tdd</artifactId>
+            <type>pom</type>
+            <version>${uk.ac.ebi.pride.architectural-pride-tdd.version}</version>
+            <scope>test</scope>
         </dependency>
 
         <!-- database -->
@@ -182,46 +105,43 @@
         <dependency>
             <groupId>uk.ac.ebi.pride.utilities</groupId>
             <artifactId>pride-mod</artifactId>
-            <version>${pride-mod.version}</version>
+            <version>${uk.ac.ebi.pride.utilities-pride-mod.version}</version>
         </dependency>
 
     </dependencies>
 
-    <repositories>
-        <repository> <!-- EBI services -->
-            <id>nexus-ebi-repo</id>
-            <name>The EBI internal repository</name>
-            <url>http://www.ebi.ac.uk/intact/maven/nexus/content/repositories/ebi-repo/</url>
-            <releases>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-        <repository> <!-- EBI SNAPSHOT services -->
-            <id>nexus-ebi-snapshot-repo</id>
-            <name>The EBI internal snapshot repository</name>
-            <url>http://www.ebi.ac.uk/intact/maven/nexus/content/repositories/ebi-repo-snapshots/</url>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.6</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>uk.ac.ebi.pride.tools.cluster.loader.ClusteringFileLoader</mainClass>
+                            <addClasspath>true</addClasspath>
+                            <classpathPrefix>lib/</classpathPrefix>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <scm>
+        <connection>scm:git:https://github.com/PRIDE-Cluster/cluster-repo.git</connection>
+        <developerConnection>scm:git:https://github.com/PRIDE-Cluster/cluster-repo.git</developerConnection>
+        <url>https://github.com/PRIDE-Cluster/cluster-repo.git</url>
+        <tag>HEAD</tag>
+    </scm>
 
 
-    <distributionManagement>
-        <!-- EBI services -->
-        <repository>
-            <id>nexus-ebi-repo</id>
-            <url>http://www.ebi.ac.uk/intact/maven/nexus/content/repositories/ebi-repo</url>
-        </repository>
-        <!-- EBI SNAPSHOT services -->
-        <snapshotRepository>
-            <id>nexus-ebi-repo-snapshots</id>
-            <url>http://www.ebi.ac.uk/intact/maven/nexus/content/repositories/ebi-repo-snapshots</url>
-        </snapshotRepository>
-    </distributionManagement>
 </project>
