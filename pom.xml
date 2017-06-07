@@ -17,6 +17,7 @@
         </license>
     </licenses>
 
+    <!-- This must be run using db-pride-repopridearch-user db-pride-repo-pridecluster-user-->
     <organization>
         <name>European Bioinformatics Institute</name>
         <url>http://www.ebi.ac.uk</url>
