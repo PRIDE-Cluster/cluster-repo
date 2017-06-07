@@ -46,6 +46,7 @@
         <uk.ac.ebi.pride.archive-archive-data-provider-api.version>2.0.9</uk.ac.ebi.pride.archive-archive-data-provider-api.version>
         <uk.ac.ebi.pride.utilities-pride-mod.version>2.1.3</uk.ac.ebi.pride.utilities-pride-mod.version>
 
+        <!-- un-normalized properties -->
         <commons-dbcp.version>1.4</commons-dbcp.version>
         <spring-jdbc.version>3.2.9.RELEASE</spring-jdbc.version>
         <oracle-thin.version>11.2.0.1.0</oracle-thin.version>
