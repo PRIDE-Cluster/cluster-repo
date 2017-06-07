@@ -2,7 +2,7 @@ package uk.ac.ebi.pride.spectracluster.repo.dao.cluster;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementSetter;
-import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
+import org.springframework.jdbc.core.RowMapper;
 import uk.ac.ebi.pride.spectracluster.repo.dao.utils.RowMapperFactory;
 import uk.ac.ebi.pride.spectracluster.repo.model.*;
 import uk.ac.ebi.pride.spectracluster.repo.utils.QueryUtils;
@@ -155,7 +155,7 @@ public class ClusterReader implements IClusterReadDao {
                 new Object[]{},
                 pageNo,
                 pageSize,
-                new ParameterizedRowMapper<Long>() {
+                new RowMapper<Long>() {
                     public Long mapRow(ResultSet rs, int i) throws SQLException {
                         return rs.getLong("cluster_pk");
                     }
