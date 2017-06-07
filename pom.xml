@@ -48,7 +48,7 @@
 
         <!-- un-normalized properties -->
         <commons-dbcp.version>1.4</commons-dbcp.version>
-        <spring-jdbc.version>3.2.9.RELEASE</spring-jdbc.version>
+        <spring-jdbc.version>4.3.8.RELEASE</spring-jdbc.version>
         <oracle-thin.version>11.2.0.1.0</oracle-thin.version>
         <commons-lang3.version>3.3.2</commons-lang3.version>
         <!-- here we have the same library two times-->
