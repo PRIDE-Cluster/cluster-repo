@@ -2,7 +2,6 @@ package uk.ac.ebi.pride.spectracluster.repo.dao.utils;
 
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
-import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
 import uk.ac.ebi.pride.spectracluster.repo.model.*;
 
 import java.sql.ResultSet;
@@ -151,7 +150,7 @@ public final class RowMapperFactory {
         }
     }
 
-    private static class ClusterSummaryRowMapper implements ParameterizedRowMapper<ClusterSummary> {
+    private static class ClusterSummaryRowMapper implements RowMapper<ClusterSummary> {
 
         @Override
         public ClusterSummary mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -182,7 +181,7 @@ public final class RowMapperFactory {
         }
     }
 
-    private static class ClusteredPSMReportRowMapper implements ParameterizedRowMapper<ClusteredPSMReport>{
+    private static class ClusteredPSMReportRowMapper implements RowMapper<ClusteredPSMReport>{
 
         @Override
         public ClusteredPSMReport mapRow(ResultSet rs, int rowNum) throws SQLException {
